@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15e979fb-1d17-47e8-b936-4470dc7176e2" name="变更" comment="my demo gui">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Modern_GUI_PyDracula_PySide6_or_PyQt6.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Modern_GUI_PyDracula_PySide6_or_PyQt6.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/___.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/___.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/ui_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/ui_main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,6 +192,10 @@
       <workItem from="1680921361383" duration="312000" />
       <workItem from="1680922789108" duration="22180000" />
       <workItem from="1681019974726" duration="68152000" />
+      <workItem from="1681281001993" duration="311000" />
+      <workItem from="1681281325522" duration="10000" />
+      <workItem from="1681281366831" duration="179000" />
+      <workItem from="1681281621163" duration="1048000" />
     </task>
     <task id="LOCAL-00001" summary="my demo gui">
       <created>1681277684146</created>
@@ -233,16 +242,17 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Modern_GUI_PyDracula_PySide6_or_PyQt6$main.coverage" NAME="main 覆盖结果" MODIFIED="1680921652120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/NewTestDemo$NoneTest.coverage" NAME="NoneTest 覆盖结果" MODIFIED="1681110816549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
     <SUITE FILE_PATH="coverage/NewTestDemo$drawRectangle.coverage" NAME="drawRectangle 覆盖结果" MODIFIED="1681135044916" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
     <SUITE FILE_PATH="coverage/NewTestDemo$widthHeightTest.coverage" NAME="widthHeightTest 覆盖结果" MODIFIED="1681110116452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
     <SUITE FILE_PATH="coverage/NewTestDemo$getSharpnessTest.coverage" NAME="getSharpnessTest 覆盖结果" MODIFIED="1681054429037" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
     <SUITE FILE_PATH="coverage/NewTestDemo$main.coverage" NAME="main 覆盖结果" MODIFIED="1681276802676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/NewTestDemo$ui_main.coverage" NAME="ui_main 覆盖结果" MODIFIED="1680950238022" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
-    <SUITE FILE_PATH="coverage/NewTestDemo$hsvTest.coverage" NAME="hsvTest 覆盖结果" MODIFIED="1681050787915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
-    <SUITE FILE_PATH="coverage/NewTestDemo$moveTest.coverage" NAME="moveTest 覆盖结果" MODIFIED="1681054436146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
     <SUITE FILE_PATH="coverage/NewTestDemo$Processor.coverage" NAME="Processor 覆盖结果" MODIFIED="1681265697185" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Processor" />
     <SUITE FILE_PATH="coverage/NewTestDemo$__init__.coverage" NAME="__init__ 覆盖结果" MODIFIED="1680933650824" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/widgets/custom_grips" />
     <SUITE FILE_PATH="coverage/NewTestDemo$matchTest.coverage" NAME="matchTest 覆盖结果" MODIFIED="1681276154192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
+    <SUITE FILE_PATH="coverage/NewTestDemo$NoneTest.coverage" NAME="NoneTest 覆盖结果" MODIFIED="1681110816549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
+    <SUITE FILE_PATH="coverage/NewTestDemo$ui_main.coverage" NAME="ui_main 覆盖结果" MODIFIED="1680950238022" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
+    <SUITE FILE_PATH="coverage/NewTestDemo$hsvTest.coverage" NAME="hsvTest 覆盖结果" MODIFIED="1681050787915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
+    <SUITE FILE_PATH="coverage/NewTestDemo$moveTest.coverage" NAME="moveTest 覆盖结果" MODIFIED="1681054436146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
+    <SUITE FILE_PATH="coverage/newGui$main.coverage" NAME="main 覆盖结果" MODIFIED="1681282645716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

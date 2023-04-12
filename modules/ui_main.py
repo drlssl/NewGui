@@ -1,25 +1,28 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'maincAnJai.ui'
+## Form generated from reading UI file 'mainOpVcxk.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QMetaObject, QRect,
-                            QSize, Qt)
-from PySide6.QtGui import (QBrush, QColor, QCursor,
-                           QFont, QIcon,
-                           QPalette)
-from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QCheckBox,
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+                            QMetaObject, QObject, QPoint, QRect,
+                            QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+                           QFont, QFontDatabase, QGradient, QIcon,
+                           QImage, QKeySequence, QLinearGradient, QPainter,
+                           QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QCheckBox,
                                QComboBox, QCommandLinkButton, QFrame, QGridLayout,
-                               QHBoxLayout, QLabel, QLineEdit,
-                               QPlainTextEdit, QPushButton, QRadioButton,
+                               QHBoxLayout, QHeaderView, QLabel, QLineEdit,
+                               QMainWindow, QPlainTextEdit, QPushButton, QRadioButton,
                                QScrollArea, QScrollBar, QSizePolicy, QSlider,
                                QStackedWidget, QTableWidget, QTableWidgetItem, QTextEdit,
                                QVBoxLayout, QWidget)
+from .resources_rc import *
 
 
 class Ui_MainWindow(object):
@@ -50,16 +53,16 @@ class Ui_MainWindow(object):
             "QWidget{\n"
             "	color: rgb(221, 221, 221);\n"
             "	font: 10pt \"Segoe UI\";\n"
-"}\n"
-"\n"
-"/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
-"Tooltip */\n"
-"QToolTip {\n"
-"	color: #ffffff;\n"
-"	background-color: rgba(33, 37, 43, 180);\n"
-"	border: 1px solid rgb(44, 49, 58);\n"
-"	background-image: none;\n"
-"	background-position: left center;\n"
+            "}\n"
+            "\n"
+            "/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
+            "Tooltip */\n"
+            "QToolTip {\n"
+            "	color: #ffffff;\n"
+            "	background-color: rgba(33, 37, 43, 180);\n"
+            "	border: 1px solid rgb(44, 49, 58);\n"
+            "	background-image: none;\n"
+            "	background-position: left center;\n"
 "    background-repeat: no-repeat;\n"
 "	border: none;\n"
 "	border-left: 2px solid rgb(255, 121, 198);\n"
@@ -540,16 +543,16 @@ class Ui_MainWindow(object):
 "}\n"
 "QCommandLinkButton:pressed {	\n"
 "	color: rgb(189, 147, 249);\n"
-"	background-color: rgb(52, 58, 71);\n"
-"}\n"
-"\n"
-"/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
-"Button */\n"
-"#pagesContainer QPushButton {\n"
-"	border: 2px solid rgb(52, 59, 72);\n"
-"	border-radius: 5px;	\n"
-"	background-color: rgb(52, 59, 72);\n"
-"}\n"
+            "	background-color: rgb(52, 58, 71);\n"
+            "}\n"
+            "\n"
+            "/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
+            "Button */\n"
+            "#pagesContainer QPushButton {\n"
+            "	border: 2px solid rgb(52, 59, 72);\n"
+            "	border-radius: 5px;	\n"
+            "	background-color: rgb(52, 59, 72);\n"
+            "}\n"
             "#pagesContainer QPushButton:hover {\n"
             "	background-color: rgb(57, 65, 80);\n"
             "	border: 2px solid rgb(61, 70, 86);\n"
@@ -1349,7 +1352,7 @@ class Ui_MainWindow(object):
         brush3.setStyle(Qt.SolidPattern)
         # if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette.setBrush(QPalette.Active, QPalette.PlaceholderText, brush3)
-        # endif
+        #endif
         palette.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
         palette.setBrush(QPalette.Inactive, QPalette.Button, brush1)
         palette.setBrush(QPalette.Inactive, QPalette.Text, brush)
@@ -1358,9 +1361,9 @@ class Ui_MainWindow(object):
         brush4.setStyle(Qt.NoBrush)
         palette.setBrush(QPalette.Inactive, QPalette.Base, brush4)
         palette.setBrush(QPalette.Inactive, QPalette.Window, brush1)
-        # if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush3)
-        # endif
+        #endif
         palette.setBrush(QPalette.Disabled, QPalette.WindowText, brush)
         palette.setBrush(QPalette.Disabled, QPalette.Button, brush1)
         palette.setBrush(QPalette.Disabled, QPalette.Text, brush)
@@ -1369,9 +1372,9 @@ class Ui_MainWindow(object):
         brush5.setStyle(Qt.NoBrush)
         palette.setBrush(QPalette.Disabled, QPalette.Base, brush5)
         palette.setBrush(QPalette.Disabled, QPalette.Window, brush1)
-        # if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush3)
-        # endif
+        #endif
         self.tableWidget.setPalette(palette)
         self.tableWidget.setFrameShape(QFrame.NoFrame)
         self.tableWidget.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
@@ -1392,6 +1395,7 @@ class Ui_MainWindow(object):
         self.tableWidget.verticalHeader().setStretchLastSection(True)
 
         self.horizontalLayout_12.addWidget(self.tableWidget)
+
 
         self.verticalLayout.addWidget(self.row_3)
 
@@ -1469,9 +1473,9 @@ class Ui_MainWindow(object):
         brush6.setStyle(Qt.NoBrush)
         palette1.setBrush(QPalette.Active, QPalette.Base, brush6)
         palette1.setBrush(QPalette.Active, QPalette.Window, brush1)
-        # if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette1.setBrush(QPalette.Active, QPalette.PlaceholderText, brush3)
-        # endif
+        #endif
         palette1.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
         palette1.setBrush(QPalette.Inactive, QPalette.Button, brush1)
         palette1.setBrush(QPalette.Inactive, QPalette.Text, brush)
@@ -1480,9 +1484,9 @@ class Ui_MainWindow(object):
         brush7.setStyle(Qt.NoBrush)
         palette1.setBrush(QPalette.Inactive, QPalette.Base, brush7)
         palette1.setBrush(QPalette.Inactive, QPalette.Window, brush1)
-        # if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette1.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush3)
-        # endif
+        #endif
         palette1.setBrush(QPalette.Disabled, QPalette.WindowText, brush)
         palette1.setBrush(QPalette.Disabled, QPalette.Button, brush1)
         palette1.setBrush(QPalette.Disabled, QPalette.Text, brush)
@@ -1491,9 +1495,9 @@ class Ui_MainWindow(object):
         brush8.setStyle(Qt.NoBrush)
         palette1.setBrush(QPalette.Disabled, QPalette.Base, brush8)
         palette1.setBrush(QPalette.Disabled, QPalette.Window, brush1)
-        # if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette1.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush3)
-        # endif
+        #endif
         self.logger.setPalette(palette1)
         self.logger.setFrameShape(QFrame.NoFrame)
         self.logger.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
@@ -1550,9 +1554,9 @@ class Ui_MainWindow(object):
         brush9.setStyle(Qt.NoBrush)
         palette2.setBrush(QPalette.Active, QPalette.Base, brush9)
         palette2.setBrush(QPalette.Active, QPalette.Window, brush1)
-        # if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette2.setBrush(QPalette.Active, QPalette.PlaceholderText, brush3)
-        # endif
+        #endif
         palette2.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
         palette2.setBrush(QPalette.Inactive, QPalette.Button, brush1)
         palette2.setBrush(QPalette.Inactive, QPalette.Text, brush)
@@ -1561,9 +1565,9 @@ class Ui_MainWindow(object):
         brush10.setStyle(Qt.NoBrush)
         palette2.setBrush(QPalette.Inactive, QPalette.Base, brush10)
         palette2.setBrush(QPalette.Inactive, QPalette.Window, brush1)
-        # if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette2.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush3)
-        # endif
+        #endif
         palette2.setBrush(QPalette.Disabled, QPalette.WindowText, brush)
         palette2.setBrush(QPalette.Disabled, QPalette.Button, brush1)
         palette2.setBrush(QPalette.Disabled, QPalette.Text, brush)
@@ -1572,9 +1576,9 @@ class Ui_MainWindow(object):
         brush11.setStyle(Qt.NoBrush)
         palette2.setBrush(QPalette.Disabled, QPalette.Base, brush11)
         palette2.setBrush(QPalette.Disabled, QPalette.Window, brush1)
-        # if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette2.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush3)
-        # endif
+        #endif
         self.widthHeightTable.setPalette(palette2)
         self.widthHeightTable.setFrameShape(QFrame.NoFrame)
         self.widthHeightTable.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
@@ -1600,6 +1604,7 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.new_page)
 
         self.verticalLayout_15.addWidget(self.stackedWidget)
+
 
         self.horizontalLayout_4.addWidget(self.pagesContainer)
 
@@ -1728,7 +1733,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.contentBottom)
 
+
         self.appLayout.addWidget(self.contentBox)
+
 
         self.verticalLayout_20.addWidget(self.bgApp)
 
@@ -1738,6 +1745,7 @@ class Ui_MainWindow(object):
 
         self.stackedWidget.setCurrentIndex(3)
         self.modeSelector.setCurrentIndex(-1)
+
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
@@ -1758,7 +1766,7 @@ class Ui_MainWindow(object):
         self.extraLabel.setText(QCoreApplication.translate("MainWindow", u"Left Box", None))
         # if QT_CONFIG(tooltip)
         self.extraCloseColumnBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Close left box", None))
-#endif // QT_CONFIG(tooltip)
+        # endif // QT_CONFIG(tooltip)
         self.extraCloseColumnBtn.setText("")
         self.btn_share.setText(QCoreApplication.translate("MainWindow", u"Share", None))
         self.btn_adjustments.setText(QCoreApplication.translate("MainWindow", u"Adjustments", None))
@@ -1786,13 +1794,13 @@ class Ui_MainWindow(object):
         self.minimizeAppBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Minimize", None))
         # endif // QT_CONFIG(tooltip)
         self.minimizeAppBtn.setText("")
-        # if QT_CONFIG(tooltip)
+        #if QT_CONFIG(tooltip)
         self.maximizeRestoreAppBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Maximize", None))
 #endif // QT_CONFIG(tooltip)
         self.maximizeRestoreAppBtn.setText("")
-        # if QT_CONFIG(tooltip)
+        #if QT_CONFIG(tooltip)
         self.closeAppBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Close", None))
-        # endif // QT_CONFIG(tooltip)
+        #endif // QT_CONFIG(tooltip)
         self.closeAppBtn.setText("")
         self.labelBoxBlenderInstalation.setText(QCoreApplication.translate("MainWindow", u"FILE BOX", None))
         self.lineEdit.setText("")

@@ -13,18 +13,25 @@
 # https://doc.qt.io/qtforpython/licenses.html
 #
 # ///////////////////////////////////////////////////////////////
+import sys
+import os
+import platform
 
 from Processor.Processor import Processor
+
 # IMPORT / GUI AND MODULES AND WIDGETS
 # ///////////////////////////////////////////////////////////////
 from modules import *
+from widgets import *
 
 os.environ["QT_FONT_DPI"] = "96"  # FIX Problem for High DPI and Scale above 100%
-
 
 # SET AS GLOBAL WIDGETS
 # ///////////////////////////////////////////////////////////////
 # widgets = None
+
+import time
+from datetime import datetime
 
 
 # get time
