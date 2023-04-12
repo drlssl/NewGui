@@ -66,41 +66,6 @@ class Processor:
 
         }
 
-    # def findButton(self, buttonType, icon=None, getOut=None):
-    #     try:
-    #         # currentScreenshot=cv2.imread('resources4test/page01.png')
-    #         currentScreenshot = self.currentScreen
-    #         template01 = cv2.imread(self.allButtonsType[buttonType])
-    #         template01_height, template01_width = template01.shape[:2]
-    #         res01 = cv2.matchTemplate(currentScreenshot, template01, cv2.TM_SQDIFF)
-    #         _, _, top_left01, _ = cv2.minMaxLoc(res01)
-    #         bottom_right01 = (top_left01[0] + template01_width, top_left01[1] + template01_height)
-    #         # print(f"the button pos is :{top_left01, bottom_right01}")
-    #         getOut(f"the button pos is :{top_left01, bottom_right01}")
-    #         if icon is not None:
-    #             template02 = cv2.imread(self.allButtonsType[icon])
-    #             roi = currentScreenshot[top_left01[1]:bottom_right01[1], top_left01[0]:bottom_right01[0]]
-    #             template02_height, template02_width = template02.shape[:2]
-    #             res02 = cv2.matchTemplate(roi, template02, cv2.TM_SQDIFF_NORMED)
-    #             _, _, top_left02, _ = cv2.minMaxLoc(res02)
-    #             bottom_right02 = (top_left02[0] + template02_width, top_left02[1] + template02_height)
-    #             abs_top_left = (top_left01[0] + top_left02[0], top_left01[1] + top_left02[1])
-    #             abs_bottom_right = (top_left01[0] + bottom_right02[0], top_left01[1] + bottom_right02[1])
-    #             abs_icon_pos_x = (abs_top_left[0] + abs_bottom_right[0]) // 2
-    #             abs_icon_pos_y = (abs_top_left[1] + abs_bottom_right[1]) // 2
-    #             # print(f"the icon pos is :{abs_icon_pos_x, abs_icon_pos_y}")
-    #             getOut(f"the icon pos is :{abs_icon_pos_x, abs_icon_pos_y}")
-    #             return True, (abs_icon_pos_x, abs_icon_pos_y)
-    #         else:
-    #             abs_button_pos_x = (top_left01[0] + bottom_right01[0]) // 2
-    #             abs_button_pos_y = (top_left01[1] + bottom_right01[1]) // 2
-    #             # print(abs_button_pos_x, abs_button_pos_y)
-    #             getOut(f"{abs_button_pos_x}, {abs_button_pos_y}")
-    #             return True, (abs_button_pos_x, abs_button_pos_y)
-    #     except cv2.error as e:
-    #         getOut(f"ERROR: {e}")
-    #         return False, f"An error occurred during image processing: {e}"
-
     def findButton(self, buttonRegion, button, getOut=None):
         try:
             # currentScreenshot=cv2.imread('resources4test/page01.png')
@@ -158,7 +123,6 @@ class Processor:
             return None
 
     def screenshot(self):
-        # self.currentScreen = np.array(pyautogui.screenshot())[:, :, ::-1]
         self.currentScreen = cv2.cvtColor(np.array(pyautogui.screenshot()), cv2.COLOR_RGB2BGR)
 
     def recordScreen(self, fileName):
@@ -184,11 +148,9 @@ class Processor:
             # self.screenshot()
             self.currentScreen = cv2.imread('resources4test/0171.png')
             img = self.currentScreen
-            # lineRegion = img[:, :1440]
-            # 这里改成了更改颜色通道来获取大致点，再获取对应的bbox
             imgSelected = img[:, :1440]
-            imgHSV = cv2.cvtColor(imgSelected, cv2.COLOR_BGR2HSV)
 
+            imgHSV = cv2.cvtColor(imgSelected, cv2.COLOR_BGR2HSV)
             hsv_low = np.array([0, 0, 86])
             hsv_high = np.array([108, 255, 255])
             mask = cv2.inRange(imgHSV, hsv_low, hsv_high)
@@ -222,6 +184,7 @@ class Processor:
 
             self.lineRegionTopLeft = top_left
             self.lineRegionBottomRight = bottom_right
+
             getOut(f"current top left is: {top_left}, bottom right is: {bottom_right}")
             cv2.rectangle(img, top_left, bottom_right, (0, 255, 255), 3)
             cv2.imwrite("savedVideo/findLineTestResult.jpg", img)
@@ -232,8 +195,7 @@ class Processor:
             return f"{e}"
 
     def getLineSharpness(self, getOut=None):
-        # self.findLine()
-        # self.screenshot()
+        self.screenshot()
         # 计算银线对应region的清晰度
         try:
             if self.lineRegionTopLeft == 0:
@@ -248,7 +210,6 @@ class Processor:
                 # round用于舍到小数点后两位
                 sharpness = round(cv2.Laplacian(grayRegion, cv2.CV_64F).var(), 2)
                 self.sharpness = sharpness
-                # cv2.imshow('1', selectedRegion)
                 getOut(f"sharpness is:{sharpness}")
                 return sharpness
         except Exception as e:
@@ -259,29 +220,32 @@ class Processor:
         res01 = self.click('focus_bar', 'focus_up', getOut)
         # getOut(f"res: {res01}")
         time.sleep(1)
-        # res02 = self.click('focus_bar', 'focus_down02', getOut)
+        res02 = self.click('focus_bar', 'focus_down02', getOut)
         # getOut(f"res: {res02}")
-        return res01
+        return res01, res02
 
     def focusOperationTest(self, getOut=None):
         try:
-            # for i in range(15):
-            #     self.click('focus_bar', 'focus_up')
-            #     time.sleep(0.3)
+            # 先把镜头往上拉，然后重新找线
+            for i in range(2):
+                self.click('focus_bar', 'focus_up02', getOut=getOut)
+                time.sleep(0.5)
+            self.findLine()
             oldSharpness = self.getLineSharpness()
-            delta = 0
-            times = 0
-            getOut(f"sharpness:{oldSharpness},delta:{delta}")
-            while delta >= 0 or times < 20:
-                self.click('focus_bar', 'focus_down02', getOut)
-                time.sleep(0.3)
-                self.getLineSharpness(getOut)
-                delta = self.sharpness - oldSharpness
-                oldSharpness = self.sharpness
-                times += 1
-
-            self.click('focus_bar', 'focus_up02', getOut)
-            time.sleep(0.3)
+            getOut(f"sharpness:{oldSharpness}")
+            # 对焦算法
+            while True:
+                self.click('focus_bar', 'focus_down', getOut)
+                time.sleep(0.5)
+                sharpness = self.getLineSharpness(getOut)
+                if sharpness < oldSharpness:
+                    self.click('focus_bar', 'focus_down', getOut)
+                    time.sleep(0.5)
+                    sharpness = self.getLineSharpness(getOut)
+                    getOut(f"final sharpness is :{sharpness}")
+                    break
+                oldSharpness = sharpness
+            # 对焦完后往下再向下点几下
             for j in range(3):
                 self.click('focus_bar', 'focus_down', getOut)
                 time.sleep(0.5)
