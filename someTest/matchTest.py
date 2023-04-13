@@ -6,8 +6,9 @@ import time
 
 
 def findButton(roi, button):
-    time.sleep(3)
-    currentScreen = cv2.cvtColor(np.array(pyautogui.screenshot()), cv2.COLOR_RGB2BGR)
+    # time.sleep(3)
+    currentScreen = cv2.imread('../resources4test/3330.png')
+    # currentScreen = cv2.cvtColor(np.array(pyautogui.screenshot()), cv2.COLOR_RGB2BGR)
     roi_template = cv2.imread(roi)
     button_template = cv2.imread(button)
 
@@ -20,9 +21,12 @@ def findButton(roi, button):
                          roi_pos[0][1]:roi_pos[1][1],
                          roi_pos[0][0]:roi_pos[1][0]
                          ]
+        cv2.imwrite('2.jpg', selectedScreen)
         button_res = ac.find_template(selectedScreen,
                                       button_template,
                                       threshold=0.8)
+        cv2.rectangle(currentScreen, roi_pos[0], roi_pos[1], (0, 255, 255), 3)
+        cv2.imwrite('1.jpg', currentScreen)
         if button_res is not None:
             button_pos = button_res['result']
             print(f"button pos:{button_pos}")
@@ -30,6 +34,7 @@ def findButton(roi, button):
             # button_res['rectangle'][0][1] + roi_res['rectangle'][1][1]])
             abs_button_pos = [button_pos[0] + roi_pos[0][0],
                               button_pos[1] + roi_pos[0][1]]
+            cv2.rectangle(currentScreen, abs_button_pos[0], abs_button_pos[1], (0, 0, 255), 3)
             return True, abs_button_pos
         else:
             return False, roi_pos
@@ -37,8 +42,8 @@ def findButton(roi, button):
         return False, roi_res
 
 
-focus_bar_path = r'../resources/img/focusBar.png'
-focus_down_path = r'../resources/img/focusUp.png'
+focus_bar_path = r'../resources/img/startReconstructionRegion.png'
+focus_down_path = r'../resources/img/startReconstruction.png'
 
 ret, res = findButton(focus_bar_path, focus_down_path)
 if ret:

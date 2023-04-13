@@ -25,17 +25,23 @@ class Processor:
         # sharpness init
         self.sharpness = 0
         self.allButtonsType = {
+            'focus_bar': 'resources/img/focusBar.png',
             'focus_up': 'resources/img/focusUp.png',
             'focus_down': 'resources/img/focusDown.png',
-
             'focus_up02': 'resources/img/focusUp02.png',
             'focus_down02': 'resources/img/focusDown02.png',
 
             'start_reconstruction_region': 'resources/img/startReconstructionRegion.png',
             'start_reconstruction': 'resources/img/startReconstruction.png',
+            'show_reconstruction_result_region': 'resources/img/showReconstructionResultRegion.png',
             'show_reconstruction_result': 'resources/img/showReconstructionResult.png',
+
             'reconstruction_result_region': 'resources/img/reconstructionResultRegion.png',
-            '3d_show': 'resource/img/3dShow.png',
+            '3d_show': 'resources/img/3dShow.png',
+
+            'show_bar': 'resources/img/showBar.png',
+            'select_contour': 'resources/img/selectContour.png',
+
             'first_page': 'resources/img/fistPage.png',
             "adjust_height_region": 'resources/img/adjustHeightRegion.png',
             'adjust_height_cursor': 'resources/img/adjustHeightCursor.png',
@@ -47,7 +53,7 @@ class Processor:
             'bottom_menu': 'resources/img/bottomMenu.png',
             'save_file': 'resources/img/saveFile.png',
             'close': 'resources/img/close.png',
-            'select_contour': 'resources/img/selectContour',
+
             'show_img': 'resources/img/show_img.png',
             'measure': 'resources/img/measure.png',
             "task_bar": 'resources/img/taskBar.png',
@@ -55,8 +61,6 @@ class Processor:
             'panel_measurement_button': 'resources/img/panelMeasurementButton.png',
             'measurement_menu': 'resources/img/measurementMenu.png',
             'parallel_line': 'resources/img/parallelLine.png',
-            'focus_bar': 'resources/img/focusBar.png',
-            'show_bar': 'resources/img/showBar.png',
             'contour_menu': 'resources/img/contourMenu.png',
             'contour_parallel_line': 'resources/img/contourParallelLine.png',
             'average_contour': 'resources/img/averageContour.png',
@@ -217,12 +221,18 @@ class Processor:
             return f"{e}"
 
     def clickTest(self, getOut=None):
-        res01 = self.click('focus_bar', 'focus_up', getOut)
+        self.click('contour_menu', 'contour_parallel_line', getOut=getOut)
+        # self.click('show_bar', 'select_contour', getOut=getOut)
+        # self.click('reconstruction_result_region', '3d_show', getOut=getOut)
+        # self.click('start_reconstruction_region', 'start_reconstruction', getOut=getOut)
+        # self.click('show_reconstruction_result_region', 'show_reconstruction_result', getOut=getOut)
+
+        # res01 = self.click('focus_bar', 'focus_up', getOut)
         # getOut(f"res: {res01}")
         time.sleep(1)
-        res02 = self.click('focus_bar', 'focus_down02', getOut)
+        # res02 = self.click('focus_bar', 'focus_down02', getOut)
         # getOut(f"res: {res02}")
-        return res01, res02
+        return None
 
     def focusOperationTest(self, getOut=None):
         try:
@@ -322,27 +332,6 @@ class Processor:
         except Exception as e:
             return f"{e}"
 
-    def firstPageProgress(self):
-        try:
-            self.click("task_bar", "first_page")
-            time.sleep(1)
-            # 对焦
-            focus_res = self.focusOperationTest()
-            time.sleep(1)
-            # 测量
-            # measure_res = self.parallelLineMeasurementTest
-            # time.sleep(1)
-            # 重建按钮
-            self.click("start_reconstruction_region", "start_reconstruction")
-            time.sleep(5)
-            self.click("show_reconstruction_result")
-            # time.sleep(5)
-            # self.click('reconstruction_result_region', '3d_show')
-            # return focus_res, measure_res
-            return focus_res
-        except Exception as e:
-            return e
-
     def adjustHeightTest(self):
         try:
             ret, res = self.findButton("adjust_height_region", "adjust_height_cursor")
@@ -370,18 +359,6 @@ class Processor:
             self.click('contour_menu', 'contour_parallel_line')
             # 先测试点一个固定点
             res = pyautogui.click(1094, 172)
-            return res
-        except Exception as e:
-            return e
-
-    def secondPageProgress(self):
-        try:
-            # 先设置高度为0
-            self.adjustHeightTest()
-            # 再点击彩色/高度选项
-            self.selectHeightOrColorTest()
-            # 点击轮廓，进入后面的测量界面
-            res = self.contourParallelLineSelectTest()
             return res
         except Exception as e:
             return e
@@ -474,22 +451,6 @@ class Processor:
             getOut(f"ERROR: {e}")
             return e
 
-    def thirdPageProgressTest(self):
-        try:
-            # 点击水平线
-            self.screenshot()
-            self.click('contour_menu', 'contour_parallel_line')
-            # 选择平均轮廓
-            time.sleep(1)
-            self.click('average_contour', 'click_button02')
-            time.sleep(1)
-            pyautogui.click(1094, 172)
-            # 波形检测
-            res = self.getWidthHeightTest()
-            return res
-        except Exception as e:
-            return e
-
     def moveTest(self, getOut=None):
         #   这里是向上移动的
         try:
@@ -517,6 +478,44 @@ class Processor:
         except Exception as e:
             getOut(f"ERROR:{e}")
             return e
+
+    def firstPageProcess(self, getOut=None):
+        try:
+            self.click('task_bar', 'first_page', getOut=getOut)
+            self.findLine(getOut)
+            self.focusOperationTest()
+            self.click('start_reconstruction_region', 'start_reconstruction', getOut=getOut)
+            time.sleep(4)
+            self.click('show_reconstruction_result_region', 'show_reconstruction_result', getOut=getOut)
+            time.sleep(5)
+            self.click('reconstruction_result_region', '3d_show', getOut=getOut)
+            time.sleep(3)
+        except Exception as e:
+            getOut(f"ERROR:{e}")
+
+    def secondPageProcess(self, getOut=None):
+        try:
+            self.click('show_bar', 'select_contour', getOut=getOut)
+            time.sleep(2)
+        except Exception as e:
+            getOut(f"ERROR:{e}")
+
+    def thirdPageProcess(self, getOut=None, getOut02=None):
+        try:
+            self.click('contour_menu', 'contour_parallel_line', getOut=getOut)
+            pyautogui.moveTo(1000, 40)
+            for i in range(100):
+                pyautogui.moveRel(0, 4)
+                time.sleep(0.5)
+                self.getWidthHeightTest(getOut=getOut, getOut02=getOut02)
+            pyautogui.click(1556, 337)
+            time.sleep(0.5)
+            self.click('contour_menu', 'contour_parallel_line', getOut=getOut)
+            pyautogui.moveTo(1000, 40)
+            self.getWidthHeightTest(getOut=getOut, getOut02=getOut02)
+            time.sleep(2)
+        except Exception as e:
+            getOut(f"ERROR:{e}")
 
     def pipeLineTest01(self, getOut=None, getOut02=None):
         try:
