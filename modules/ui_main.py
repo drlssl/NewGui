@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainOpVcxk.ui'
+## Form generated from reading UI file 'mainztuiTT.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.0
 ##
@@ -23,7 +23,6 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
                                QStackedWidget, QTableWidget, QTableWidgetItem, QTextEdit,
                                QVBoxLayout, QWidget)
 from .resources_rc import *
-
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -63,16 +62,16 @@ class Ui_MainWindow(object):
             "	border: 1px solid rgb(44, 49, 58);\n"
             "	background-image: none;\n"
             "	background-position: left center;\n"
-"    background-repeat: no-repeat;\n"
-"	border: none;\n"
-"	border-left: 2px solid rgb(255, 121, 198);\n"
-"	text-align: left;\n"
-"	padding-left: 8px;\n"
-"	margin: 0px;\n"
-"}\n"
-"\n"
-"/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
-"Bg App */\n"
+            "    background-repeat: no-repeat;\n"
+            "	border: none;\n"
+            "	border-left: 2px solid rgb(255, 121, 198);\n"
+            "	text-align: left;\n"
+            "	padding-left: 8px;\n"
+            "	margin: 0px;\n"
+            "}\n"
+            "\n"
+            "/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
+            "Bg App */\n"
 "#bgApp {	\n"
 "	background"
                         "-color: rgb(40, 44, 52);\n"
@@ -533,16 +532,16 @@ class Ui_MainWindow(object):
 "QCommandLi"
                         "nkButton {	\n"
 "	color: rgb(255, 121, 198);\n"
-"	border-radius: 5px;\n"
-"	padding: 5px;\n"
-"	color: rgb(255, 170, 255);\n"
-"}\n"
-"QCommandLinkButton:hover {	\n"
-"	color: rgb(255, 170, 255);\n"
-"	background-color: rgb(44, 49, 60);\n"
-"}\n"
-"QCommandLinkButton:pressed {	\n"
-"	color: rgb(189, 147, 249);\n"
+            "	border-radius: 5px;\n"
+            "	padding: 5px;\n"
+            "	color: rgb(255, 170, 255);\n"
+            "}\n"
+            "QCommandLinkButton:hover {	\n"
+            "	color: rgb(255, 170, 255);\n"
+            "	background-color: rgb(44, 49, 60);\n"
+            "}\n"
+            "QCommandLinkButton:pressed {	\n"
+            "	color: rgb(189, 147, 249);\n"
             "	background-color: rgb(52, 58, 71);\n"
             "}\n"
             "\n"
@@ -1413,6 +1412,10 @@ class Ui_MainWindow(object):
         self.modeSelector.addItem("")
         self.modeSelector.addItem("")
         self.modeSelector.addItem("")
+        self.modeSelector.addItem("")
+        self.modeSelector.addItem("")
+        self.modeSelector.addItem("")
+        self.modeSelector.addItem("")
         self.modeSelector.setObjectName(u"modeSelector")
         self.modeSelector.setEnabled(True)
         self.modeSelector.setGeometry(QRect(70, 20, 161, 61))
@@ -1878,6 +1881,14 @@ class Ui_MainWindow(object):
         self.modeSelector.setItemText(4, QCoreApplication.translate("MainWindow", u"OCR\u6d4b\u8bd5", None))
         self.modeSelector.setItemText(5, QCoreApplication.translate("MainWindow", u"\u5bbd\u9ad8\u6d4b\u8bd5", None))
         self.modeSelector.setItemText(6, QCoreApplication.translate("MainWindow", u"\u6d41\u7a0b\u6d4b\u8bd501", None))
+        self.modeSelector.setItemText(7,
+                                      QCoreApplication.translate("MainWindow", u"\u7b2c\u4e00\u9875\u6d4b\u8bd5", None))
+        self.modeSelector.setItemText(8,
+                                      QCoreApplication.translate("MainWindow", u"\u7b2c\u4e8c\u9875\u6d4b\u8bd5", None))
+        self.modeSelector.setItemText(9,
+                                      QCoreApplication.translate("MainWindow", u"\u7b2c\u4e09\u9875\u6d4b\u8bd5", None))
+        self.modeSelector.setItemText(10,
+                                      QCoreApplication.translate("MainWindow", u"\u7b2c\u56db\u9875\u6d4b\u8bd5", None))
 
         self.modeSelector.setPlaceholderText(
             QCoreApplication.translate("MainWindow", u"\u8bf7\u9009\u62e9\u6d4b\u8bd5\u5185\u5bb9", None))

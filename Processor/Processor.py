@@ -42,6 +42,19 @@ class Processor:
             'show_bar': 'resources/img/showBar.png',
             'select_contour': 'resources/img/selectContour.png',
 
+            'contour_menu': 'resources/img/contourMenu.png',
+            'contour_parallel_line': 'resources/img/contourParallelLine.png',
+            'clicked': 'resources/img/clicked.png',
+            'not_clicked': 'resources/img/notClicked.png',
+            'average_contour_font': 'resources/img/averageContourFont.png',
+            'close_region': 'resources/img/closeRegion.png',
+            'close': 'resources/img/close.png',
+            'quit_region': 'resources/img/quitRegion.png',
+            'yes_button': 'resources/img/yesButton.png',
+
+            'back_first_page_region': 'resources/img/backFirstPageRegion.png',
+            'back_first_page': 'resources/img/backFirstPage.png',
+
             'first_page': 'resources/img/fistPage.png',
             "adjust_height_region": 'resources/img/adjustHeightRegion.png',
             'adjust_height_cursor': 'resources/img/adjustHeightCursor.png',
@@ -52,7 +65,6 @@ class Processor:
             'click_button02': 'resources/img/clickButton02.png',
             'bottom_menu': 'resources/img/bottomMenu.png',
             'save_file': 'resources/img/saveFile.png',
-            'close': 'resources/img/close.png',
 
             'show_img': 'resources/img/show_img.png',
             'measure': 'resources/img/measure.png',
@@ -61,12 +73,6 @@ class Processor:
             'panel_measurement_button': 'resources/img/panelMeasurementButton.png',
             'measurement_menu': 'resources/img/measurementMenu.png',
             'parallel_line': 'resources/img/parallelLine.png',
-            'contour_menu': 'resources/img/contourMenu.png',
-            'contour_parallel_line': 'resources/img/contourParallelLine.png',
-            'average_contour': 'resources/img/averageContour.png',
-            'quit_region': 'resources/img/quitRegion.png',
-            'yes_button': 'resources/img/yesButton.png',
-            'back_first_page': 'resources/img/backFirstPage.png'
 
         }
 
@@ -126,6 +132,59 @@ class Processor:
             getOut(f"Error:{e}")
             return None
 
+    def ifClicked(self, getOut=None):
+        try:  # 主要用于检测第三页的平均轮廓是否已经选中
+            self.screenshot()
+            currentScreen = self.currentScreen
+            roi_template = cv2.imread(self.allButtonsType['average_contour_font'])
+            click_template_list = [
+                self.allButtonsType['not_clicked'],
+                self.allButtonsType['clicked']
+            ]
+            roi_res = ac.find_template(currentScreen, roi_template, threshold=0.8)
+            # 根据这个区域得到框的区域
+            if roi_res is not None:
+                box_top_left = [roi_res['rectangle'][0][0] - 20,
+                                roi_res['rectangle'][0][1]]
+                box_bottom_right = [roi_res['rectangle'][0][0],
+                                    roi_res['rectangle'][0][1] + 20]
+                getOut(f"find box region:{box_top_left},{box_bottom_right}")
+                box_region = currentScreen[
+                             box_top_left[1]:box_bottom_right[1],
+                             box_top_left[0]:box_bottom_right[0]
+                             ]
+                index = 0
+                while index < 2:
+                    # 对框进行一个匹配
+                    click_template = cv2.imread(click_template_list[index])
+                    click_res = ac.find_template(box_region, click_template, threshold=0.9)
+                    if click_res is not None:
+                        click_pos = [
+                            click_res['result'][0] + box_top_left[0],
+                            click_res['result'][1] + box_top_left[1]
+                        ]
+                        int_click_pos = [int(pos) for pos in click_pos]
+                        getOut(f"find click box:{int_click_pos}")
+                        break
+                    else:
+                        index += 1
+
+                if index == 0:
+                    getOut(f"not click yet")
+                    return True, False, int_click_pos
+                elif index == 1:
+                    getOut(f"clicked")
+                    return True, True, int_click_pos
+                else:
+                    getOut(f"cannot recognize click box")
+                    return True, None, None
+            else:
+                getOut('cannot find the region')
+                return False, None, None
+        except Exception as e:
+            getOut(f'ERROR:{e}')
+            return None
+
     def screenshot(self):
         self.currentScreen = cv2.cvtColor(np.array(pyautogui.screenshot()), cv2.COLOR_RGB2BGR)
 
@@ -149,8 +208,8 @@ class Processor:
 
     def findLine(self, getOut=None):
         try:
-            # self.screenshot()
-            self.currentScreen = cv2.imread('resources4test/0171.png')
+            self.screenshot()
+            # self.currentScreen = cv2.imread('resources4test/0171.png')
             img = self.currentScreen
             imgSelected = img[:, :1440]
 
@@ -221,7 +280,16 @@ class Processor:
             return f"{e}"
 
     def clickTest(self, getOut=None):
-        self.click('contour_menu', 'contour_parallel_line', getOut=getOut)
+        self.click('back_first_page_region', 'back_first_page', getOut=getOut)
+        # self.click('quit_region', 'yes_button',getOut=getOut)
+        # self.click('close_region', 'close', getOut=getOut)
+        # if_clicked_res = self.ifClicked(getOut=getOut)
+        # if if_clicked_res[1]:
+        #     pyautogui.click(if_clicked_res[2])
+        # time.sleep(0.4)
+        #
+        # self.click('contour_menu', 'contour_parallel_line', getOut=getOut)
+        # self.click('contour_menu', 'contour_parallel_line', getOut=getOut)
         # self.click('show_bar', 'select_contour', getOut=getOut)
         # self.click('reconstruction_result_region', '3d_show', getOut=getOut)
         # self.click('start_reconstruction_region', 'start_reconstruction', getOut=getOut)
@@ -229,7 +297,7 @@ class Processor:
 
         # res01 = self.click('focus_bar', 'focus_up', getOut)
         # getOut(f"res: {res01}")
-        time.sleep(1)
+        # time.sleep(1)
         # res02 = self.click('focus_bar', 'focus_down02', getOut)
         # getOut(f"res: {res02}")
         return None
@@ -406,8 +474,8 @@ class Processor:
 
     def getWidthHeightTest(self, getOut=None, getOut02=None):
         try:
-            # self.screenshot()
-            self.currentScreen = cv2.imread('resources4test/10.png')
+            self.screenshot()
+            # self.currentScreen = cv2.imread('resources4test/10.png')
             numberRegion = self.currentScreen[586:606, 1:40]
             lineRegion = self.currentScreen[595:992, 54:1411]
 
@@ -454,6 +522,7 @@ class Processor:
     def moveTest(self, getOut=None):
         #   这里是向上移动的
         try:
+            pyautogui.click(700, 500)
             old_pos_topLeft = self.lineRegionTopLeft
             getOut(f"old top left pos: {old_pos_topLeft}")
 
@@ -482,8 +551,8 @@ class Processor:
     def firstPageProcess(self, getOut=None):
         try:
             self.click('task_bar', 'first_page', getOut=getOut)
-            self.findLine(getOut)
-            self.focusOperationTest()
+            self.findLine(getOut=getOut)
+            self.focusOperationTest(getOut=getOut)
             self.click('start_reconstruction_region', 'start_reconstruction', getOut=getOut)
             time.sleep(4)
             self.click('show_reconstruction_result_region', 'show_reconstruction_result', getOut=getOut)
@@ -500,75 +569,45 @@ class Processor:
         except Exception as e:
             getOut(f"ERROR:{e}")
 
-    def thirdPageProcess(self, getOut=None, getOut02=None):
+    def thirdPageProcess(self, getOut01=None, getOut02=None):
         try:
-            self.click('contour_menu', 'contour_parallel_line', getOut=getOut)
+            # 不选平均轮廓，检查一下先
+            if_clicked_res = self.ifClicked(getOut=getOut01)
+            if if_clicked_res[1]:
+                pyautogui.click(if_clicked_res[2])
+            time.sleep(0.4)
+            # 开始一边划一边计算宽高
+            self.click('contour_menu', 'contour_parallel_line', getOut=getOut01)
             pyautogui.moveTo(1000, 40)
-            for i in range(100):
+            for i in range(120):
                 pyautogui.moveRel(0, 4)
                 time.sleep(0.5)
-                self.getWidthHeightTest(getOut=getOut, getOut02=getOut02)
-            pyautogui.click(1556, 337)
-            time.sleep(0.5)
-            self.click('contour_menu', 'contour_parallel_line', getOut=getOut)
+                self.getWidthHeightTest(getOut=getOut01, getOut02=getOut02)
+            # 选中平均轮廓，获取平均宽高
+            pyautogui.click(if_clicked_res[2])
+            time.sleep(0.4)
+            self.click('contour_menu', 'contour_parallel_line', getOut=getOut01)
             pyautogui.moveTo(1000, 40)
-            self.getWidthHeightTest(getOut=getOut, getOut02=getOut02)
+            time.sleep(0.4)
+            self.getWidthHeightTest(getOut=getOut01, getOut02=getOut02)
+            # 点击Bar上的关闭，然后是弹窗的处理
+            self.click('close_region', 'close', getOut=getOut01)
+            time.sleep(1)
+            self.click('quit_region', 'yes_button', getOut=getOut01)
             time.sleep(2)
+        except Exception as e:
+            getOut01(f"ERROR:{e}")
+
+    def fourthPageProgress(self, getOut=None):
+        try:
+            self.click('back_first_page_region', 'back_first_page', getOut=getOut)
+            time.sleep(2)
+            self.moveTest(getOut=getOut)
         except Exception as e:
             getOut(f"ERROR:{e}")
 
-    def pipeLineTest01(self, getOut=None, getOut02=None):
-        try:
-            # /////////////////////////////////////////////////////////////
-            # 第一页
-            self.click('task_bar', 'first_page', getOut=getOut)
-            self.findLine(getOut)
-            self.focusOperationTest()
-            self.click('start_reconstruction_region', 'start_reconstruction', getOut=getOut)
-            time.sleep(4)
-            self.click("show_reconstruction_result", getOut=getOut)
-            time.sleep(5)
-            self.click('reconstruction_result_region', '3d_show', getOut=getOut)
-            time.sleep(3)
-
-            # ////////////////////////////////////////////////////////////////
-            # 第二页
-            self.click('show_bar', 'select_contour', getOut=getOut)
-            time.sleep(2)
-
-            # /////////////////////////////////////////////////////////////////
-            # 第三页
-            self.click('contour_menu', 'contour_parallel_line', getOut=getOut)
-            # 画面左上选线的高度区域为 【40，440】
-            pyautogui.moveTo(1000, 40)
-            # widthHeightList = [self.getWidthHeightTest(getOut=getOut,getOut02=getOut02)]
-            for i in range(100):
-                pyautogui.moveRel(0, 4)
-                time.sleep(0.5)
-                self.getWidthHeightTest(getOut=getOut, getOut02=getOut02)
-                # getOut(res)
-                # widthHeightList.append()
-
-            pyautogui.click(1556, 337)
-            time.sleep(0.5)
-            self.click('contour_menu', 'contour_parallel_line', getOut=getOut)
-            pyautogui.moveTo(1000, 40)
-
-            avgWidthHeight = self.getWidthHeightTest(getOut=getOut, getOut02=getOut02)
-
-            # //////////////////////////////////////////////////////////////////
-            # 关闭
-            pyautogui.click(1488, 1045)
-            time.sleep(1)
-            self.click('quit_region', 'yes_button')
-            time.sleep(1)
-            self.click('reconstruction_result_region', 'back_first_page')
-            time.sleep(1)
-
-            # //////////////////////////////////////////////////////////////////
-            # 重新开始移动
-            self.moveTest()
-            return avgWidthHeight
-
-        except Exception as e:
-            return e
+    def pipelineTest(self, getOut01, getOut02):
+        self.firstPageProcess(getOut=getOut01)
+        self.secondPageProcess(getOut=getOut01)
+        self.thirdPageProcess(getOut01=getOut01, getOut02=getOut02)
+        self.fourthPageProgress(getOut=getOut01)

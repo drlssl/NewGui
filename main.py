@@ -91,6 +91,10 @@ class MainWindow(QMainWindow):
             self.ocrTest,
             self.getWidthHeightTest,
             self.pipeLineTest01,
+            self.firstPageTest,
+            self.secondPageTest,
+            self.thirdPageTest,
+            self.fourthPageTest
         ]
 
         # BUTTONS CLICK
@@ -274,13 +278,40 @@ class MainWindow(QMainWindow):
         self.showNormal()
         # self.add_log(f'res:{res}')
 
-    def pipeLineTest01(self):
-        # self.add_log('start pipeline test01')
+    def firstPageTest(self):
+        self.add_log('start first page test')
         self.showMinimized()
         time.sleep(1)
-        res = self.Processor.pipeLineTest01(getOut=self.add_log, getOut02=self.add_widthHeight)
+        self.Processor.firstPageProcess(getOut=self.add_log)
         self.showNormal()
-        self.add_log(f"res:{res}")
+
+    def secondPageTest(self):
+        self.add_log('start second page test')
+        self.showMinimized()
+        time.sleep(1)
+        self.Processor.secondPageProcess(getOut=self.add_log)
+        self.showNormal()
+
+    def thirdPageTest(self):
+        self.add_log('start third page test')
+        self.showMinimized()
+        time.sleep(1)
+        self.Processor.thirdPageProcess(getOut01=self.add_log, getOut02=self.add_widthHeight)
+        self.showNormal()
+
+    def fourthPageTest(self):
+        self.add_log('start fourth page test')
+        self.showMinimized()
+        time.sleep(1)
+        self.Processor.fourthPageProgress(getOut=self.add_log)
+        self.showNormal()
+
+    def pipeLineTest01(self):
+        self.add_log('start pipeline test01')
+        self.showMinimized()
+        time.sleep(1)
+        self.Processor.pipelineTest(getOut01=self.add_log, getOut02=self.add_widthHeight)
+        self.showNormal()
 
 
 if __name__ == "__main__":
