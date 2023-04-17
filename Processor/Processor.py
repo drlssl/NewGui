@@ -8,7 +8,7 @@ import pyautogui
 import pytesseract
 import aircv as ac
 
-pytesseract.pytesseract.tesseract_cmd = "D:\\Tesseract_OCR\\tesseract.exe"
+pytesseract.pytesseract.tesseract_cmd = r"tesseract\tesseract.exe"
 
 
 class Processor:
