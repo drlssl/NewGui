@@ -318,4 +318,4 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon("microscopeIcon.png"))
     window = MainWindow()
-    sys.exit(app.exec())
+    sys.exit(app.exec_())
