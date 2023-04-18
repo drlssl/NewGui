@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15e979fb-1d17-47e8-b936-4470dc7176e2" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +195,8 @@
       <workItem from="1681392862869" duration="12000" />
       <workItem from="1681393043816" duration="43000" />
       <workItem from="1681437796478" duration="2633000" />
-      <workItem from="1681717180688" duration="1038000" />
+      <workItem from="1681717180688" duration="1841000" />
+      <workItem from="1681815320664" duration="458000" />
     </task>
     <task id="LOCAL-00001" summary="my demo gui">
       <created>1681277684146</created>
@@ -267,7 +268,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681718361999</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="README.md删除">
+      <created>1681718434407</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1681718434407</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,7 +297,8 @@
     <MESSAGE value="some fix" />
     <MESSAGE value="兼容性修改" />
     <MESSAGE value="ocr设为相对路径" />
-    <option name="LAST_COMMIT_MESSAGE" value="ocr设为相对路径" />
+    <MESSAGE value="README.md删除" />
+    <option name="LAST_COMMIT_MESSAGE" value="README.md删除" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">

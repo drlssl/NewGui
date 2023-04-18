@@ -107,10 +107,11 @@ class MainWindow(QMainWindow):
 
         # LEFT MENUS
         self.widgets.btn_home.clicked.connect(self.buttonClick)
-        self.widgets.btn_widgets.clicked.connect(self.buttonClick)
+        # self.widgets.btn_widgets.clicked.connect(self.buttonClick)
 
         self.widgets.btn_test.clicked.connect(self.buttonClick)
-        self.widgets.btn_save.clicked.connect(self.buttonClick)
+
+        # self.widgets.btn_save.clicked.connect(self.buttonClick)
 
         # EXTRA LEFT BOX
         def openCloseLeftBox():
