@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15e979fb-1d17-47e8-b936-4470dc7176e2" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/___.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在变基之前未提交的更改_[变更]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Processor/Processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Processor/Processor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +199,9 @@
       <workItem from="1681393043816" duration="43000" />
       <workItem from="1681437796478" duration="2633000" />
       <workItem from="1681717180688" duration="1841000" />
-      <workItem from="1681815320664" duration="458000" />
+      <workItem from="1681815320664" duration="3484000" />
+      <workItem from="1681875191523" duration="3055000" />
+      <workItem from="1682045106986" duration="788000" />
     </task>
     <task id="LOCAL-00001" summary="my demo gui">
       <created>1681277684146</created>
@@ -275,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681718434407</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="btn修改">
+      <created>1681816032890</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1681816032890</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -298,7 +310,8 @@
     <MESSAGE value="兼容性修改" />
     <MESSAGE value="ocr设为相对路径" />
     <MESSAGE value="README.md删除" />
-    <option name="LAST_COMMIT_MESSAGE" value="README.md删除" />
+    <MESSAGE value="btn修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="btn修改" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
@@ -316,6 +329,6 @@
     <SUITE FILE_PATH="coverage/NewTestDemo$ui_main.coverage" NAME="ui_main 覆盖结果" MODIFIED="1680950238022" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/NewTestDemo$hsvTest.coverage" NAME="hsvTest 覆盖结果" MODIFIED="1681050787915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
     <SUITE FILE_PATH="coverage/NewTestDemo$moveTest.coverage" NAME="moveTest 覆盖结果" MODIFIED="1681054436146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
-    <SUITE FILE_PATH="coverage/newGui$main.coverage" NAME="main 覆盖结果" MODIFIED="1681718322146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/newGui$main.coverage" NAME="main 覆盖结果" MODIFIED="1681815951415" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

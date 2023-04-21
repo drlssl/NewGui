@@ -280,7 +280,7 @@ class Processor:
             return f"{e}"
 
     def clickTest(self, getOut=None):
-        self.click('back_first_page_region', 'back_first_page', getOut=getOut)
+        # self.click('back_first_page_region', 'back_first_page', getOut=getOut)
         # self.click('quit_region', 'yes_button',getOut=getOut)
         # self.click('close_region', 'close', getOut=getOut)
         # if_clicked_res = self.ifClicked(getOut=getOut)
@@ -295,21 +295,24 @@ class Processor:
         # self.click('start_reconstruction_region', 'start_reconstruction', getOut=getOut)
         # self.click('show_reconstruction_result_region', 'show_reconstruction_result', getOut=getOut)
 
-        # res01 = self.click('focus_bar', 'focus_up', getOut)
+        self.click('focus_bar', 'focus_up', getOut)
         # getOut(f"res: {res01}")
-        # time.sleep(1)
-        # res02 = self.click('focus_bar', 'focus_down02', getOut)
+        time.sleep(1)
+        self.click('focus_bar', 'focus_down02', getOut)
+
+        # self.focusOperationTest(getOut)
         # getOut(f"res: {res02}")
         return None
 
     def focusOperationTest(self, getOut=None):
         try:
             # 先把镜头往上拉，然后重新找线
-            for i in range(2):
-                self.click('focus_bar', 'focus_up02', getOut=getOut)
+            # self.screenshot()
+            for i in range(4):
+                self.click('focus_bar', 'focus_up', getOut=getOut)
                 time.sleep(0.5)
-            self.findLine()
-            oldSharpness = self.getLineSharpness()
+            self.findLine(getOut)
+            oldSharpness = self.getLineSharpness(getOut)
             getOut(f"sharpness:{oldSharpness}")
             # 对焦算法
             while True:
@@ -317,7 +320,7 @@ class Processor:
                 time.sleep(0.5)
                 sharpness = self.getLineSharpness(getOut)
                 if sharpness < oldSharpness:
-                    self.click('focus_bar', 'focus_down', getOut)
+                    self.click('focus_bar', 'focus_up', getOut)
                     time.sleep(0.5)
                     sharpness = self.getLineSharpness(getOut)
                     getOut(f"final sharpness is :{sharpness}")
@@ -505,7 +508,7 @@ class Processor:
             height = (pixelHeight - y[peakIndex]) / heightScale
             getOut(f"height is: {height:.2f} μm")
 
-            widthIndex = np.where(y == int(pixelHeight - 2 * heightScale))
+            widthIndex = np.where(y == int(pixelHeight - 4 * heightScale))
             widthLeftIndex = widthIndex[0][0]
             for i in widthIndex[0]:
                 if x[i] - x[widthLeftIndex] >= 100:
@@ -526,13 +529,14 @@ class Processor:
             old_pos_topLeft = self.lineRegionTopLeft
             getOut(f"old top left pos: {old_pos_topLeft}")
 
-            pyautogui.click(self.screenWidth // 2, self.screenHeight // 2)
-            pyautogui.moveTo(self.screenWidth // 2, self.screenHeight // 4)
-            time.sleep(0.5)
-            pyautogui.dragRel(0, self.screenHeight // 2, 0.5, button='left')
-            pyautogui.moveTo(self.screenWidth // 2, self.screenHeight // 4)
-            time.sleep(0.5)
-            pyautogui.dragRel(0, self.screenHeight // 2, 0.5)
+            for i in range(100):
+                pyautogui.click(self.screenWidth // 2, self.screenHeight // 2)
+                pyautogui.moveTo(self.screenWidth // 2, self.screenHeight // 4)
+                # time.sleep(0.5)
+                pyautogui.dragRel(0, self.screenHeight // 2, button='left')
+                pyautogui.moveTo(self.screenWidth // 2, self.screenHeight // 4)
+                # time.sleep(0.5)
+                pyautogui.dragRel(0, self.screenHeight // 2)
             new_pos_topLeft, _ = self.findLine(getOut)
             getOut(f"new top left pos: {new_pos_topLeft}")
 
