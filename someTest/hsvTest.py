@@ -14,7 +14,8 @@ def empty(a):
     return h_min, h_max, s_min, s_max, v_min, v_max
 
 
-path = 'I:\\microscope\\res01\\savedVideo\\pic\\1.png'
+# path = 'I:\\microscope\\res01\\savedVideo\\pic\\1.png'
+path='solar_panel05.png'
 # 创建一个窗口，放置6个滑动条
 cv2.namedWindow("TrackBars", cv2.WINDOW_NORMAL)
 cv2.resizeWindow("TrackBars", 640, 240)
@@ -26,7 +27,7 @@ cv2.createTrackbar("Val Min", "TrackBars", 150, 255, empty)
 cv2.createTrackbar("Val Max", "TrackBars", 255, 255, empty)
 
 while True:
-    img = cv2.imread(path)[:, :1440]
+    img = cv2.imread(path)#[:, :1440]
     imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     # 调用回调函数，获取滑动条的值
     h_min, h_max, s_min, s_max, v_min, v_max = empty(0)

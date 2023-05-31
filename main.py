@@ -42,6 +42,37 @@ def getTime():
     return formatted_time
 
 
+# color grid
+# ////////////////////////////////////////////////////////
+class ColorGrid(QWidget):
+    def __init__(self):
+        super().__init__()
+
+        self.grid_size = 20  # 方格的数量
+        self.grid_colors = [[QColor(255, 255, 255) for _ in range(self.grid_size)] for _ in range(self.grid_size)]
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        cell_width = self.width() // self.grid_size
+        cell_height = self.height() // self.grid_size
+        for i in range(self.grid_size):
+            for j in range(self.grid_size):
+                color = self.grid_colors[i][j]
+                painter.fillRect(i * cell_width, j * cell_height, cell_width, cell_height, color)
+
+    def mousePressEvent(self, event):
+        cell_width = self.width() // self.grid_size
+        cell_height = self.height() // self.grid_size
+
+        x = event.x() // cell_width
+        y = event.y() // cell_height
+
+        if 0 <= x < self.grid_size and 0 <= y < self.grid_size:
+            color = QColor('#e75f2c')  # 设置为红色
+            self.grid_colors[x][y] = color
+        self.update()
+
+
 # ////////////////////////////////////////////////////////////////
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -62,8 +93,8 @@ class MainWindow(QMainWindow):
 
         # APP NAME
         # ///////////////////////////////////////////////////////////////
-        title = "Keyence VHX Automation"
-        description = " Keyence VHX Automation"
+        title = "太阳能栅线自动化检测"
+        description = "太阳能栅线自动化检测"
 
         # APPLY TEXTS
         self.setWindowTitle(title)
@@ -81,12 +112,21 @@ class MainWindow(QMainWindow):
         # ///////////////////////////////////////////////////////////////
         self.widgets.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
+        # color grid test
+        # ////////////////////////////
+        self.grid_size = 4  # 方格的数量
+        self.grid_colors = [[QColor(255, 255, 255) for _ in range(self.grid_size)] for _ in range(self.grid_size)]
+        self.color_grid = ColorGrid()
+        self.color_grid.setParent(self.widgets.colorFrame)
+        # /////////////////////////////
+
         # my operation list
         # ///////////////////////////////////////////////////////////////////
         self.AllOperations = [
             self.findLineTest,
             self.getSharpness,
             self.moveTest,
+            self.horizontalMoveTest,
             self.clickTest,
             self.ocrTest,
             self.getWidthHeightTest,
@@ -103,28 +143,29 @@ class MainWindow(QMainWindow):
 
         self.widgets.startTestButton.clicked.connect(self.startTestButtonClicked)
         self.widgets.recordButton.clicked.connect(self.recordButtonClicked)
+        self.widgets.developerButton.clicked.connect(self.developerButtonClicked)
+
         # ////////////////////////////////////////////////////////////////////
 
         # LEFT MENUS
         self.widgets.btn_home.clicked.connect(self.buttonClick)
         # self.widgets.btn_widgets.clicked.connect(self.buttonClick)
-
-        self.widgets.btn_test.clicked.connect(self.buttonClick)
-
-        # self.widgets.btn_save.clicked.connect(self.buttonClick)
+        self.widgets.btn_details.clicked.connect(self.buttonClick)
+        self.widgets.btn_settings.clicked.connect(self.buttonClick)
+        self.widgets.btn_history.clicked.connect(self.buttonClick)
 
         # EXTRA LEFT BOX
         def openCloseLeftBox():
             UIFunctions.toggleLeftBox(self, True)
 
-        self.widgets.toggleLeftBox.clicked.connect(openCloseLeftBox)
+        # self.widgets.toggleLeftBox.clicked.connect(openCloseLeftBox)
         self.widgets.extraCloseColumnBtn.clicked.connect(openCloseLeftBox)
 
         # EXTRA RIGHT BOX
         def openCloseRightBox():
             UIFunctions.toggleRightBox(self, True)
 
-        self.widgets.settingsTopBtn.clicked.connect(openCloseRightBox)
+        # self.widgets.settingsTopBtn.clicked.connect(openCloseRightBox)
 
         # SHOW APP
         # ///////////////////////////////////////////////////////////////
@@ -145,7 +186,7 @@ class MainWindow(QMainWindow):
 
         # SET HOME PAGE AND SELECT MENU
         # ///////////////////////////////////////////////////////////////
-        self.widgets.stackedWidget.setCurrentWidget(self.widgets.home)
+        self.widgets.stackedWidget.setCurrentWidget(self.widgets.page_home)
         self.widgets.btn_home.setStyleSheet(UIFunctions.selectMenu(self.widgets.btn_home.styleSheet()))
 
     # BUTTONS CLICK
@@ -158,7 +199,7 @@ class MainWindow(QMainWindow):
 
         # SHOW HOME PAGE
         if btnName == "btn_home":
-            self.widgets.stackedWidget.setCurrentWidget(self.widgets.home)
+            self.widgets.stackedWidget.setCurrentWidget(self.widgets.page_home)
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
 
@@ -169,10 +210,22 @@ class MainWindow(QMainWindow):
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
 
         # SHOW NEW PAGE
-        if btnName == "btn_test":
-            self.widgets.stackedWidget.setCurrentWidget(self.widgets.new_page)  # SET PAGE
+        if btnName == "btn_details":
+            self.widgets.stackedWidget.setCurrentWidget(self.widgets.page_details)  # SET PAGE
             UIFunctions.resetStyle(self, btnName)  # RESET ANOTHERS BUTTONS SELECTED
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))  # SELECT MENU
+
+        if btnName == "btn_history":
+            print("close BTN clicked!")
+            self.widgets.stackedWidget.setCurrentWidget(self.widgets.page_test)  # SET PAGE
+            UIFunctions.resetStyle(self, btnName)  # RESET ANOTHERS BUTTONS SELECTED
+            btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))  # SELECT MENU
+
+        if btnName == 'btn_settings':
+            print('settings btn clicked')
+            self.widgets.stackedWidget.setCurrentWidget(self.widgets.page_settings)
+            UIFunctions.resetStyle(self, btnName)
+            btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
 
         if btnName == "btn_save":
             print("Save BTN clicked!")
@@ -197,6 +250,11 @@ class MainWindow(QMainWindow):
             print('Mouse click: LEFT CLICK')
         if event.buttons() == Qt.RightButton:
             print('Mouse click: RIGHT CLICK')
+
+    def developerButtonClicked(self):
+        self.widgets.stackedWidget.setCurrentWidget(self.widgets.page_before)
+        UIFunctions.resetStyle(self, 'btn_settings')
+        self.widgets.btn_settings.setStyleSheet(UIFunctions.selectMenu(self.widgets.btn_settings.styleSheet()))
 
     def add_log(self, msg):
         rowPosition = self.widgets.logger.rowCount()
@@ -253,6 +311,12 @@ class MainWindow(QMainWindow):
         self.Processor.moveTest(self.add_log)
         self.showNormal()
         # self.add_log(f'res{res}')
+
+    def horizontalMoveTest(self):
+        self.showMinimized()
+        time.sleep(1)
+        self.Processor.horizontalMoveTest(self.add_log)
+        self.showNormal()
 
     def clickTest(self):
         # self.add_log('start click test')

@@ -52,6 +52,16 @@ def findLine(currentScreen):
     return top_left, bottom_right
 
 
+def calculate_blur_sobel(img):
+    # 将图像转换为灰度图
+    # gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    sobelx = cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=3)
+    sobely = cv2.Sobel(img, cv2.CV_64F, 0, 1, ksize=3)
+    grad = np.sqrt(sobelx ** 2 + sobely ** 2)
+    score = np.average(grad)
+    return score
+
+
 def getLineSharpness(currentScreen, lineRegionTopLeft, lineRegionBottomRight):
     try:
         if lineRegionTopLeft == 0:
@@ -63,8 +73,9 @@ def getLineSharpness(currentScreen, lineRegionTopLeft, lineRegionBottomRight):
                              ]
             grayRegion = cv2.cvtColor(selectedRegion, cv2.COLOR_BGR2GRAY)
             # round用于舍到小数点后两位
-            sharpness = round(cv2.Laplacian(grayRegion, cv2.CV_64F).var(), 2)
-            sharpness = sharpness
+            # sharpness = round(cv2.Laplacian(grayRegion, cv2.CV_64F).var(), 2)
+            sharpness = round(calculate_blur_sobel(grayRegion), 2)
+            # sharpness = sharpness
             # cv2.imshow('1', selectedRegion)
             return sharpness
     except Exception as e:

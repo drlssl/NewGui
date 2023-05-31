@@ -1,6 +1,14 @@
 <RCC>
     <qresource prefix="images">
+        <file>images/images/solar_panel01.png</file>
+        <file>images/images/solar_panel03.png</file>
+        <file>images/images/solar_panel04.png</file>
         <file>images/images/microscope.png</file>
+        <file>images/images/microscope02.png</file>
+        <file>images/images/solar_panel05.png</file>
+        <file>images/images/solar_panel06.png</file>
+        <file>images/images/vhx.png</file>
+        <file>images/images/companyLogo.png</file>
         <file>images/images/microscope_vertical.png</file>
     </qresource>
     <qresource prefix="icons">

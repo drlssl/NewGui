@@ -13,6 +13,11 @@ pytesseract.pytesseract.tesseract_cmd = r"tesseract\tesseract.exe"
 
 class Processor:
     def __init__(self):
+        # 对位置的标记 3-2-13：第三条线 第二个位置检测 第13个曲线
+        self.currentLineIndex = 1
+        self.currentPosIndex = 1
+        self.currentCurveIndex = 1
+
         self.currentScreen = cv2.cvtColor(np.array(pyautogui.screenshot()), cv2.COLOR_RGB2BGR)
         # self.currentScreen = np.array(pyautogui.screenshot())[:, :, ::-1]
         # self.currentScreen=cv2.imread("resources4test/page01.png")
@@ -245,14 +250,22 @@ class Processor:
             bottom_right[1] = max(0, bottom_right[1])
             bottom_right[1] = min(1080, bottom_right[1])
 
-            self.lineRegionTopLeft = top_left
-            self.lineRegionBottomRight = bottom_right
-
-            getOut(f"current top left is: {top_left}, bottom right is: {bottom_right}")
-            cv2.rectangle(img, top_left, bottom_right, (0, 255, 255), 3)
-            cv2.imwrite("savedVideo/findLineTestResult.jpg", img)
-            getOut(f"current line region pic saved at savedVideo dir")
-            return top_left, bottom_right
+            if (bottom_right[0] - top_left[0] + bottom_right[1] - top_left[0]) <= 1080:
+                getOut(f"cannot find the line")
+                return top_left, bottom_right
+            elif (top_left[0] <= 50):
+                getOut(f"the line located at the left edge")
+                getOut(f"should move it right more")
+                return top_left, bottom_right
+            else:
+                self.lineRegionTopLeft = top_left
+                self.lineRegionBottomRight = bottom_right
+                getOut(f"find the line")
+                getOut(f"current top left is: {top_left}, bottom right is: {bottom_right}")
+                # cv2.rectangle(img, top_left, bottom_right, (0, 255, 255), 3)
+                # cv2.imwrite("savedVideo/findLineTestResult.jpg", img)
+                # getOut(f"current line region pic saved at savedVideo dir")
+                return top_left, bottom_right
         except Exception as e:
             getOut(f"{e}")
             return f"{e}"
@@ -303,6 +316,32 @@ class Processor:
         # self.focusOperationTest(getOut)
         # getOut(f"res: {res02}")
         return None
+
+    def horizontalMoveTest(self, getOut=None):
+        try:
+            pyautogui.click(700, 500)
+            old_pos_topLeft = self.lineRegionTopLeft
+            getOut(f"old top left pos: {old_pos_topLeft}")
+            for i in range(3):
+                pyautogui.click(self.screenWidth // 2, self.screenHeight // 2)
+                pyautogui.moveTo(1, self.screenHeight // 2)
+                # time.sleep(0.5)
+                pyautogui.dragRel(self.screenWidth // 2, self.screenHeight // 2, button='left')
+                pyautogui.moveTo(1, self.screenHeight // 4)
+                # time.sleep(0.5)
+                pyautogui.dragRel(self.screenWidth // 2, self.screenHeight // 2)
+            new_pos_topLeft, _ = self.findLine(getOut)
+            getOut(f"new top left pos: {new_pos_topLeft}")
+
+            offset = old_pos_topLeft[0] - new_pos_topLeft[0]
+            getOut(f"offset is: {offset}")
+            pyautogui.dragRel(offset, 0, 0.5)
+            time.sleep(1)
+            res = self.findLine(getOut)
+            return res
+        except Exception as e:
+            getOut(f"ERROR:{e}")
+            return e
 
     def focusOperationTest(self, getOut=None):
         try:
@@ -529,7 +568,7 @@ class Processor:
             old_pos_topLeft = self.lineRegionTopLeft
             getOut(f"old top left pos: {old_pos_topLeft}")
 
-            for i in range(100):
+            for i in range(13):
                 pyautogui.click(self.screenWidth // 2, self.screenHeight // 2)
                 pyautogui.moveTo(self.screenWidth // 2, self.screenHeight // 4)
                 # time.sleep(0.5)
