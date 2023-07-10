@@ -48,8 +48,8 @@ class ColorGrid(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.grid_size = 20  # 方格的数量
-        self.grid_colors = [[QColor(255, 255, 255) for _ in range(self.grid_size)] for _ in range(self.grid_size)]
+        self.grid_size = 25
+        self.grid_colors = [[QColor('#6495ED') for _ in range(self.grid_size)] for _ in range(self.grid_size)]
 
     def paintEvent(self, event):
         painter = QPainter(self)
@@ -60,16 +60,8 @@ class ColorGrid(QWidget):
                 color = self.grid_colors[i][j]
                 painter.fillRect(i * cell_width, j * cell_height, cell_width, cell_height, color)
 
-    def mousePressEvent(self, event):
-        cell_width = self.width() // self.grid_size
-        cell_height = self.height() // self.grid_size
-
-        x = event.x() // cell_width
-        y = event.y() // cell_height
-
-        if 0 <= x < self.grid_size and 0 <= y < self.grid_size:
-            color = QColor('#e75f2c')  # 设置为红色
-            self.grid_colors[x][y] = color
+    def set_cell_color(self, row, col):
+        self.grid_colors[self.grid_size - row][self.grid_size - col] = QColor('#e75f2c')
         self.update()
 
 
@@ -93,7 +85,7 @@ class MainWindow(QMainWindow):
 
         # APP NAME
         # ///////////////////////////////////////////////////////////////
-        title = "太阳能栅线自动化检测"
+        title = "太阳能栅线自动化检"
         description = "太阳能栅线自动化检测"
 
         # APPLY TEXTS
@@ -114,10 +106,11 @@ class MainWindow(QMainWindow):
 
         # color grid test
         # ////////////////////////////
-        self.grid_size = 4  # 方格的数量
+        self.grid_size = 3
         self.grid_colors = [[QColor(255, 255, 255) for _ in range(self.grid_size)] for _ in range(self.grid_size)]
         self.color_grid = ColorGrid()
         self.color_grid.setParent(self.widgets.colorFrame)
+        self.color_grid.set_cell_color(1, 1)
         # /////////////////////////////
 
         # my operation list
@@ -125,16 +118,17 @@ class MainWindow(QMainWindow):
         self.AllOperations = [
             self.findLineTest,
             self.getSharpness,
-            self.moveTest,
+            self.verticalMoveTest,
             self.horizontalMoveTest,
             self.clickTest,
             self.ocrTest,
             self.getWidthHeightTest,
-            self.pipeLineTest01,
             self.firstPageTest,
             self.secondPageTest,
             self.thirdPageTest,
-            self.fourthPageTest
+            self.fourthPageTest,
+            self.pipelineTest01,
+            self.pipelineTest02,
         ]
 
         # BUTTONS CLICK
@@ -142,9 +136,11 @@ class MainWindow(QMainWindow):
         # my own function connect to button
 
         self.widgets.startTestButton.clicked.connect(self.startTestButtonClicked)
+        self.widgets.startButton.clicked.connect(self.startButtonClicked)
         self.widgets.recordButton.clicked.connect(self.recordButtonClicked)
         self.widgets.developerButton.clicked.connect(self.developerButtonClicked)
-
+        self.widgets.progressColorButton.clicked.connect(self.progressColorButtonClicked)
+        self.widgets.fileReportBtn.clicked.connect(self.fileReportBtnClicked)
         # ////////////////////////////////////////////////////////////////////
 
         # LEFT MENUS
@@ -216,8 +212,9 @@ class MainWindow(QMainWindow):
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))  # SELECT MENU
 
         if btnName == "btn_history":
-            print("close BTN clicked!")
-            self.widgets.stackedWidget.setCurrentWidget(self.widgets.page_test)  # SET PAGE
+            self.widgets.stackedWidget.setCurrentWidget(self.widgets.page_test)
+            # print("close BTN clicked!")
+            # self.widgets.stackedWidget.setCurrentWidget(self.widgets.page_history)  # SET PAGE
             UIFunctions.resetStyle(self, btnName)  # RESET ANOTHERS BUTTONS SELECTED
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))  # SELECT MENU
 
@@ -241,6 +238,14 @@ class MainWindow(QMainWindow):
 
     # MOUSE CLICK EVENTS
     # ///////////////////////////////////////////////////////////////
+    def fileReportBtnClicked(self):
+        dir=QFileDialog.getExistingDirectory(self,"选择文件夹"," ")
+        if dir:
+            print(f"选择的文件夹是：{dir}")
+            self.Processor.savedPath=dir
+            self.add_log(f"设置导出文件的目录为：{dir}")
+
+
     def mousePressEvent(self, event):
         # SET DRAG POS WINDOW
         self.dragPos = event.globalPos()
@@ -251,25 +256,45 @@ class MainWindow(QMainWindow):
         if event.buttons() == Qt.RightButton:
             print('Mouse click: RIGHT CLICK')
 
+    def progressColorButtonClicked(self):
+        self.widgets.stackedWidget.setCurrentWidget(self.widgets.page_test)
+        UIFunctions.resetStyle(self,'btn_settings')
+        self.widgets.btn_settings.setStyleSheet(UIFunctions.selectMenu(self.widgets.btn_settings.styleSheet()))
+
     def developerButtonClicked(self):
         self.widgets.stackedWidget.setCurrentWidget(self.widgets.page_before)
         UIFunctions.resetStyle(self, 'btn_settings')
         self.widgets.btn_settings.setStyleSheet(UIFunctions.selectMenu(self.widgets.btn_settings.styleSheet()))
 
     def add_log(self, msg):
-        rowPosition = self.widgets.logger.rowCount()
-        self.widgets.logger.insertRow(rowPosition)
-        self.widgets.logger.setItem(rowPosition, 0, QTableWidgetItem(f"{getTime()}"))
-        self.widgets.logger.setItem(rowPosition, 1, QTableWidgetItem(f"{msg}"))
+        rowPosition01 = self.widgets.logger.rowCount()
+        self.widgets.logger.insertRow(rowPosition01)
+        self.widgets.logger.setItem(rowPosition01, 0, QTableWidgetItem(f"{getTime()}"))
+        self.widgets.logger.setItem(rowPosition01, 1, QTableWidgetItem(f"{msg}"))
+
+        rowPosition02 = self.widgets.logger02.rowCount()
+        self.widgets.logger02.insertRow(rowPosition02)
+        self.widgets.logger02.setItem(rowPosition02, 0, QTableWidgetItem(f"{getTime()}"))
+        self.widgets.logger02.setItem(rowPosition02, 1, QTableWidgetItem(f"{msg}"))
 
     def add_widthHeight(self, width, height):
-        rowPosition = self.widgets.widthHeightTable.rowCount()
-        self.widgets.widthHeightTable.insertRow(rowPosition)
-        self.widgets.widthHeightTable.setItem(rowPosition, 0, QTableWidgetItem(f"{width:.2f}μm"))
-        self.widgets.widthHeightTable.setItem(rowPosition, 1, QTableWidgetItem(f"{height:.2f}μm"))
+        rowPosition01 = self.widgets.widthHeightTable.rowCount()
+        self.widgets.widthHeightTable.insertRow(rowPosition01)
+        self.widgets.widthHeightTable.setItem(rowPosition01, 0, QTableWidgetItem(f"{width:.2f}μm"))
+        self.widgets.widthHeightTable.setItem(rowPosition01, 1, QTableWidgetItem(f"{height:.2f}μm"))
+
+        rowPosition02 = self.widgets.widthHeightTable02.rowCount()
+        self.widgets.widthHeightTable02.insertRow(rowPosition02)
+        self.widgets.widthHeightTable02.setItem(rowPosition02,
+                                                0,
+                                                QTableWidgetItem(
+                                                    f"{self.Processor.currentLineIndex}-{self.Processor.currentPosIndex}-{self.Processor.currentCurveIndex}"
+                                                ))
+        self.widgets.widthHeightTable02.setItem(rowPosition02, 1, QTableWidgetItem(f"{width:.2f}μm"))
+        self.widgets.widthHeightTable02.setItem(rowPosition02, 2, QTableWidgetItem(f"{height:.2f}μm"))
 
     def recordButtonClicked(self):
-        #     通过pyautogui来录制屏幕
+        #     通过pyautogui来录制
         self.add_log("点击录制按钮")
         if self.Processor.recordFlag:
             self.add_log("停止录制")
@@ -287,7 +312,18 @@ class MainWindow(QMainWindow):
         currentIndex = self.widgets.modeSelector.currentIndex()
         self.AllOperations[currentIndex]()
 
-    # 下面都是我对应于前面的operation list的函数内容
+    def startButtonClicked(self):
+        self.showMinimized()
+        time.sleep(1)
+        self.Processor.pipelineTest02(
+            getOut01=self.add_log,
+            getOut02=self.add_widthHeight,
+            draw=self.color_grid.set_cell_color,
+            # lineCounts=3,
+            # posCounts=3
+        )
+        self.showNormal()
+
     # /////////////////////////////////////////////////////////////////////
     def findLineTest(self):
         # self.add_log('start find the line')
@@ -304,17 +340,17 @@ class MainWindow(QMainWindow):
         self.showNormal()
         # self.add_log(f'res{res}')
 
-    def moveTest(self):
+    def verticalMoveTest(self):
         # self.add_log('start move test')
         self.showMinimized()
         time.sleep(1)
-        self.Processor.moveTest(self.add_log)
+        self.Processor.verticalMoveTest(self.add_log)
         self.showNormal()
         # self.add_log(f'res{res}')
 
     def horizontalMoveTest(self):
         self.showMinimized()
-        time.sleep(1)
+        time.sleep(5)
         self.Processor.horizontalMoveTest(self.add_log)
         self.showNormal()
 
@@ -371,11 +407,27 @@ class MainWindow(QMainWindow):
         self.Processor.fourthPageProgress(getOut=self.add_log)
         self.showNormal()
 
-    def pipeLineTest01(self):
+    def pipelineTest01(self):
         self.add_log('start pipeline test01')
         self.showMinimized()
         time.sleep(1)
-        self.Processor.pipelineTest(getOut01=self.add_log, getOut02=self.add_widthHeight)
+        self.Processor.pipelineTest01(
+            getOut01=self.add_log,
+            getOut02=self.add_widthHeight,
+            draw=self.color_grid.set_cell_color)
+        self.showNormal()
+
+    def pipelineTest02(self):
+        self.add_log('start pipeline test02')
+        self.showMinimized()
+        time.sleep(1)
+        self.Processor.pipelineTest02(
+            getOut01=self.add_log,
+            getOut02=self.add_widthHeight,
+            draw=self.color_grid.set_cell_color,
+            # lineCounts=3,
+            # posCounts=3
+        )
         self.showNormal()
 
 

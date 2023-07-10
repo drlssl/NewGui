@@ -45,39 +45,43 @@ def findLine(img):
         return f"{e}"
 
 
-img = cv2.imread('../resources4test/0171.png')[:, :1440]
-res = findLine(img)
-if res[0][0] <= 50:
-    print(f'move right along')
+img01 = cv2.imread('4.png')[:, :1440]
+img02=cv2.imread('withoutLine.png')
+# res = findLine(img)
+# if res[0][0] <= 50:
+#     print(f'move right along')
+#
+# pic_left = img[:, 0:res[0][0]]
+# pic_right = img[:, res[1][0]:]
 
-pic_left = img[:, 0:res[0][0]]
-pic_right = img[:, res[1][0]:]
-
-combined_img=cv2.hconcat([pic_left,pic_right])
-cv2.imwrite('withoutLine.png',combined_img)
-
-
-# 创建一个包含多个子图的画布
-fig, axes = plt.subplots(1, 3)
-
-# 在每个子图中显示图像
-axes[0].imshow(pic_left)
-axes[0].set_title('left Image')
-axes[0].axis('off')
-
-axes[1].imshow(pic_right)
-axes[1].set_title('right Image')
-axes[1].axis('off')
-
-axes[2].imshow(combined_img)
-axes[2].set_title('combined')
-axes[2].axis('off')
+combined_img=cv2.hconcat([img01,img02,img02,img02,img02,img02,img02,img01,img02,img02,img02,img02,img02,img02])
+combined_img=cv2.vconcat([combined_img,combined_img])
 
 
-# 调整子图的布局
-plt.tight_layout()
+cv2.imwrite('lineWithBg.png',combined_img)
 
-# 显示图像
-plt.show()
+#
+# # 创建一个包含多个子图的画布
+# fig, axes = plt.subplots(1, 3)
+#
+# # 在每个子图中显示图像
+# axes[0].imshow(pic_left)
+# axes[0].set_title('left Image')
+# axes[0].axis('off')
+#
+# axes[1].imshow(pic_right)
+# axes[1].set_title('right Image')
+# axes[1].axis('off')
+#
+# axes[2].imshow(combined_img)
+# axes[2].set_title('combined')
+# axes[2].axis('off')
+#
+#
+# # 调整子图的布局
+# plt.tight_layout()
+#
+# # 显示图像
+# plt.show()
 
 

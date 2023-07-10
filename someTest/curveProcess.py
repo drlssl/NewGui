@@ -101,6 +101,13 @@ while right_index < len(nonrepeat_y_list) -3:
 res02_right_np = np.array(res02_right_list)
 min_res02_right_index = np.argmin(res02_right_np)
 right_width_index = height_index + min_res02_right_index+53
+# 求高
+height=((nonrepeat_y_list[left_width_index]+nonrepeat_y_list[right_width_index])/2-nonrepeat_y_list[height_index])/heightScale
+
+print(f"height is :{height:.2f} μm")
+
+
+
 # 创建图形对象和子图
 fig, ax = plt.subplots()
 ax.plot(nonrepeat_x_list, nonrepeat_y_list)

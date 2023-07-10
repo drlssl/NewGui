@@ -47,7 +47,7 @@ cv2.circle(img, (x[widthLeftIndex] + 54, y[widthLeftIndex] + 595), radius=2, col
 cv2.circle(img, (x[widthRightIndex] + 54, y[widthRightIndex] + 595), radius=2, color=(0, 255, 0),
            thickness=3)
 
-cv2.imshow('1', binLine)
+cv2.imshow('1', img)
 cv2.waitKey()
 
 cv2.destroyAllWindows()

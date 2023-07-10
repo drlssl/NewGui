@@ -71,11 +71,27 @@ def getLineSharpness(currentScreen, lineRegionTopLeft, lineRegionBottomRight):
                              lineRegionTopLeft[1]: lineRegionBottomRight[1],
                              lineRegionTopLeft[0]: lineRegionBottomRight[0]
                              ]
-            grayRegion = cv2.cvtColor(selectedRegion, cv2.COLOR_BGR2GRAY)
+
+            selectedRegion01 = currentScreen[
+                               lineRegionTopLeft[1]:lineRegionBottomRight[1],
+                               lineRegionTopLeft[0]:lineRegionTopLeft[0] + int(
+                                   (lineRegionBottomRight[0] - lineRegionTopLeft[0]) / 3)
+                               ]
+            selectedRegion02 = currentScreen[
+                               lineRegionTopLeft[1]:lineRegionBottomRight[1],
+                               lineRegionTopLeft[0] + 2 * int(
+                                   (lineRegionBottomRight[0] - lineRegionTopLeft[0]) / 3):
+                               lineRegionBottomRight[0]
+                               ]
+
+
+            grayRegion01 = cv2.cvtColor(selectedRegion01, cv2.COLOR_BGR2GRAY)
+            grayRegion02 = cv2.cvtColor(selectedRegion02, cv2.COLOR_BGR2GRAY)
             # round用于舍到小数点后两位
-            # sharpness = round(cv2.Laplacian(grayRegion, cv2.CV_64F).var(), 2)
-            sharpness = round(calculate_blur_sobel(grayRegion), 2)
-            # sharpness = sharpness
+            sharpness01 = round(cv2.Laplacian(grayRegion01, cv2.CV_64F).var(), 2)
+            sharpness02 = round(cv2.Laplacian(grayRegion02, cv2.CV_64F).var(), 2)
+            # sharpness01 = round(calculate_blur_sobel(grayRegion01), 2)
+            sharpness = sharpness01+sharpness02
             # cv2.imshow('1', selectedRegion)
             return sharpness
     except Exception as e:

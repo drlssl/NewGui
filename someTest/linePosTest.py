@@ -43,13 +43,17 @@ def findLine(img):
     except Exception as e:
         return f"{e}"
 
+
 img01 = cv2.imread('../resources4test/halfInLeft.png')
-img02=cv2.imread('withoutLine.png')
+img02 = cv2.imread('withoutLine.png')
 
-res=findLine(img02)
+res = findLine(img02)
 
-if (res[1][0]-res[0][0])+(res[1][1]-res[1][0])<=1080:
+if (res[1][0] - res[0][0]) + (res[1][1] - res[1][0]) <= 1080:
     print(f"no line found")
 
-if res[0][0]<=50:
+if res[0][0] <= 50:
     print(f'line in left edge')
+
+
+
