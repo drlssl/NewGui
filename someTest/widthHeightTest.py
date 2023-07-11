@@ -6,12 +6,14 @@ cv2.namedWindow('1', cv2.WINDOW_NORMAL)
 
 pytesseract.pytesseract.tesseract_cmd = "D:\\Tesseract_OCR\\tesseract.exe"
 # img = cv2.imread('measurePage.png')
-img = cv2.imread('../resources4test/0025.bmp')
+# img = cv2.imread('../resources4test/0025.bmp')
+img = cv2.imread("../resources4test02/01/00032.bmp")
 
 numberRegion = img[586:606, 1:40]
 lineRegion = img[595:992, 54:1411]
 
 coord_height = float(pytesseract.image_to_string(numberRegion))
+print(f"coord height is {coord_height}")
 pixel_height = 992 - 595
 heightScale = pixel_height / coord_height
 print(f"scale of height is {heightScale:.2f}")

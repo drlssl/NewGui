@@ -424,10 +424,7 @@ class MainWindow(QMainWindow):
         self.Processor.pipelineTest02(
             getOut01=self.add_log,
             getOut02=self.add_widthHeight,
-            draw=self.color_grid.set_cell_color,
-            # lineCounts=3,
-            # posCounts=3
-        )
+            draw=self.color_grid.set_cell_color)
         self.showNormal()
 
 
