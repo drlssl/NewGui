@@ -48,7 +48,8 @@ class ColorGrid(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.grid_size = 150
+        # self.grid_size = 125
+        self.grid_size = 25
         self.grid_colors = [[QColor('#6495ED') for _ in range(self.grid_size)] for _ in range(self.grid_size)]
 
     def paintEvent(self, event):
@@ -61,7 +62,8 @@ class ColorGrid(QWidget):
                 painter.fillRect(i * cell_width, j * cell_height, cell_width, cell_height, color)
 
     def set_cell_color(self, row, col):
-        self.grid_colors[self.grid_size - row][self.grid_size - 7*col] = QColor('#e75f2c')
+        self.grid_colors[self.grid_size - row][self.grid_size - col] = QColor('#e75f2c')
+        # self.grid_colors[self.grid_size - row][self.grid_size - 7*col] = QColor('#e75f2c')
         self.update()
 
 
