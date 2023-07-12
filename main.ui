@@ -1800,7 +1800,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                       <string notr="true">background: transparent</string>
                      </property>
                      <property name="currentIndex">
-                      <number>6</number>
+                      <number>5</number>
                      </property>
                      <widget class="QWidget" name="page_home">
                       <property name="styleSheet">
@@ -3063,7 +3063,7 @@ color:#ffffff</string>
                                 <rect>
                                  <x>0</x>
                                  <y>0</y>
-                                 <width>274</width>
+                                 <width>218</width>
                                  <height>218</height>
                                 </rect>
                                </property>
@@ -3708,6 +3708,16 @@ color:#ffffff</string>
                          <string>流程测试02</string>
                         </property>
                        </item>
+                       <item>
+                        <property name="text">
+                         <string>沿栅线检测</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>垂直栅线检测</string>
+                        </property>
+                       </item>
                       </widget>
                       <widget class="QPushButton" name="recordButton">
                        <property name="geometry">
@@ -4085,6 +4095,12 @@ color:#ffffff</string>
                             <verstretch>0</verstretch>
                            </sizepolicy>
                           </property>
+                          <property name="minimumSize">
+                           <size>
+                            <width>150</width>
+                            <height>0</height>
+                           </size>
+                          </property>
                           <property name="palette">
                            <palette>
                             <active>
@@ -4322,7 +4338,7 @@ color:#ffffff</string>
                            <bool>false</bool>
                           </attribute>
                           <attribute name="horizontalHeaderDefaultSectionSize">
-                           <number>85</number>
+                           <number>64</number>
                           </attribute>
                           <attribute name="horizontalHeaderHighlightSections">
                            <bool>true</bool>
@@ -4362,6 +4378,11 @@ color:#ffffff</string>
                             <string>1</string>
                            </property>
                           </column>
+                          <column>
+                           <property name="text">
+                            <string>2</string>
+                           </property>
+                          </column>
                           <item row="0" column="0">
                            <property name="text">
                             <string>宽度</string>
@@ -4370,6 +4391,11 @@ color:#ffffff</string>
                           <item row="0" column="1">
                            <property name="text">
                             <string>高度</string>
+                           </property>
+                          </item>
+                          <item row="0" column="2">
+                           <property name="text">
+                            <string>面积</string>
                            </property>
                           </item>
                          </widget>

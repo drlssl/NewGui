@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainofuvqA.ui'
+## Form generated from reading UI file 'mainhcnwMU.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.0
 ##
@@ -1715,6 +1715,8 @@ class Ui_MainWindow(object):
         self.modeSelector.addItem("")
         self.modeSelector.addItem("")
         self.modeSelector.addItem("")
+        self.modeSelector.addItem("")
+        self.modeSelector.addItem("")
         self.modeSelector.setObjectName(u"modeSelector")
         self.modeSelector.setEnabled(True)
         self.modeSelector.setGeometry(QRect(70, 20, 161, 61))
@@ -2049,7 +2051,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(5)
         self.modeSelector.setCurrentIndex(-1)
 
 
@@ -2225,6 +2227,8 @@ class Ui_MainWindow(object):
         self.modeSelector.setItemText(10, QCoreApplication.translate("MainWindow", u"\u7b2c\u56db\u9875\u6d4b\u8bd5", None))
         self.modeSelector.setItemText(11, QCoreApplication.translate("MainWindow", u"\u6d41\u7a0b\u6d4b\u8bd501", None))
         self.modeSelector.setItemText(12, QCoreApplication.translate("MainWindow", u"\u6d41\u7a0b\u6d4b\u8bd502", None))
+        self.modeSelector.setItemText(13, QCoreApplication.translate("MainWindow", u"\u6cbf\u6805\u7ebf\u68c0\u6d4b", None))
+        self.modeSelector.setItemText(14, QCoreApplication.translate("MainWindow", u"\u5782\u76f4\u6805\u7ebf\u68c0\u6d4b", None))
 
         self.modeSelector.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u8bf7\u9009\u62e9\u6d4b\u8bd5\u5185\u5bb9", None))
         self.recordButton.setText(QCoreApplication.translate("MainWindow", u"\u5f00\u59cb\u5f55\u5236", None))

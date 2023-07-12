@@ -48,7 +48,7 @@ class ColorGrid(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.grid_size = 25
+        self.grid_size = 150
         self.grid_colors = [[QColor('#6495ED') for _ in range(self.grid_size)] for _ in range(self.grid_size)]
 
     def paintEvent(self, event):
@@ -61,7 +61,7 @@ class ColorGrid(QWidget):
                 painter.fillRect(i * cell_width, j * cell_height, cell_width, cell_height, color)
 
     def set_cell_color(self, row, col):
-        self.grid_colors[self.grid_size - row][self.grid_size - col] = QColor('#e75f2c')
+        self.grid_colors[self.grid_size - row][self.grid_size - 7*col] = QColor('#e75f2c')
         self.update()
 
 
@@ -129,6 +129,8 @@ class MainWindow(QMainWindow):
             self.fourthPageTest,
             self.pipelineTest01,
             self.pipelineTest02,
+            self.followLineDirectionTest,
+            self.verticalLineDirectionTest
         ]
 
         # BUTTONS CLICK
@@ -277,11 +279,11 @@ class MainWindow(QMainWindow):
         self.widgets.logger02.setItem(rowPosition02, 0, QTableWidgetItem(f"{getTime()}"))
         self.widgets.logger02.setItem(rowPosition02, 1, QTableWidgetItem(f"{msg}"))
 
-    def add_widthHeight(self, width, height):
+    def add_widthHeight(self, width, height,area):
         rowPosition01 = self.widgets.widthHeightTable.rowCount()
         self.widgets.widthHeightTable.insertRow(rowPosition01)
-        self.widgets.widthHeightTable.setItem(rowPosition01, 0, QTableWidgetItem(f"{width:.2f}μm"))
-        self.widgets.widthHeightTable.setItem(rowPosition01, 1, QTableWidgetItem(f"{height:.2f}μm"))
+        self.widgets.widthHeightTable.setItem(rowPosition01, 0, QTableWidgetItem(f"{width:.2f}"))
+        self.widgets.widthHeightTable.setItem(rowPosition01, 1, QTableWidgetItem(f"{height:.2f}"))
 
         rowPosition02 = self.widgets.widthHeightTable02.rowCount()
         self.widgets.widthHeightTable02.insertRow(rowPosition02)
@@ -290,8 +292,10 @@ class MainWindow(QMainWindow):
                                                 QTableWidgetItem(
                                                     f"{self.Processor.currentLineIndex}-{self.Processor.currentPosIndex}-{self.Processor.currentCurveIndex}"
                                                 ))
-        self.widgets.widthHeightTable02.setItem(rowPosition02, 1, QTableWidgetItem(f"{width:.2f}μm"))
-        self.widgets.widthHeightTable02.setItem(rowPosition02, 2, QTableWidgetItem(f"{height:.2f}μm"))
+
+        self.widgets.widthHeightTable02.setItem(rowPosition02, 1, QTableWidgetItem(f"{width:.2f}"))
+        self.widgets.widthHeightTable02.setItem(rowPosition02, 2, QTableWidgetItem(f"{height:.2f}"))
+        self.widgets.widthHeightTable02.setItem(rowPosition02,3,QTableWidgetItem(f"{area:.2f}"))
 
     def recordButtonClicked(self):
         #     通过pyautogui来录制
@@ -427,6 +431,19 @@ class MainWindow(QMainWindow):
             draw=self.color_grid.set_cell_color)
         self.showNormal()
 
+    def followLineDirectionTest(self):
+        self.add_log('开始沿栅线方向检测')
+        self.showMinimized()
+        time.sleep(1)
+
+        self.showNormal()
+
+    def verticalLineDirectionTest(self):
+        self.add_log('开始垂直栅线方向检测')
+        self.showMinimized()
+        time.sleep(1)
+
+        self.showNormal()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

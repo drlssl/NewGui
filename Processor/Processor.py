@@ -64,7 +64,7 @@ class Processor:
             'back_first_page_region': 'resources/img/backFirstPageRegion.png',
             'back_first_page': 'resources/img/backFirstPage.png',
 
-            'first_page': 'resources/img/fistPage.png',
+            'first_page': 'resources/img/firstPage.png',
             "adjust_height_region": 'resources/img/adjustHeightRegion.png',
             'adjust_height_cursor': 'resources/img/adjustHeightCursor.png',
             'measure_width': 'resources/img/measureWidth.png',
@@ -519,7 +519,7 @@ class Processor:
             return e
 
     def getWidthHeightTest(self, getOut=None, getOut02=None):
-
+        # 这里除了宽高，还有面积的计算
         def find_unique_index(sequence):
             # 用于key-value的一一对应
             unique_values = set(sequence)  # 获取序列中的唯一值
@@ -656,19 +656,29 @@ class Processor:
             # cv2.namedWindow('1', cv2.WINDOW_NORMAL)
             # cv2.imshow('1', img)
 
+            # 计算面积
+            area = 0
+            for i in range(left_width_index, right_width_index):
+                cubeHeight = nonrepeat_y_list[i] / heightScale
+                cubeWidth = 1 / heightScale
+                area += cubeWidth * cubeHeight
+
             std_width = 32
             std_height = 10
             err_w = 8
             err_h = 5
 
             if abs(std_width - width) < err_w and abs(std_height - height) < err_h:
-                with open(self.savedPath + "记录.txt", 'a+') as f:
+                with open(self.savedPath + "result.txt", 'a+') as f:
                     f.write(
-                        f"{self.currentLineIndex}-{self.currentPosIndex}-{self.currentCurveIndex}: 宽:{width:.2f} μm , 高:{height:.2f} μm\n")
-                getOut(f"已写入,文件位置为 {self.savedPath}记录.txt")
+                        f"{self.currentLineIndex}-{self.currentPosIndex}-{self.currentCurveIndex}"
+                        f": W:{width:.2f}, H:{height:.2f}, A:{area:.2f}\n")
+
+                getOut(f"已写入,文件位置为 {self.savedPath}result.txt")
                 getOut(f"height is :{height:.2f} μm")
                 getOut(f"width is: {width:.2f} μm")
-                getOut02(width, height)
+                getOut(f"area is: {area:.2f} μm^2")
+                getOut02(width, height, area)
                 return width, height
             else:
                 return width, height
@@ -752,22 +762,22 @@ class Processor:
     def firstPageProcess(self, getOut=None):
         # 第一页应该是开始对焦的那个界面
         try:
-            self.click('task_bar', 'first_page', getOut=getOut)
+            # self.click('task_bar', 'first_page', getOut=getOut)
             self.findLine(getOut=getOut)
             # self.focusOperationTest(getOut=getOut)
             self.click('start_reconstruction_region', 'start_reconstruction', getOut=getOut)
             time.sleep(5)
             self.click('show_reconstruction_result_region', 'show_reconstruction_result', getOut=getOut)
-            time.sleep(1.5)
+            time.sleep(5)
             self.click('reconstruction_result_region', '3d_show', getOut=getOut)
-            time.sleep(1.5)
+            time.sleep(2)
         except Exception as e:
             getOut(f"ERROR:{e}")
 
     def secondPageProcess(self, getOut=None):
         try:
             self.click('show_bar', 'select_contour', getOut=getOut)
-            time.sleep(1)
+            time.sleep(2)
         except Exception as e:
             getOut(f"ERROR:{e}")
 
@@ -892,5 +902,16 @@ class Processor:
 
         except Exception as e:
             getOut01(f"{e}")
-    # for i in range(2):
-    #     self.pipelineTest01(getOut01=getOut01, getOut02=getOut02, draw=draw)
+
+    def followLineDirectionTest(self, getOut01, getOut02, draw=None):
+        try:
+            for i in range(7):
+                self.pipelineTest01(getOut01=getOut01,getOut02=getOut02,draw=draw)
+        except Exception as e:
+            getOut01(f"ERR:{e}")
+
+    def verticalLineDirectionTest(self, getOut01, getOut02, draw=None):
+        try:
+            pass
+        except Exception as e:
+            getOut01(f"ERR:{e}")

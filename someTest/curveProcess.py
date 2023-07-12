@@ -106,22 +106,9 @@ height=((nonrepeat_y_list[left_width_index]+nonrepeat_y_list[right_width_index])
 
 print(f"height is :{height:.2f} μm")
 
-
-
-# 创建图形对象和子图
-fig, ax = plt.subplots()
-ax.plot(nonrepeat_x_list, nonrepeat_y_list)
-ax.scatter(nonrepeat_x_list[left_width_index], nonrepeat_y_list[left_width_index], color='r')
-ax.scatter(nonrepeat_x_list[right_width_index], nonrepeat_y_list[right_width_index], color='r')
-ax.scatter(nonrepeat_x_list[height_index], nonrepeat_y_list[height_index], color='r')
-ax.set_title('simple plot')
-ax.set_xlabel('X axis')
-ax.set_ylabel('Y axis')
-# 显示图形
-plt.show()
-
 width = (nonrepeat_x_list[right_width_index] - nonrepeat_x_list[left_width_index]) / widthScale
 print(f"the curve width is :{width:.2f}μm")
+
 
 cv2.circle(img,
            (nonrepeat_x_list[left_width_index] + 54, nonrepeat_y_list[left_width_index] + 595),
