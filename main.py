@@ -17,6 +17,8 @@ import sys
 import os
 import platform
 
+import numpy as np
+
 from Processor.Processor import Processor
 
 # IMPORT / GUI AND MODULES AND WIDGETS
@@ -145,6 +147,7 @@ class MainWindow(QMainWindow):
         self.widgets.developerButton.clicked.connect(self.developerButtonClicked)
         self.widgets.progressColorButton.clicked.connect(self.progressColorButtonClicked)
         self.widgets.fileReportBtn.clicked.connect(self.fileReportBtnClicked)
+        self.widgets.analyseBtn.clicked.connect(self.analyseBtnClicked)
         # ////////////////////////////////////////////////////////////////////
 
         # LEFT MENUS
@@ -243,12 +246,78 @@ class MainWindow(QMainWindow):
     # MOUSE CLICK EVENTS
     # ///////////////////////////////////////////////////////////////
     def fileReportBtnClicked(self):
-        dir=QFileDialog.getExistingDirectory(self,"选择文件夹"," ")
+        dir = QFileDialog.getExistingDirectory(self, "选择文件夹", " ")
         if dir:
             print(f"选择的文件夹是：{dir}")
-            self.Processor.savedPath=dir
+            self.Processor.savedPath = dir
             self.add_log(f"设置导出文件的目录为：{dir}")
 
+    def analyseBtnClicked(self):
+        file = QFileDialog.getOpenFileName(self, "选择文件")[0]
+        if file:
+            self.add_log(f"选择需要分析的文件是：{file}")
+            print(f"选择需要分析的文件是：{file}")
+            self.analyseResult(file)
+            # self.Processor.savedPath = dir
+
+    def analyseResult(self, file):
+        w_list = []
+        h_list = []
+        a_list = []
+
+        with open(file, 'r') as file:
+            for line in file:
+                line = line.strip()
+                if line:
+                    parts = line.split(': ')
+                    values = parts[1].split(',')
+                    w = float(values[0].split('W:')[1].strip())
+                    h = float(values[1].split('H:')[1].strip())
+                    a = float(values[2].split('A:')[1].strip())
+                    w_list.append(w)
+                    h_list.append(h)
+                    a_list.append(a)
+
+        w_np = np.array(w_list)
+        self.add_log(f"W_AVG: {w_np.mean():.2f}")
+        self.add_log(f"W_STD: {w_np.std():.2f}")
+        self.add_log(f"W_MAX: {w_np.max()}")
+        self.add_log(f"W_MIN: {w_np.min()}")
+
+        h_np = np.array(h_list)
+        self.add_log(f"H_AVG: {h_np.mean():.2f}")
+        self.add_log(f"H_STD: {h_np.std():.2f}")
+        self.add_log(f"H_MAX: {h_np.max()}")
+        self.add_log(f"H_MIN: {h_np.min()}")
+
+        a_np = np.array(a_list)
+        self.add_log(f"A_AVG: {a_np.mean():.2f}")
+        self.add_log(f"A_STD: {a_np.std():.2f}")
+        self.add_log(f"A_MAX: {a_np.max()}")
+        self.add_log(f"A_MIN: {a_np.min()}")
+
+        with open(f"savedVideo\Analysis_{getTime()}.txt", 'w+') as f:
+
+            f.write(f"==========  宽度统计  ==================\n")
+
+            f.write(f"W_AVG: {w_np.mean():.2f}\n")
+            f.write(f"W_STD: {w_np.std():.2f}\n")
+            f.write(f"W_MAX: {w_np.max()}\n")
+            f.write(f"W_MIN: {w_np.min()}\n")
+
+            f.write(f"==========  高度统计  ==================\n")
+
+            f.write(f"H_AVG: {h_np.mean():.2f}\n")
+            f.write(f"H_STD: {h_np.std():.2f}\n")
+            f.write(f"H_MAX: {h_np.max()}\n")
+            f.write(f"H_MIN: {h_np.min()}\n")
+
+            f.write(f"==========  面积统计  ==================\n")
+
+            f.write(f"A_AVG: {a_np.mean():.2f}\n")
+            f.write(f"A_STD: {a_np.std():.2f}\n")
+            f.write(f"A_MAX: {a_np.max()}\n")
+            f.write(f"A_MIN: {a_np.min()}\n")
 
     def mousePressEvent(self, event):
         # SET DRAG POS WINDOW
@@ -262,7 +331,7 @@ class MainWindow(QMainWindow):
 
     def progressColorButtonClicked(self):
         self.widgets.stackedWidget.setCurrentWidget(self.widgets.page_test)
-        UIFunctions.resetStyle(self,'btn_settings')
+        UIFunctions.resetStyle(self, 'btn_settings')
         self.widgets.btn_settings.setStyleSheet(UIFunctions.selectMenu(self.widgets.btn_settings.styleSheet()))
 
     def developerButtonClicked(self):
@@ -281,11 +350,12 @@ class MainWindow(QMainWindow):
         self.widgets.logger02.setItem(rowPosition02, 0, QTableWidgetItem(f"{getTime()}"))
         self.widgets.logger02.setItem(rowPosition02, 1, QTableWidgetItem(f"{msg}"))
 
-    def add_widthHeight(self, width, height,area):
+    def add_widthHeight(self, width, height, area):
         rowPosition01 = self.widgets.widthHeightTable.rowCount()
         self.widgets.widthHeightTable.insertRow(rowPosition01)
         self.widgets.widthHeightTable.setItem(rowPosition01, 0, QTableWidgetItem(f"{width:.2f}"))
         self.widgets.widthHeightTable.setItem(rowPosition01, 1, QTableWidgetItem(f"{height:.2f}"))
+        self.widgets.widthHeightTable.setItem(rowPosition01, 2, QTableWidgetItem(f"{area:.2f}"))
 
         rowPosition02 = self.widgets.widthHeightTable02.rowCount()
         self.widgets.widthHeightTable02.insertRow(rowPosition02)
@@ -297,7 +367,7 @@ class MainWindow(QMainWindow):
 
         self.widgets.widthHeightTable02.setItem(rowPosition02, 1, QTableWidgetItem(f"{width:.2f}"))
         self.widgets.widthHeightTable02.setItem(rowPosition02, 2, QTableWidgetItem(f"{height:.2f}"))
-        self.widgets.widthHeightTable02.setItem(rowPosition02,3,QTableWidgetItem(f"{area:.2f}"))
+        self.widgets.widthHeightTable02.setItem(rowPosition02, 3, QTableWidgetItem(f"{area:.2f}"))
 
     def recordButtonClicked(self):
         #     通过pyautogui来录制
@@ -437,6 +507,11 @@ class MainWindow(QMainWindow):
         self.add_log('开始沿栅线方向检测')
         self.showMinimized()
         time.sleep(1)
+        self.Processor.followLineDirectionTest(
+            getOut01=self.add_log,
+            getOut02=self.add_widthHeight,
+            draw=self.color_grid.set_cell_color
+        )
 
         self.showNormal()
 
@@ -446,6 +521,7 @@ class MainWindow(QMainWindow):
         time.sleep(1)
 
         self.showNormal()
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

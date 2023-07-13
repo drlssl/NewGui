@@ -7,9 +7,18 @@ import pyautogui
 
 import pytesseract
 import aircv as ac
+from datetime import datetime
 
 pytesseract.pytesseract.tesseract_cmd = r"tesseract\tesseract.exe"
 pyautogui.FAILSAFE = False
+
+
+# get time
+# /////////////////////////////////////////////////////////////////
+def getTime():
+    now = datetime.now()
+    formatted_time = now.strftime("%Y-%m-%d-%H-%M-%S")
+    return formatted_time
 
 
 class Processor:
@@ -17,6 +26,7 @@ class Processor:
         # 默认是向上移动
         self.verticalMoveUpDirection = True
         self.savedPath = 'savedVideo/'
+        self.resultPath = 'result.txt'
         # 对位置的标记 3-2-13：第三条线 第二个位置检测 第13个曲线
         self.currentLineIndex = 1
         self.currentPosIndex = 1
@@ -217,13 +227,15 @@ class Processor:
     def findLine(self, getOut=None):
         try:
             self.screenshot()
-            # self.currentScreen = cv2.imread('resources4test02/03/1.bmp')
+            # self.currentScreen = cv2.imread('resources4test02/line/1.bmp')
             img = self.currentScreen
             imgSelected = img[:, :1440]
 
             imgHSV = cv2.cvtColor(imgSelected, cv2.COLOR_BGR2HSV)
-            hsv_low = np.array([0, 0, 86])
-            hsv_high = np.array([108, 255, 255])
+            # hsv_low = np.array([0, 0, 86])
+            # hsv_high = np.array([108, 255, 255])
+            hsv_low = np.array([0, 0, 36])
+            hsv_high = np.array([120, 255, 255])
             mask = cv2.inRange(imgHSV, hsv_low, hsv_high)
 
             lineRegion = cv2.bitwise_and(imgSelected, imgSelected, mask=mask)
@@ -233,11 +245,16 @@ class Processor:
             y_grad = cv2.Sobel(grayLine, cv2.CV_32F, dx=0, dy=1, ksize=-1)
             gradLine = cv2.subtract(x_grad, y_grad)
             gradLine = cv2.convertScaleAbs(gradLine)
-            blurredLine = cv2.blur(gradLine, (5, 5))
+
+            # blurredLine = cv2.blur(gradLine, (5, 5))
+            blurredLine = cv2.blur(grayLine, (5, 5))
             _, thresholdLine = cv2.threshold(blurredLine, 100, 255, cv2.THRESH_BINARY)
 
             kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (11, 7))
             closedLine = cv2.morphologyEx(thresholdLine, cv2.MORPH_CLOSE, kernel)
+
+            # cv2.imshow('1', closedLine)
+            # cv2.waitKey()
 
             lineContours = cv2.findContours(closedLine, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
             lineCnts = imutils.grab_contours(lineContours)
@@ -255,6 +272,9 @@ class Processor:
             getOut(f"top left is {top_left}")
             getOut(f"bottom right is {bottom_right}")
 
+            cv2.rectangle(img, top_left, bottom_right, (0, 255, 255), 3)
+            cv2.imshow('1', img)
+
             w_diff = bottom_right[0] - top_left[0]
             h_diff = bottom_right[1] - top_left[1]
 
@@ -265,7 +285,7 @@ class Processor:
                 getOut(f"the line located at the left edge")
                 getOut(f"should move it more")
                 return top_left, bottom_right, 0
-            elif w_diff < 80 or w_diff > 500 or h_diff < 900:
+            elif w_diff < 80 or w_diff > 600 or h_diff < 900:
                 getOut(f"maybe it's the cross point")
                 getOut(f"should move it more")
                 return top_left, bottom_right, 0
@@ -275,6 +295,7 @@ class Processor:
                 getOut(f"find the line")
                 getOut(f"current top left is: {top_left}, bottom right is: {bottom_right}")
                 cv2.rectangle(img, top_left, bottom_right, (0, 255, 255), 3)
+                # cv2.imshow('1',img)
                 cv2.imwrite("savedVideo/findLineTestResult.jpg", img)
                 getOut(f"current line region pic saved at savedVideo dir")
                 return top_left, bottom_right, 1
@@ -521,6 +542,7 @@ class Processor:
     def getWidthHeightTest(self, getOut=None, getOut02=None):
         # 这里除了宽高，还有面积的计算
         def find_unique_index(sequence):
+
             # 用于key-value的一一对应
             unique_values = set(sequence)  # 获取序列中的唯一值
             index_dir = {}  # 存储不同值的索引字典
@@ -663,13 +685,13 @@ class Processor:
                 cubeWidth = 1 / heightScale
                 area += cubeWidth * cubeHeight
 
-            std_width = 32
+            std_width = 23
             std_height = 10
             err_w = 8
             err_h = 5
 
             if abs(std_width - width) < err_w and abs(std_height - height) < err_h:
-                with open(self.savedPath + "result.txt", 'a+') as f:
+                with open(f"{self.savedPath}{self.resultPath}", 'w+') as f:
                     f.write(
                         f"{self.currentLineIndex}-{self.currentPosIndex}-{self.currentCurveIndex}"
                         f": W:{width:.2f}, H:{height:.2f}, A:{area:.2f}\n")
@@ -872,41 +894,22 @@ class Processor:
             getOut01(f"ERR:{e}")
 
     def pipelineTest02(self, getOut01, getOut02, draw=None):
+        self.resultPath = f"{getTime()}.txt"
         try:
-            # for i in range(3):
-            # for j in range(3):
-            #     getOut01(f"i:{i},j:{j}")
-            self.pipelineTest01(getOut01=getOut01, getOut02=getOut02, draw=draw)
-            self.pipelineTest01(getOut01=getOut01, getOut02=getOut02, draw=draw)
-            self.pipelineTest01(getOut01=getOut01, getOut02=getOut02, draw=draw)
-            self.horizontalMoveTest(getOut01)
-            self.currentLineIndex += 1
-
-            # for j in range(3):
-            # for j in range(3):
-            #     getOut01(f"i:{i},j:{j}")
-            self.pipelineTest01(getOut01=getOut01, getOut02=getOut02, draw=draw)
-            self.pipelineTest01(getOut01=getOut01, getOut02=getOut02, draw=draw)
-            self.pipelineTest01(getOut01=getOut01, getOut02=getOut02, draw=draw)
-            self.horizontalMoveTest(getOut01)
-            self.currentLineIndex += 1
-
-            # for k in range(3):
-            # for j in range(3):
-            #     getOut01(f"i:{i},j:{j}")
-            self.pipelineTest01(getOut01=getOut01, getOut02=getOut02, draw=draw)
-            self.pipelineTest01(getOut01=getOut01, getOut02=getOut02, draw=draw)
-            self.pipelineTest01(getOut01=getOut01, getOut02=getOut02, draw=draw)
-            self.horizontalMoveTest(getOut01)
-            self.currentLineIndex += 1
+            for i in range(3):
+                for j in range(3):
+                    self.pipelineTest01(getOut01=getOut01, getOut02=getOut02, draw=draw)
+                self.horizontalMoveTest(getOut01)
+                self.currentLineIndex += 1
 
         except Exception as e:
             getOut01(f"{e}")
 
     def followLineDirectionTest(self, getOut01, getOut02, draw=None):
+        self.resultPath = f"{getTime()}.txt"
         try:
             for i in range(7):
-                self.pipelineTest01(getOut01=getOut01,getOut02=getOut02,draw=draw)
+                self.pipelineTest01(getOut01=getOut01, getOut02=getOut02, draw=draw)
         except Exception as e:
             getOut01(f"ERR:{e}")
 
