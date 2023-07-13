@@ -9,6 +9,8 @@ import pytesseract
 import aircv as ac
 from datetime import datetime
 
+from pynput import keyboard
+
 pytesseract.pytesseract.tesseract_cmd = r"tesseract\tesseract.exe"
 pyautogui.FAILSAFE = False
 
@@ -17,16 +19,27 @@ pyautogui.FAILSAFE = False
 # /////////////////////////////////////////////////////////////////
 def getTime():
     now = datetime.now()
-    formatted_time = now.strftime("%Y-%m-%d-%H-%M-%S")
+    formatted_time = now.strftime("%m-%d-%H-%M-%S")
     return formatted_time
 
 
 class Processor:
     def __init__(self):
+
+        self.runningFlag = True
+        self.listen_quitKey()
+        # 设置预设的预定值
+        self.std_w = 0
+        self.std_h = 0
+        self.err_w = 0
+        self.err_h = 0
+
+        self.workSpacePath = ''
+        self.resultIndex = 0  # 水平移动换了线后，这个index 就 +1
+
         # 默认是向上移动
         self.verticalMoveUpDirection = True
-        self.savedPath = 'savedVideo/'
-        self.resultPath = 'result.txt'
+
         # 对位置的标记 3-2-13：第三条线 第二个位置检测 第13个曲线
         self.currentLineIndex = 1
         self.currentPosIndex = 1
@@ -94,114 +107,117 @@ class Processor:
             'parallel_line': 'resources/img/parallelLine.png',
         }
 
+    def on_release(self, key):
+        """定义释放时候的响应"""
+        if key == keyboard.Key.esc:
+            self.runningFlag = False
+
+    def listen_quitKey(self):
+        listener = keyboard.Listener(
+            on_release=self.on_release
+        )
+        listener.start()
+
     def findButton(self, buttonRegion, button, getOut=None):
-        try:
-            # currentScreenshot=cv2.imread('resources4test/page01.png')
-            currentScreen = self.currentScreen
-            region_template = cv2.imread(self.allButtonsType[buttonRegion])
-            button_template = cv2.imread(self.allButtonsType[button])
-            region_res = ac.find_template(currentScreen,
-                                          region_template,
+        # try:
+        # currentScreenshot=cv2.imread('resources4test/page01.png')
+        currentScreen = self.currentScreen
+        region_template = cv2.imread(self.allButtonsType[buttonRegion])
+        button_template = cv2.imread(self.allButtonsType[button])
+        region_res = ac.find_template(currentScreen,
+                                      region_template,
+                                      threshold=0.8)
+        if region_res is not None:
+            region_top_left = region_res['rectangle'][0]
+            region_bottom_right = region_res['rectangle'][3]
+            getOut(f"find {buttonRegion}:in {region_top_left},{region_bottom_right}")
+            selectedScreen = currentScreen[
+                             region_top_left[1]:region_bottom_right[1],
+                             region_top_left[0]:region_bottom_right[0]
+                             ]
+            button_res = ac.find_template(selectedScreen,
+                                          button_template,
                                           threshold=0.8)
-            if region_res is not None:
-                region_top_left = region_res['rectangle'][0]
-                region_bottom_right = region_res['rectangle'][3]
-                getOut(f"find {buttonRegion}:in {region_top_left},{region_bottom_right}")
-                selectedScreen = currentScreen[
-                                 region_top_left[1]:region_bottom_right[1],
-                                 region_top_left[0]:region_bottom_right[0]
-                                 ]
-                button_res = ac.find_template(selectedScreen,
-                                              button_template,
-                                              threshold=0.8)
-                if button_res is not None:
-                    button_pos = button_res['result']
-                    getOut(f"button pos:{button_pos}")
-                    abs_button_pos = [button_pos[0] + region_top_left[0],
-                                      button_pos[1] + region_top_left[1]]
-                    getOut(f"abs button pos:{abs_button_pos}")
-                    return True, abs_button_pos
-                else:
-                    getOut(f"cannot find button:{button}")
-                    return False, None
+            if button_res is not None:
+                button_pos = button_res['result']
+                getOut(f"button pos:{button_pos}")
+                abs_button_pos = [button_pos[0] + region_top_left[0],
+                                  button_pos[1] + region_top_left[1]]
+                getOut(f"abs button pos:{abs_button_pos}")
+                return True, abs_button_pos
             else:
-                getOut(f"cannot find button region: {buttonRegion}")
+                getOut(f"cannot find button:{button}")
                 return False, None
-        except Exception as e:
-            getOut(f"ERROR:{e}")
-            print(f"{e}")
+        else:
+            getOut(f"cannot find button region: {buttonRegion}")
             return False, None
 
     def click(self, buttonRegion, button, getOut=None):
-        try:
-            # self.currentScreen = cv2.imread('resources4test/10.png')
-            self.screenshot()
-            ret, res = self.findButton(buttonRegion, button, getOut=getOut)
-            if ret:
-                getOut(f"res:{res}")
-                pyautogui.moveTo(res)
-                pyautogui.click()
-                return f"{res}"
-            else:
-                getOut(f"click failed:{res}")
-                return res
-        except Exception as e:
-            print(f"{e}")
-            getOut(f"Error:{e}")
-            return None
+        # if self.runningFlag:
+        # try:
+        # self.currentScreen = cv2.imread('resources4test/10.png')
+        if not self.runningFlag:
+            raise Exception("中途停止", )
+        self.screenshot()
+        ret, res = self.findButton(buttonRegion, button, getOut=getOut)
+        if ret:
+            getOut(f"res:{res}")
+            pyautogui.moveTo(res)
+            pyautogui.click()
+            return f"{res}"
+        else:
+            getOut(f"click failed:{res}")
+            return res
 
     def ifClicked(self, getOut=None):
-        try:  # 主要用于检测第三页的平均轮廓是否已经选中
-            self.screenshot()
-            currentScreen = self.currentScreen
-            roi_template = cv2.imread(self.allButtonsType['average_contour_font'])
-            click_template_list = [
-                self.allButtonsType['not_clicked'],
-                self.allButtonsType['clicked']
-            ]
-            roi_res = ac.find_template(currentScreen, roi_template, threshold=0.8)
-            # 根据这个区域得到框的区域
-            if roi_res is not None:
-                box_top_left = [roi_res['rectangle'][0][0] - 20,
-                                roi_res['rectangle'][0][1]]
-                box_bottom_right = [roi_res['rectangle'][0][0],
-                                    roi_res['rectangle'][0][1] + 20]
-                getOut(f"find box region:{box_top_left},{box_bottom_right}")
-                box_region = currentScreen[
-                             box_top_left[1]:box_bottom_right[1],
-                             box_top_left[0]:box_bottom_right[0]
-                             ]
-                index = 0
-                while index < 2:
-                    # 对框进行一个匹配
-                    click_template = cv2.imread(click_template_list[index])
-                    click_res = ac.find_template(box_region, click_template, threshold=0.9)
-                    if click_res is not None:
-                        click_pos = [
-                            click_res['result'][0] + box_top_left[0],
-                            click_res['result'][1] + box_top_left[1]
-                        ]
-                        int_click_pos = [int(pos) for pos in click_pos]
-                        getOut(f"find click box:{int_click_pos}")
-                        break
-                    else:
-                        index += 1
-
-                if index == 0:
-                    getOut(f"not click yet")
-                    return True, False, int_click_pos
-                elif index == 1:
-                    getOut(f"clicked")
-                    return True, True, int_click_pos
+        # try:  # 主要用于检测第三页的平均轮廓是否已经选中
+        self.screenshot()
+        currentScreen = self.currentScreen
+        roi_template = cv2.imread(self.allButtonsType['average_contour_font'])
+        click_template_list = [
+            self.allButtonsType['not_clicked'],
+            self.allButtonsType['clicked']
+        ]
+        roi_res = ac.find_template(currentScreen, roi_template, threshold=0.8)
+        # 根据这个区域得到框的区域
+        if roi_res is not None:
+            box_top_left = [roi_res['rectangle'][0][0] - 20,
+                            roi_res['rectangle'][0][1]]
+            box_bottom_right = [roi_res['rectangle'][0][0],
+                                roi_res['rectangle'][0][1] + 20]
+            getOut(f"find box region:{box_top_left},{box_bottom_right}")
+            box_region = currentScreen[
+                         box_top_left[1]:box_bottom_right[1],
+                         box_top_left[0]:box_bottom_right[0]
+                         ]
+            index = 0
+            while index < 2:
+                # 对框进行一个匹配
+                click_template = cv2.imread(click_template_list[index])
+                click_res = ac.find_template(box_region, click_template, threshold=0.9)
+                if click_res is not None:
+                    click_pos = [
+                        click_res['result'][0] + box_top_left[0],
+                        click_res['result'][1] + box_top_left[1]
+                    ]
+                    int_click_pos = [int(pos) for pos in click_pos]
+                    getOut(f"find click box:{int_click_pos}")
+                    break
                 else:
-                    getOut(f"cannot recognize click box")
-                    return True, None, None
+                    index += 1
+
+            if index == 0:
+                getOut(f"not click yet")
+                return True, False, int_click_pos
+            elif index == 1:
+                getOut(f"clicked")
+                return True, True, int_click_pos
             else:
-                getOut('cannot find the region')
-                return False, None, None
-        except Exception as e:
-            getOut(f'ERROR:{e}')
-            return None
+                getOut(f"cannot recognize click box")
+                return True, None, None
+        else:
+            getOut('cannot find the region')
+            return False, None, None
 
     def screenshot(self):
         self.currentScreen = cv2.cvtColor(np.array(pyautogui.screenshot()), cv2.COLOR_RGB2BGR)
@@ -210,7 +226,8 @@ class Processor:
         fourcc = cv2.VideoWriter_fourcc(*'MP4V')
         fps = 30
         print(fileName)
-        out = cv2.VideoWriter("savedVideo/" + fileName + ".mp4", fourcc, fps, (self.screenWidth, self.screenHeight))
+        out = cv2.VideoWriter(f"{self.workSpacePath}/开发者记录/{fileName}.mp4", fourcc, fps,
+                              (self.screenWidth, self.screenHeight))
         while True:
             time_elapsed = time.time()
             img = pyautogui.screenshot()
@@ -218,90 +235,87 @@ class Processor:
                 frame = np.array(img)
                 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 out.write(frame)
-                if self.recordFlag is False:
+                if self.recordFlag is False:  # or self.runningFlag is False:
                     break
             cv2.waitKey(1)
         cv2.destroyAllWindows()
         out.release()
 
     def findLine(self, getOut=None):
-        try:
-            self.screenshot()
-            # self.currentScreen = cv2.imread('resources4test02/line/1.bmp')
-            img = self.currentScreen
-            imgSelected = img[:, :1440]
+        # try:
+        self.screenshot()
+        # self.currentScreen = cv2.imread('resources4test02/line/1.bmp')
+        img = self.currentScreen
+        imgSelected = img[:, :1440]
 
-            imgHSV = cv2.cvtColor(imgSelected, cv2.COLOR_BGR2HSV)
-            # hsv_low = np.array([0, 0, 86])
-            # hsv_high = np.array([108, 255, 255])
-            hsv_low = np.array([0, 0, 36])
-            hsv_high = np.array([120, 255, 255])
-            mask = cv2.inRange(imgHSV, hsv_low, hsv_high)
+        imgHSV = cv2.cvtColor(imgSelected, cv2.COLOR_BGR2HSV)
+        # hsv_low = np.array([0, 0, 86])
+        # hsv_high = np.array([108, 255, 255])
+        hsv_low = np.array([0, 0, 36])
+        hsv_high = np.array([120, 255, 255])
+        mask = cv2.inRange(imgHSV, hsv_low, hsv_high)
 
-            lineRegion = cv2.bitwise_and(imgSelected, imgSelected, mask=mask)
+        lineRegion = cv2.bitwise_and(imgSelected, imgSelected, mask=mask)
 
-            grayLine = cv2.cvtColor(lineRegion, cv2.COLOR_BGR2GRAY)
-            x_grad = cv2.Sobel(grayLine, cv2.CV_32F, dx=1, dy=0, ksize=-1)
-            y_grad = cv2.Sobel(grayLine, cv2.CV_32F, dx=0, dy=1, ksize=-1)
-            gradLine = cv2.subtract(x_grad, y_grad)
-            gradLine = cv2.convertScaleAbs(gradLine)
+        grayLine = cv2.cvtColor(lineRegion, cv2.COLOR_BGR2GRAY)
+        # x_grad = cv2.Sobel(grayLine, cv2.CV_32F, dx=1, dy=0, ksize=-1)
+        # y_grad = cv2.Sobel(grayLine, cv2.CV_32F, dx=0, dy=1, ksize=-1)
+        # gradLine = cv2.subtract(x_grad, y_grad)
+        # gradLine = cv2.convertScaleAbs(gradLine)
 
-            # blurredLine = cv2.blur(gradLine, (5, 5))
-            blurredLine = cv2.blur(grayLine, (5, 5))
-            _, thresholdLine = cv2.threshold(blurredLine, 100, 255, cv2.THRESH_BINARY)
+        blurredLine = cv2.blur(grayLine, (5, 5))
+        _, thresholdLine = cv2.threshold(blurredLine, 100, 255, cv2.THRESH_BINARY)
 
-            kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (11, 7))
-            closedLine = cv2.morphologyEx(thresholdLine, cv2.MORPH_CLOSE, kernel)
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (11, 7))
+        closedLine = cv2.morphologyEx(thresholdLine, cv2.MORPH_CLOSE, kernel)
 
-            # cv2.imshow('1', closedLine)
-            # cv2.waitKey()
+        lineContours = cv2.findContours(closedLine, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        lineCnts = imutils.grab_contours(lineContours)
+        lineContour = sorted(lineCnts, key=cv2.contourArea, reverse=True)[0]
+        lineRect = cv2.minAreaRect(lineContour)
+        boxPoints = cv2.boxPoints(lineRect)
+        intBoxPoints = np.intp(boxPoints)
 
-            lineContours = cv2.findContours(closedLine, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-            lineCnts = imutils.grab_contours(lineContours)
-            lineContour = sorted(lineCnts, key=cv2.contourArea, reverse=True)[0]
-            lineRect = cv2.minAreaRect(lineContour)
-            boxPoints = cv2.boxPoints(lineRect)
-            intBoxPoints = np.intp(boxPoints)
+        top_left = [min(point[0] for point in intBoxPoints), min(point[1] for point in intBoxPoints)]
+        bottom_right = [max(point[0] for point in intBoxPoints), max(point[1] for point in intBoxPoints)]
+        top_left[0] = max(0, top_left[0])
+        top_left[1] = min(1080, top_left[1])
+        bottom_right[0] = max(0, bottom_right[0])
+        bottom_right[1] = min(1080, bottom_right[1])
+        getOut(f"top left is {top_left}")
+        getOut(f"bottom right is {bottom_right}")
 
-            top_left = [min(point[0] for point in intBoxPoints), min(point[1] for point in intBoxPoints)]
-            bottom_right = [max(point[0] for point in intBoxPoints), max(point[1] for point in intBoxPoints)]
-            top_left[0] = max(0, top_left[0])
-            top_left[1] = min(1080, top_left[1])
-            bottom_right[0] = max(0, bottom_right[0])
-            bottom_right[1] = min(1080, bottom_right[1])
-            getOut(f"top left is {top_left}")
-            getOut(f"bottom right is {bottom_right}")
+        cv2.rectangle(img, top_left, bottom_right, (0, 255, 255), 3)
+        # cv2.imshow('1', img)
 
+        w_diff = bottom_right[0] - top_left[0]
+        h_diff = bottom_right[1] - top_left[1]
+
+        if w_diff + h_diff <= 1080:
+            getOut(f"cannot find the line")
+            return top_left, bottom_right, 0
+        elif top_left[0] <= 50:
+            getOut(f"the line located at the left edge")
+            getOut(f"should move it more")
+            return top_left, bottom_right, 0
+        elif w_diff < 80 or w_diff > 600 or h_diff < 900:
+            getOut(f"maybe it's the cross point")
+            getOut(f"should move it more")
+            return top_left, bottom_right, 0
+        else:
+            self.lineRegionTopLeft = top_left
+            self.lineRegionBottomRight = bottom_right
+            getOut(f"find the line")
+            getOut(f"current top left is: {top_left}, bottom right is: {bottom_right}")
             cv2.rectangle(img, top_left, bottom_right, (0, 255, 255), 3)
-            cv2.imshow('1', img)
+            # cv2.imshow('1',img)
+            cv2.imwrite(f"{self.workSpacePath}/开发者记录/findLineTestResult.jpg", img)
+            getOut(f"current line region pic saved")
+            return top_left, bottom_right, 1
 
-            w_diff = bottom_right[0] - top_left[0]
-            h_diff = bottom_right[1] - top_left[1]
-
-            if w_diff + h_diff <= 1080:
-                getOut(f"cannot find the line")
-                return top_left, bottom_right, 0
-            elif top_left[0] <= 50:
-                getOut(f"the line located at the left edge")
-                getOut(f"should move it more")
-                return top_left, bottom_right, 0
-            elif w_diff < 80 or w_diff > 600 or h_diff < 900:
-                getOut(f"maybe it's the cross point")
-                getOut(f"should move it more")
-                return top_left, bottom_right, 0
-            else:
-                self.lineRegionTopLeft = top_left
-                self.lineRegionBottomRight = bottom_right
-                getOut(f"find the line")
-                getOut(f"current top left is: {top_left}, bottom right is: {bottom_right}")
-                cv2.rectangle(img, top_left, bottom_right, (0, 255, 255), 3)
-                # cv2.imshow('1',img)
-                cv2.imwrite("savedVideo/findLineTestResult.jpg", img)
-                getOut(f"current line region pic saved at savedVideo dir")
-                return top_left, bottom_right, 1
-        except Exception as e:
-            getOut(f"{e}")
-            return f"{e}"
+        # except Exception as e:
+        #     getOut(f"{e}")
+        #     return f"{e}"
 
     def getLineSharpness(self, getOut=None):
         self.screenshot()
@@ -327,9 +341,9 @@ class Processor:
                                    self.lineRegionBottomRight[0]
                                    ]
 
-                cv2.imwrite("savedVideo/selectedRegionLeft.jpg", selectedRegion01)
-                cv2.imwrite("savedVideo/selectedRegionRight.jpg", selectedRegion02)
-                getOut(f"selecedRegion has saved at savedVideo dir")
+                cv2.imwrite(f"{self.workSpacePath}/开发者记录/selectedRegionLeft.jpg", selectedRegion01)
+                cv2.imwrite(f"{self.workSpacePath}/开发者记录/selectedRegionRight.jpg", selectedRegion02)
+                getOut(f"selecedRegion pic saved")
 
                 grayRegion01 = cv2.cvtColor(selectedRegion01, cv2.COLOR_BGR2GRAY)
                 sharpness01 = round(cv2.Laplacian(grayRegion01, cv2.CV_64F).var(), 2)
@@ -344,21 +358,6 @@ class Processor:
             return f"{e}"
 
     def clickTest(self, getOut=None):
-        # self.click('back_first_page_region', 'back_first_page', getOut=getOut)
-        # self.click('quit_region', 'yes_button',getOut=getOut)
-        # self.click('close_region', 'close', getOut=getOut)
-        # if_clicked_res = self.ifClicked(getOut=getOut)
-        # if if_clicked_res[1]:
-        #     pyautogui.click(if_clicked_res[2])
-        # time.sleep(0.4)
-        #
-        # self.click('contour_menu', 'contour_parallel_line', getOut=getOut)
-        # self.click('contour_menu', 'contour_parallel_line', getOut=getOut)
-        # self.click('show_bar', 'select_contour', getOut=getOut)
-        # self.click('reconstruction_result_region', '3d_show', getOut=getOut)
-        # self.click('start_reconstruction_region', 'start_reconstruction', getOut=getOut)
-        # self.click('show_reconstruction_result_region', 'show_reconstruction_result', getOut=getOut)
-
         self.click('focus_bar', 'focus_up', getOut)
         # getOut(f"res: {res01}")
         time.sleep(1)
@@ -470,7 +469,7 @@ class Processor:
     def adjustHeightTest(self):
         try:
             ret, res = self.findButton("adjust_height_region", "adjust_height_cursor")
-            if ret:
+            if ret:  # and self.runningFlag:
                 pyautogui.moveTo(res[0], res[1])
                 pyautogui.dragRel(-80, 0)
                 return f"adjust height finished"
@@ -523,26 +522,27 @@ class Processor:
             return e
 
     def getScaleTest(self):
-        try:
-            self.screenshot()
-            numberRegion = self.currentScreen[586:606, 1:40]
-            lineRegion = self.currentScreen[595:992, 54:1411]
-            coordHeight = float(pytesseract.image_to_string(numberRegion))
-            pixelHeight = 992 - 595
-            heightScale = pixelHeight / coordHeight
+        # try:
+        self.screenshot()
+        numberRegion = self.currentScreen[586:606, 1:40]
+        lineRegion = self.currentScreen[595:992, 54:1411]
+        coordHeight = float(pytesseract.image_to_string(numberRegion))
+        pixelHeight = 992 - 595
+        heightScale = pixelHeight / coordHeight
 
-            coordWidth = 312.38  # 347.09
-            pixelWidth = 1411 - 54
-            widthScale = pixelWidth / coordWidth
+        coordWidth = 312.38  # 347.09
+        pixelWidth = 1411 - 54
+        widthScale = pixelWidth / coordWidth
 
-            return f"{heightScale:.2f}", f"{widthScale:.2f}"
-        except Exception as e:
-            return e
+        return f"{heightScale:.2f}", f"{widthScale:.2f}"
+
+        # except Exception as e:
+        #     return e
 
     def getWidthHeightTest(self, getOut=None, getOut02=None):
         # 这里除了宽高，还有面积的计算
-        def find_unique_index(sequence):
 
+        def find_unique_index(sequence):
             # 用于key-value的一一对应
             unique_values = set(sequence)  # 获取序列中的唯一值
             index_dir = {}  # 存储不同值的索引字典
@@ -550,330 +550,363 @@ class Processor:
                 index_dir[value] = [i for i, x in enumerate(sequence) if x == value]
             return index_dir
 
-        def stopRepeat(raw_array):
-            # 找到数组中不重复的索引列表，这个好像没用到
-            index = 0
-            index_list = [0]
-            for i in range(len(raw_array)):
-                comparision = raw_array[index]
-                if raw_array[i] == comparision:
-                    i += 1
-                else:
-                    index = i
-                    index_list.append(index)
-                    i += 1
-            return index_list
+        # try:
+        self.screenshot()
+        # 检测宽高的误差范围和标准值
+        std_width = self.std_w
+        std_height = self.std_h
+        err_w = self.err_w
+        err_h = self.err_h
 
-        try:
-            self.screenshot()
+        # 测试用，真用就这俩注释了
+        # img = cv2.imread('resources4test02/03/2.bmp')
+        # self.currentScreen = cv2.imread('resources4test02/03/2.bmp')
 
-            # 测试用，真用就这俩注释了
-            # img = cv2.imread('resources4test02/03/2.bmp')
-            # self.currentScreen = cv2.imread('resources4test02/03/2.bmp')
+        # 通过银线位置来预估宽度的范围
+        left_scale = self.lineRegionTopLeft[0] / 1440
+        right_scale = self.lineRegionBottomRight[0] / 1440
+        lineRegion_left = int((1411 - 54) * left_scale) + 54
+        lineRegion_right = int((1411 - 54) * right_scale) + 54
 
-            # 通过银线位置来预估宽度的范围
-            left_scale = self.lineRegionTopLeft[0] / 1440
-            right_scale = self.lineRegionBottomRight[0] / 1440
-            lineRegion_left = int((1411 - 54) * left_scale) + 54
-            lineRegion_right = int((1411 - 54) * right_scale) + 54
+        getOut(f"lineRegion for x from {lineRegion_left} to {lineRegion_right}")
 
-            getOut(f"lineRegion for x from {lineRegion_left} to {lineRegion_right}")
+        numberRegion = self.currentScreen[586:606, 1:40]
+        # w：54:1411;
+        # h:595:992
+        lineRegion = self.currentScreen[595:992, lineRegion_left:lineRegion_right]
 
-            numberRegion = self.currentScreen[586:606, 1:40]
-            # w：54:1411;
-            # h:595:992
-            lineRegion = self.currentScreen[595:992, lineRegion_left:lineRegion_right]
+        coordHeight = float(pytesseract.image_to_string(numberRegion))
+        getOut(f"coord height is: {coordHeight:.2f}")
 
-            coordHeight = float(pytesseract.image_to_string(numberRegion))
-            getOut(f"coord height is: {coordHeight:.2f}")
+        pixelHeight = 992 - 595
+        heightScale = pixelHeight / coordHeight
+        getOut(f"height scale is: {heightScale:.2f}")
 
-            pixelHeight = 992 - 595
-            heightScale = pixelHeight / coordHeight
-            getOut(f"height scale is: {heightScale:.2f}")
+        coordWidth = 347.09
+        pixelWidth = 1411 - 54
+        widthScale = pixelWidth / coordWidth
+        getOut(f"width scale is: {widthScale:.2f}")
 
-            coordWidth = 347.09
-            pixelWidth = 1411 - 54
-            widthScale = pixelWidth / coordWidth
-            getOut(f"width scale is: {widthScale:.2f}")
+        grayLine = cv2.cvtColor(lineRegion, cv2.COLOR_BGR2GRAY)
+        _, binLine = cv2.threshold(grayLine, 5, 255, cv2.THRESH_BINARY)
 
-            grayLine = cv2.cvtColor(lineRegion, cv2.COLOR_BGR2GRAY)
-            _, binLine = cv2.threshold(grayLine, 5, 255, cv2.THRESH_BINARY)
+        # cv2.imshow('2',binLine)
 
-            # cv2.imshow('2',binLine)
+        res = cv2.findNonZero(binLine)
+        points = np.squeeze(res)
+        # getOut(f"points:{points.shape}")
+        x, y = np.split(points, 2, axis=1)
+        # getOut(f"x:{x},y:{y}")
+        x = np.squeeze(x)
+        y = np.squeeze(y)
+        nonrepeat_x_list = []
+        nonrepeat_y_list = []
+        nonrepeat_index_list = []
+        # 固定住x的index，让x的index唯一
+        nonrepeat_index_dir = find_unique_index(x)
 
-            res = cv2.findNonZero(binLine)
-            points = np.squeeze(res)
-            # getOut(f"points:{points.shape}")
-            x, y = np.split(points, 2, axis=1)
-            # getOut(f"x:{x},y:{y}")
-            x = np.squeeze(x)
-            y = np.squeeze(y)
-            nonrepeat_x_list = []
-            nonrepeat_y_list = []
-            nonrepeat_index_list = []
-            # 固定住x的index，让x的index唯一
-            nonrepeat_index_dir = find_unique_index(x)
+        for value, index in nonrepeat_index_dir.items():
+            nonrepeat_index_list.append(index[0])
 
-            for value, index in nonrepeat_index_dir.items():
-                nonrepeat_index_list.append(index[0])
+        for norepeat_index in nonrepeat_index_list:
+            nonrepeat_x_list.append(x[norepeat_index])
+            nonrepeat_y_list.append(y[norepeat_index])
+        # 返回波峰的索引
+        height_index = np.argmin(nonrepeat_y_list)
 
-            for norepeat_index in nonrepeat_index_list:
-                nonrepeat_x_list.append(x[norepeat_index])
-                nonrepeat_y_list.append(y[norepeat_index])
-            # 返回波峰的索引
-            height_index = np.argmin(nonrepeat_y_list)
-
-            # 这个是一个邻域
-            left_index = 0
+        # 这个是一个邻域
+        left_index = 0
+        current_left_height = nonrepeat_y_list[left_index]
+        current_left_res01 = 0
+        res02_left_list = []
+        while left_index <= height_index:
+            old_left_height = current_left_height
+            old_left_res01 = current_left_res01
             current_left_height = nonrepeat_y_list[left_index]
-            current_left_res01 = 0
-            res02_left_list = []
-            while left_index <= height_index:
-                old_left_height = current_left_height
-                old_left_res01 = current_left_res01
-                current_left_height = nonrepeat_y_list[left_index]
-                left_index += 1
-                current_left_res01 = old_left_height - current_left_height
-                current_left_res02 = old_left_res01 - current_left_res01
-                # print(current_left_res02)
-                res02_left_list.append(current_left_res02)
-            res02_left_np = np.array(res02_left_list)
-            max_res02_left_index = np.argmax(res02_left_np)
-            left_width_index = max_res02_left_index - 9
+            left_index += 1
+            current_left_res01 = old_left_height - current_left_height
+            current_left_res02 = old_left_res01 - current_left_res01
+            # print(current_left_res02)
+            res02_left_list.append(current_left_res02)
+        res02_left_np = np.array(res02_left_list)
+        max_res02_left_index = np.argmax(res02_left_np)
+        left_width_index = max_res02_left_index - 9
 
-            # 找右边，
-            right_index = height_index
+        # 找右边，
+        right_index = height_index
+        current_right_height = nonrepeat_y_list[right_index]
+        current_right_res01 = 0
+        res02_right_list = []
+        while right_index < len(nonrepeat_y_list):  # height_index + width_index_offset:
+            old_right_height = current_right_height
+            old_right_res01 = current_right_res01
             current_right_height = nonrepeat_y_list[right_index]
-            current_right_res01 = 0
-            res02_right_list = []
-            while right_index < len(nonrepeat_y_list):  # height_index + width_index_offset:
-                old_right_height = current_right_height
-                old_right_res01 = current_right_res01
-                current_right_height = nonrepeat_y_list[right_index]
-                right_index += 1
-                current_right_res01 = current_right_height - old_right_height
-                current_right_res02 = current_right_res01 - old_right_res01
-                # print(current_right_res02)
-                res02_right_list.append(current_right_res02)
-            res02_right_np = np.array(res02_right_list)
-            # 梯度一直下降，所以是二阶导最小的地方
-            min_res02_right_index = np.argmin(res02_right_np)
-            right_width_index = height_index + min_res02_right_index + 9
+            right_index += 1
+            current_right_res01 = current_right_height - old_right_height
+            current_right_res02 = current_right_res01 - old_right_res01
+            # print(current_right_res02)
+            res02_right_list.append(current_right_res02)
+        res02_right_np = np.array(res02_right_list)
+        # 梯度一直下降，所以是二阶导最小的地方
+        min_res02_right_index = np.argmin(res02_right_np)
+        right_width_index = height_index + min_res02_right_index + 9
 
-            # 计算高宽
-            width = (nonrepeat_x_list[right_width_index] - nonrepeat_x_list[left_width_index]) / widthScale
-            height = ((nonrepeat_y_list[left_width_index] + nonrepeat_y_list[right_width_index]) / 2 - nonrepeat_y_list[
-                height_index]) / heightScale
+        # 计算高宽
+        width = (nonrepeat_x_list[right_width_index] - nonrepeat_x_list[left_width_index]) / widthScale
+        height = ((nonrepeat_y_list[left_width_index] + nonrepeat_y_list[right_width_index]) / 2 - nonrepeat_y_list[
+            height_index]) / heightScale
 
-            # 测试宽高是否找对了
-            # cv2.circle(img,
-            #            (nonrepeat_x_list[left_width_index] + lineRegion_left, nonrepeat_y_list[left_width_index] + 595),
-            #            radius=2, color=(0, 255, 0),
-            #            thickness=3)
-            #
-            # cv2.circle(img, (
-            # nonrepeat_x_list[right_width_index] + lineRegion_left, nonrepeat_y_list[right_width_index] + 595),
-            #            radius=2, color=(0, 255, 0),
-            #            thickness=3)
-            # cv2.namedWindow('1', cv2.WINDOW_NORMAL)
-            # cv2.imshow('1', img)
+        # 测试宽高是否找对了
+        # cv2.circle(img,
+        #            (nonrepeat_x_list[left_width_index] + lineRegion_left, nonrepeat_y_list[left_width_index] + 595),
+        #            radius=2, color=(0, 255, 0),
+        #            thickness=3)
+        #
+        # cv2.circle(img, (
+        # nonrepeat_x_list[right_width_index] + lineRegion_left, nonrepeat_y_list[right_width_index] + 595),
+        #            radius=2, color=(0, 255, 0),
+        #            thickness=3)
+        # cv2.namedWindow('1', cv2.WINDOW_NORMAL)
+        # cv2.imshow('1', img)
 
-            # 计算面积
-            area = 0
-            for i in range(left_width_index, right_width_index):
-                cubeHeight = nonrepeat_y_list[i] / heightScale
-                cubeWidth = 1 / heightScale
-                area += cubeWidth * cubeHeight
+        # 计算面积
+        area = 0
+        for i in range(left_width_index, right_width_index):
+            cubeHeight = nonrepeat_y_list[i] / heightScale
+            cubeWidth = 1 / heightScale
+            area += cubeWidth * cubeHeight
 
-            std_width = 23
-            std_height = 10
-            err_w = 8
-            err_h = 5
+        if abs(std_width - width) < err_w and abs(std_height - height) < err_h:
+            with open(f"{self.workSpacePath}/结果查看/原始数据.txt", 'a+') as f:
+                f.write(
+                    f"{self.currentLineIndex}-{self.currentPosIndex}-{self.currentCurveIndex}"
+                    f": W:{width:.2f}, H:{height:.2f}, A:{area:.2f}\n")
 
-            if abs(std_width - width) < err_w and abs(std_height - height) < err_h:
-                with open(f"{self.savedPath}{self.resultPath}", 'w+') as f:
-                    f.write(
-                        f"{self.currentLineIndex}-{self.currentPosIndex}-{self.currentCurveIndex}"
-                        f": W:{width:.2f}, H:{height:.2f}, A:{area:.2f}\n")
+            getOut(f"已写入,文件位置为{self.workSpacePath}/结果查看/原始数据.txt")
+            getOut(f"height is :{height:.2f} μm")
+            getOut(f"width is: {width:.2f} μm")
+            getOut(f"area is: {area:.2f} μm^2")
+            getOut02(width, height, area)
+            return width, height
 
-                getOut(f"已写入,文件位置为 {self.savedPath}result.txt")
-                getOut(f"height is :{height:.2f} μm")
-                getOut(f"width is: {width:.2f} μm")
-                getOut(f"area is: {area:.2f} μm^2")
-                getOut02(width, height, area)
-                return width, height
-            else:
-                return width, height
+        elif width < std_width - err_w and height < std_height - err_h:
+            with open(f"{self.workSpacePath}/断点记录/断点数据.txt", 'a+') as f:
+                f.write(
+                    f"{self.currentLineIndex}-{self.currentPosIndex}-{self.currentCurveIndex}"
+                    f": W:{width:.2f}, H:{height:.2f}, A:{area:.2f}\n")
 
-        except Exception as e:
-            getOut(f"ERROR: {e}")
-            return e
+            getOut(f"发现一处断点,位置为: {self.currentLineIndex}-{self.currentLineIndex}-{self.currentCurveIndex}")
+            cv2.imwrite(
+                f"{self.workSpacePath}/断点记录/{self.currentLineIndex}-{self.currentLineIndex}-{self.currentCurveIndex}.png",
+                self.currentScreen)
+            getOut(f"height is :{height:.2f} μm")
+            getOut(f"width is: {width:.2f} μm")
+            getOut(f"area is: {area:.2f} μm^2")
+            getOut(f"已保存此处断点图片")
+            getOut02(width, height, area)
+            return width, height
+        else:
+            return width, height
+
+    # except Exception as e:
+    #     getOut(f"ERROR: {e}")
+    #     return e
+
+    def analyseResult(self, file, getOut=None):
+        w_list = []
+        h_list = []
+        a_list = []
+
+        with open(file, 'r') as file:
+            for line in file:
+                line = line.strip()
+                if line:
+                    parts = line.split(': ')
+                    values = parts[1].split(',')
+                    w = float(values[0].split('W:')[1].strip())
+                    h = float(values[1].split('H:')[1].strip())
+                    a = float(values[2].split('A:')[1].strip())
+                    w_list.append(w)
+                    h_list.append(h)
+                    a_list.append(a)
+
+        w_np = np.array(w_list)
+        getOut(f"W_AVG: {w_np.mean():.2f}")
+        getOut(f"W_STD: {w_np.std():.2f}")
+        getOut(f"W_MAX: {w_np.max()}")
+        getOut(f"W_MIN: {w_np.min()}")
+
+        h_np = np.array(h_list)
+        getOut(f"H_AVG: {h_np.mean():.2f}")
+        getOut(f"H_STD: {h_np.std():.2f}")
+        getOut(f"H_MAX: {h_np.max()}")
+        getOut(f"H_MIN: {h_np.min()}")
+
+        a_np = np.array(a_list)
+        getOut(f"A_AVG: {a_np.mean():.2f}")
+        getOut(f"A_STD: {a_np.std():.2f}")
+        getOut(f"A_MAX: {a_np.max()}")
+        getOut(f"A_MIN: {a_np.min()}")
+
+        with open(f"{self.workSpacePath}/结果查看/统计结果.txt", 'w+') as f:
+
+            f.write(f"==========  宽度统计  ==================\n")
+
+            f.write(f"W_AVG: {w_np.mean():.2f}\n")
+            f.write(f"W_STD: {w_np.std():.2f}\n")
+            f.write(f"W_MAX: {w_np.max()}\n")
+            f.write(f"W_MIN: {w_np.min()}\n")
+
+            f.write(f"==========  高度统计  ==================\n")
+
+            f.write(f"H_AVG: {h_np.mean():.2f}\n")
+            f.write(f"H_STD: {h_np.std():.2f}\n")
+            f.write(f"H_MAX: {h_np.max()}\n")
+            f.write(f"H_MIN: {h_np.min()}\n")
+
+            f.write(f"==========  面积统计  ==================\n")
+
+            f.write(f"A_AVG: {a_np.mean():.2f}\n")
+            f.write(f"A_STD: {a_np.std():.2f}\n")
+            f.write(f"A_MAX: {a_np.max()}\n")
+            f.write(f"A_MIN: {a_np.min()}\n")
 
     def verticalMoveTest(self, getOut=None):
         #   这里是向上移动的
-        try:
-            pyautogui.click(700, 500)
-            old_pos_topLeft = self.lineRegionTopLeft
-            getOut(f"old top left pos: {old_pos_topLeft}")
-            time.sleep(0.5)
-            times = 0  # just for count to break
-            while 1:
-                if self.verticalMoveUpDirection:
-                    for i in range(2):
-                        pyautogui.click(self.screenWidth // 2, self.screenHeight // 2)
-                        pyautogui.moveTo(self.screenWidth // 2, self.screenHeight // 4)
-                        pyautogui.dragRel(0, self.screenHeight // 2, button='left', duration=0.5)
-                        time.sleep(0.5)
-                    res = self.findLine(getOut)
-                    times += 1
-                    if res[2] == 1 or times >= 20:
-                        break
-                else:
-                    for i in range(2):
-                        pyautogui.click(self.screenWidth // 2, self.screenHeight // 2)
-                        pyautogui.moveTo(self.screenWidth // 2, 3 * self.screenHeight // 4)
-                        pyautogui.dragRel(0, -self.screenHeight // 2, button='left', duration=0.5)
-                        time.sleep(0.5)
-                    res = self.findLine(getOut)
-                    times += 1
-                    if res[2] == 1 or times >= 20:
-                        break
+        if not self.runningFlag:
+            raise Exception("中途停止", )
+        pyautogui.click(700, 500)
+        old_pos_topLeft = self.lineRegionTopLeft
+        getOut(f"old top left pos: {old_pos_topLeft}")
+        time.sleep(0.5)
+        times = 0  # just for count to break
+        while 1:
 
-            if times >= 5:
-                getOut(f"垂直移动的途中可能遇到了节点")
+            if not self.runningFlag:
+                raise Exception("中途停止", )
 
-            new_pos_topLeft, _, _ = self.findLine(getOut)
-            getOut(f"new top left pos: {new_pos_topLeft}")
-            offset = old_pos_topLeft[0] - new_pos_topLeft[0]
-            getOut(f"offset is: {offset}")
-            pyautogui.dragRel(offset, 0, 0.5)
-            time.sleep(1)
-            res = self.findLine(getOut)
-            getOut(f"finish vertical move")
-            return res
-        except Exception as e:
-            getOut(f"ERROR:{e}")
-            return e
+            if self.verticalMoveUpDirection:
+                for i in range(2):
+                    pyautogui.click(self.screenWidth // 2, self.screenHeight // 2)
+                    pyautogui.moveTo(self.screenWidth // 2, self.screenHeight // 4)
+                    pyautogui.dragRel(0, self.screenHeight // 2, button='left', duration=0.5)
+                    time.sleep(0.5)
+                res = self.findLine(getOut)
+                times += 1
+                if res[2] == 1 or times >= 20:
+                    break
+            else:
+                for i in range(2):
+                    pyautogui.click(self.screenWidth // 2, self.screenHeight // 2)
+                    pyautogui.moveTo(self.screenWidth // 2, 3 * self.screenHeight // 4)
+                    pyautogui.dragRel(0, -self.screenHeight // 2, button='left', duration=0.5)
+                    time.sleep(0.5)
+                res = self.findLine(getOut)
+                times += 1
+                if res[2] == 1 or times >= 20:
+                    break
+
+        if times >= 5:
+            getOut(f"垂直移动的途中可能遇到了节点")
+
+        new_pos_topLeft, _, _ = self.findLine(getOut)
+        getOut(f"new top left pos: {new_pos_topLeft}")
+        offset = old_pos_topLeft[0] - new_pos_topLeft[0]
+        getOut(f"offset is: {offset}")
+        pyautogui.dragRel(offset, 0, 0.5)
+        time.sleep(1)
+        res = self.findLine(getOut)
+
+        # 如果是向上的话，就是加
+        if self.verticalMoveUpDirection:
+            getOut(f"方向是向上")
+            self.currentPosIndex += 1
+        else:
+            getOut(f"方向是向下")
+            self.currentPosIndex -= 1
+
+        getOut(f"finish vertical move")
+        return res
 
     def horizontalMoveTest(self, getOut=None):
-        try:
-            # 从右边向左边移动
-            pyautogui.click(700, 500)
-            time.sleep(0.5)
+        if not self.runningFlag:
+            raise Exception("中途停止", )
+        # 从右边向左边移动
+        pyautogui.click(700, 500)
+        time.sleep(0.5)
+        pyautogui.moveTo(self.screenWidth // 4, self.screenHeight // 2)
+        pyautogui.dragRel(self.screenWidth // 2, 0, button='left', duration=0.5)
+        time.sleep(0.5)
+        times = 0
+        while 1:
+            if not self.runningFlag:
+                raise Exception("中途停止", )
             pyautogui.moveTo(self.screenWidth // 4, self.screenHeight // 2)
             pyautogui.dragRel(self.screenWidth // 2, 0, button='left', duration=0.5)
             time.sleep(0.5)
-            times = 0
-            while 1:
-                # pyautogui.click(self.screenWidth // 2, self.screenHeight // 2)
-                pyautogui.moveTo(self.screenWidth // 4, self.screenHeight // 2)
-                pyautogui.dragRel(self.screenWidth // 2, 0, button='left', duration=0.5)
-                time.sleep(0.5)
-                res = self.findLine(getOut)
-                times += 1
-                if res[2] == 1 or times >= 100:
-                    break
-            self.verticalMoveUpDirection = not self.verticalMoveUpDirection
-            # 注意这里的次数应该是需要除以2的，因为每次都是只移动了半个屏幕尺寸
-            getOut(f"本次水平移动的总次数是：{times}")
-            return res
-        except Exception as e:
-            getOut(f"ERROR:{e}")
-            return e
+            res = self.findLine(getOut)
+            times += 1
+            if res[2] == 1 or times >= 100:
+                break
+        self.verticalMoveUpDirection = not self.verticalMoveUpDirection
+        self.currentLineIndex += 1
+
+        self.resultIndex += 1
+        # 注意这里的次数应该是需要除以2的，因为每次都是只移动了半个屏幕尺寸
+        getOut(f"resultIndex is ：{self.resultIndex}")
+        return res
 
     def firstPageProcess(self, getOut=None):
         # 第一页应该是开始对焦的那个界面
-        try:
-            # self.click('task_bar', 'first_page', getOut=getOut)
-            self.findLine(getOut=getOut)
-            # self.focusOperationTest(getOut=getOut)
-            self.click('start_reconstruction_region', 'start_reconstruction', getOut=getOut)
-            time.sleep(5)
-            self.click('show_reconstruction_result_region', 'show_reconstruction_result', getOut=getOut)
-            time.sleep(5)
-            self.click('reconstruction_result_region', '3d_show', getOut=getOut)
-            time.sleep(2)
-        except Exception as e:
-            getOut(f"ERROR:{e}")
+        self.findLine(getOut=getOut)
+        # self.focusOperationTest(getOut=getOut)
+        self.click('start_reconstruction_region', 'start_reconstruction', getOut=getOut)
+        time.sleep(5)
+        self.click('show_reconstruction_result_region', 'show_reconstruction_result', getOut=getOut)
+        time.sleep(5)
+        self.click('reconstruction_result_region', '3d_show', getOut=getOut)
+        time.sleep(2)
 
     def secondPageProcess(self, getOut=None):
-        try:
-            self.click('show_bar', 'select_contour', getOut=getOut)
-            time.sleep(2)
-        except Exception as e:
-            getOut(f"ERROR:{e}")
+        self.click('show_bar', 'select_contour', getOut=getOut)
+        time.sleep(2)
 
     def thirdPageProcess(self, getOut01=None, getOut02=None):
-        try:
-            # 不选平均轮廓，检查一下先
-            if_clicked_res = self.ifClicked(getOut=getOut01)
-            if if_clicked_res[1]:
-                pyautogui.click(if_clicked_res[2])
-            time.sleep(0.4)
-            # 开始一边划一边计算宽高
-            self.click('contour_menu', 'contour_parallel_line', getOut=getOut01)
-            pyautogui.moveTo(1000, 40)
-            self.currentCurveIndex = 1
-            for i in range(30):
-                pyautogui.moveRel(0, 16)
-                time.sleep(0.5)
-                self.getWidthHeightTest(getOut=getOut01, getOut02=getOut02)
-                self.currentCurveIndex += 1
-            # 选中平均轮廓，获取平均宽高
-            # 这里我标记一下次数，
+        # 不选平均轮廓，检查一下先
+        if_clicked_res = self.ifClicked(getOut=getOut01)
+        if if_clicked_res[1]:
             pyautogui.click(if_clicked_res[2])
-            time.sleep(0.4)
-            self.click('contour_menu', 'contour_parallel_line', getOut=getOut01)
-            pyautogui.moveTo(1000, 40)
-            time.sleep(0.4)
+        time.sleep(0.4)
+        # 开始一边划一边计算宽高
+        self.click('contour_menu', 'contour_parallel_line', getOut=getOut01)
+        pyautogui.moveTo(1000, 40)
+        self.currentCurveIndex = 1
+        while self.currentCurveIndex <= 60:
+            # 注意这里移动的像素乘上 i的最大值等于480
+            if not self.runningFlag:
+                raise Exception("中途停止", )
+            pyautogui.moveRel(0, 8)
+            time.sleep(0.5)
             self.getWidthHeightTest(getOut=getOut01, getOut02=getOut02)
-            # 点击Bar上的关闭，然后是弹窗的处理
-            self.click('close_region', 'close', getOut=getOut01)
-            time.sleep(1)
-            self.click('quit_region', 'yes_button', getOut=getOut01)
-            time.sleep(2)
-        except Exception as e:
-            getOut01(f"ERROR:{e}")
+            self.currentCurveIndex += 1
 
-    def thirdPageProcessAVG(self, getOut01=None, getOut02=None):
-        try:
-            # # 不选平均轮廓，检查一下先
-            # if_clicked_res = self.ifClicked(getOut=getOut01)
-            # if if_clicked_res[1]:
-            #     pyautogui.click(if_clicked_res[2])
-            # time.sleep(0.4)
-            # 开始一边划一边计算宽高
-            self.click('contour_menu', 'contour_parallel_line', getOut=getOut01)
-            pyautogui.moveTo(1000, 40)
-            pyautogui.click()
-            self.currentCurveIndex = 1
-            # for i in range(30):
-            #     pyautogui.moveRel(0, 16)
-            #     time.sleep(0.5)
-            #     self.getWidthHeightTest(getOut=getOut01, getOut02=getOut02)
-            #     self.currentCurveIndex += 1
-            # 选中平均轮廓，获取平均宽高
-            # 这里我标记一下次数，
-            # pyautogui.click(if_clicked_res[2])
-            time.sleep(0.4)
-            self.click('contour_menu', 'contour_parallel_line', getOut=getOut01)
-            # pyautogui.moveTo(1000, 40)
-            # time.sleep(0.4)
-            self.getWidthHeightTest(getOut=getOut01, getOut02=getOut02)
-            # 点击Bar上的关闭，然后是弹窗的处理
-            self.click('close_region', 'close', getOut=getOut01)
-            time.sleep(1)
-            self.click('quit_region', 'yes_button', getOut=getOut01)
-            time.sleep(1)
-        except Exception as e:
-            getOut01(f"ERROR:{e}")
+        # 选中平均轮廓，获取平均宽高
+        # 这里我标记一下次数，
+        pyautogui.click(if_clicked_res[2])
+        time.sleep(0.4)
+        self.click('contour_menu', 'contour_parallel_line', getOut=getOut01)
+        pyautogui.moveTo(1000, 40)
+        time.sleep(0.4)
+        self.getWidthHeightTest(getOut=getOut01, getOut02=getOut02)
+        # 点击Bar上的关闭，然后是弹窗的处理
+        self.click('close_region', 'close', getOut=getOut01)
+        time.sleep(1)
+        self.click('quit_region', 'yes_button', getOut=getOut01)
+        time.sleep(2)
 
     def fourthPageProgress(self, getOut=None):
-        try:
-            self.click('back_first_page_region', 'back_first_page', getOut=getOut)
-            time.sleep(2)
-        except Exception as e:
-            getOut(f"ERROR:{e}")
+        self.click('back_first_page_region', 'back_first_page', getOut=getOut)
+        time.sleep(2)
 
     def pipelineTest01(self, getOut01, getOut02, draw=None):
         try:
@@ -883,24 +916,17 @@ class Processor:
             self.fourthPageProgress(getOut=getOut01)
             draw(self.currentLineIndex, self.currentPosIndex)
             self.verticalMoveTest(getOut=getOut01)
-            # 如果是向上的话，就是加
-            if self.verticalMoveUpDirection:
-                getOut01(f"方向是向上")
-                self.currentPosIndex += 1
-            else:
-                getOut01(f"方向是向下")
-                self.currentPosIndex -= 1
+
         except Exception as e:
             getOut01(f"ERR:{e}")
 
     def pipelineTest02(self, getOut01, getOut02, draw=None):
         self.resultPath = f"{getTime()}.txt"
         try:
-            for i in range(3):
-                for j in range(3):
+            for i in range(2):
+                for j in range(5):
                     self.pipelineTest01(getOut01=getOut01, getOut02=getOut02, draw=draw)
                 self.horizontalMoveTest(getOut01)
-                self.currentLineIndex += 1
 
         except Exception as e:
             getOut01(f"{e}")
@@ -913,8 +939,69 @@ class Processor:
         except Exception as e:
             getOut01(f"ERR:{e}")
 
-    def verticalLineDirectionTest(self, getOut01, getOut02, draw=None):
+    def move_infinite(self):
+        while 1:
+            if not self.runningFlag:
+                raise Exception("中途停止", )
+            pyautogui.moveTo(100, 100)
+            time.sleep(0.2)
+            pyautogui.moveTo(1000, 1000)
+            time.sleep(0.2)
+            pyautogui.moveTo(500, 500)
+            time.sleep(0.2)
+
+    def verticalLineDirectionTest(self, getOut01):
+        self.runningFlag = True
         try:
-            pass
+            self.move_infinite()
+        except Exception as e:
+            getOut01(f"ERR:{e}")
+
+    # ===========================================================================================
+    #  这里开始就是真正的应用了
+    # ===========================================================================================
+    def pipeline(self, getOut01, getOut02, draw=None):
+        if not self.runningFlag:
+            raise Exception("中途停止", )
+        self.firstPageProcess(getOut=getOut01)
+
+        if not self.runningFlag:
+            raise Exception("中途停止", )
+        self.secondPageProcess(getOut=getOut01)
+
+        if not self.runningFlag:
+            raise Exception("中途停止", )
+        self.thirdPageProcess(getOut01=getOut01, getOut02=getOut02)
+
+        if not self.runningFlag:
+            raise Exception("中途停止", )
+        self.fourthPageProgress(getOut=getOut01)
+
+        draw(self.currentLineIndex, self.currentPosIndex)
+
+    def fastPointDetection(self, getOut01, getOut02, draw=None):
+        self.runningFlag = True
+        try:
+            self.pipeline(getOut01=getOut01, getOut02=getOut02, draw=draw)
+            self.analyseResult(f"{self.workSpacePath}/结果查看/原始数据.txt", getOut=getOut01)
+        except Exception as e:
+            getOut01(f"ERR:{e}")
+
+    def doubleLineStdDetection(self, getOut01, getOut02, draw=None):
+        self.runningFlag = True
+        try:
+            for i in range(4):
+                self.pipeline(getOut01=getOut01, getOut02=getOut02, draw=draw)
+                self.verticalMoveTest(getOut=getOut01)
+            self.pipeline(getOut01=getOut01, getOut02=getOut02, draw=draw)
+
+            self.horizontalMoveTest(getOut01)
+
+            for j in range(4):
+                self.pipeline(getOut01=getOut01, getOut02=getOut02, draw=draw)
+                self.verticalMoveTest(getOut=getOut01)
+            self.pipeline(getOut01=getOut01, getOut02=getOut02, draw=draw)
+
+            self.analyseResult(f"{self.workSpacePath}/结果查看/原始数据.txt", getOut=getOut01)
         except Exception as e:
             getOut01(f"ERR:{e}")

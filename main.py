@@ -40,8 +40,16 @@ from datetime import datetime
 # /////////////////////////////////////////////////////////////////
 def getTime():
     now = datetime.now()
-    formatted_time = now.strftime("%Y-%m-%d-%H-%M-%S")
+    # formatted_time = now.strftime("%Y-%m-%d-%H-%M-%S")
+    formatted_time = now.strftime("%m-%d-%H-%M")
+
     return formatted_time
+
+
+def mkdir(path):
+    folder = os.path.exists(path)
+    if not folder:  # 判断是否存在文件夹如果不存在则创建为文件夹
+        os.makedirs(path)  # makedirs 创建文件时如果路径不存在会创建这个路径
 
 
 # color grid
@@ -116,6 +124,10 @@ class MainWindow(QMainWindow):
         self.color_grid.setParent(self.widgets.colorFrame)
         self.color_grid.set_cell_color(1, 1)
         # /////////////////////////////
+        # 这里是真实需要检测的部分
+        self.AllDetectionMode = [
+
+        ]
 
         # my operation list
         # ///////////////////////////////////////////////////////////////////
@@ -146,8 +158,10 @@ class MainWindow(QMainWindow):
         self.widgets.recordButton.clicked.connect(self.recordButtonClicked)
         self.widgets.developerButton.clicked.connect(self.developerButtonClicked)
         self.widgets.progressColorButton.clicked.connect(self.progressColorButtonClicked)
-        self.widgets.fileReportBtn.clicked.connect(self.fileReportBtnClicked)
+        self.widgets.setWorkSpaceBtn.clicked.connect(self.setWorkSpaceBtnClicked)
         self.widgets.analyseBtn.clicked.connect(self.analyseBtnClicked)
+
+        self.widgets.startDetectBtn.clicked.connect(self.startDetect)
         # ////////////////////////////////////////////////////////////////////
 
         # LEFT MENUS
@@ -245,79 +259,23 @@ class MainWindow(QMainWindow):
 
     # MOUSE CLICK EVENTS
     # ///////////////////////////////////////////////////////////////
-    def fileReportBtnClicked(self):
+    def setWorkSpaceBtnClicked(self):
         dir = QFileDialog.getExistingDirectory(self, "选择文件夹", " ")
         if dir:
-            print(f"选择的文件夹是：{dir}")
-            self.Processor.savedPath = dir
-            self.add_log(f"设置导出文件的目录为：{dir}")
+            self.Processor.workSpacePath = dir
+            print(f"已设置工作空间的目录为：{dir}")
+            self.add_log(f"已设置工作空间的目录为：{dir}")
+            mkdir(f"{dir}/断点记录")
+            mkdir(f"{dir}/开发者记录")
+            mkdir(f"{dir}/结果查看")
 
     def analyseBtnClicked(self):
         file = QFileDialog.getOpenFileName(self, "选择文件")[0]
         if file:
             self.add_log(f"选择需要分析的文件是：{file}")
             print(f"选择需要分析的文件是：{file}")
-            self.analyseResult(file)
+            self.Processor.analyseResult(file, self.add_log)
             # self.Processor.savedPath = dir
-
-    def analyseResult(self, file):
-        w_list = []
-        h_list = []
-        a_list = []
-
-        with open(file, 'r') as file:
-            for line in file:
-                line = line.strip()
-                if line:
-                    parts = line.split(': ')
-                    values = parts[1].split(',')
-                    w = float(values[0].split('W:')[1].strip())
-                    h = float(values[1].split('H:')[1].strip())
-                    a = float(values[2].split('A:')[1].strip())
-                    w_list.append(w)
-                    h_list.append(h)
-                    a_list.append(a)
-
-        w_np = np.array(w_list)
-        self.add_log(f"W_AVG: {w_np.mean():.2f}")
-        self.add_log(f"W_STD: {w_np.std():.2f}")
-        self.add_log(f"W_MAX: {w_np.max()}")
-        self.add_log(f"W_MIN: {w_np.min()}")
-
-        h_np = np.array(h_list)
-        self.add_log(f"H_AVG: {h_np.mean():.2f}")
-        self.add_log(f"H_STD: {h_np.std():.2f}")
-        self.add_log(f"H_MAX: {h_np.max()}")
-        self.add_log(f"H_MIN: {h_np.min()}")
-
-        a_np = np.array(a_list)
-        self.add_log(f"A_AVG: {a_np.mean():.2f}")
-        self.add_log(f"A_STD: {a_np.std():.2f}")
-        self.add_log(f"A_MAX: {a_np.max()}")
-        self.add_log(f"A_MIN: {a_np.min()}")
-
-        with open(f"savedVideo\Analysis_{getTime()}.txt", 'w+') as f:
-
-            f.write(f"==========  宽度统计  ==================\n")
-
-            f.write(f"W_AVG: {w_np.mean():.2f}\n")
-            f.write(f"W_STD: {w_np.std():.2f}\n")
-            f.write(f"W_MAX: {w_np.max()}\n")
-            f.write(f"W_MIN: {w_np.min()}\n")
-
-            f.write(f"==========  高度统计  ==================\n")
-
-            f.write(f"H_AVG: {h_np.mean():.2f}\n")
-            f.write(f"H_STD: {h_np.std():.2f}\n")
-            f.write(f"H_MAX: {h_np.max()}\n")
-            f.write(f"H_MIN: {h_np.min()}\n")
-
-            f.write(f"==========  面积统计  ==================\n")
-
-            f.write(f"A_AVG: {a_np.mean():.2f}\n")
-            f.write(f"A_STD: {a_np.std():.2f}\n")
-            f.write(f"A_MAX: {a_np.max()}\n")
-            f.write(f"A_MIN: {a_np.min()}\n")
 
     def mousePressEvent(self, event):
         # SET DRAG POS WINDOW
@@ -519,8 +477,53 @@ class MainWindow(QMainWindow):
         self.add_log('开始垂直栅线方向检测')
         self.showMinimized()
         time.sleep(1)
-
+        self.Processor.verticalLineDirectionTest(getOut01=self.add_log)
         self.showNormal()
+
+    def fastPointDetection(self):
+        self.add_log('开始快速单点检测')
+        self.showMinimized()
+        time.sleep(1)
+        self.Processor.fastPointDetection(
+            getOut01=self.add_log,
+            getOut02=self.add_widthHeight,
+            draw=self.color_grid.set_cell_color)
+        self.showNormal()
+
+    def doubleLineStdDetection(self):
+        self.add_log('开始标准双线检测')
+        self.showMinimized()
+        time.sleep(1)
+        self.Processor.fastPointDetection(
+            getOut01=self.add_log,
+            getOut02=self.add_widthHeight,
+            draw=self.color_grid.set_cell_color)
+        self.showNormal()
+
+    def startDetect(self):
+        self.add_log('开始检测')
+        if self.Processor.workSpacePath == '':
+            self.add_log(f"未设置工作空间的路径，请点击路径设置按钮设置")
+            return
+
+        std_width = self.widgets.editWidthStd.text()
+        err_width = self.widgets.editWidthErr.text()
+        std_height = self.widgets.editHeightStd.text()
+        err_height = self.widgets.editHeightErr.text()
+
+        if std_height == '请输入' or std_width == '请输入' or err_width == '请输入' or err_height == '请输入':
+            self.add_log(f"请检查标准高宽或误差阈值是否已设置")
+            return
+        else:
+            self.Processor.std_w = std_width
+            self.Processor.std_h = std_height
+            self.Processor.err_w = err_width
+            self.Processor.err_h = err_height
+
+            self.add_log(f"设置宽度标准值为: {self.Processor.std_w}")
+            self.add_log(f"设置宽度误差阈值为: {self.Processor.err_w}")
+            self.add_log(f"设置高度标准值为: {self.Processor.std_h}")
+            self.add_log(f"设置高度误差阈值为: {self.Processor.err_h}")
 
 
 if __name__ == "__main__":

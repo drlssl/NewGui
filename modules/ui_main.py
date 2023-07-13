@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'maingCADgF.ui'
+## Form generated from reading UI file 'mainCzvXPH.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.0
 ##
@@ -1066,7 +1066,7 @@ class Ui_MainWindow(object):
         self.label_3.setStyleSheet(u"image:url(:/images/images/images/vhx.png)")
         self.pushButton_2 = QPushButton(self.page_home)
         self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setGeometry(QRect(450, 480, 91, 41))
+        self.pushButton_2.setGeometry(QRect(450, 460, 91, 41))
         font8 = QFont()
         font8.setFamilies([u"\u5fae\u8f6f\u96c5\u9ed1"])
         font8.setPointSize(12)
@@ -1088,7 +1088,7 @@ class Ui_MainWindow(object):
         self.label_4.setStyleSheet(u"image:url(:/images/images/images/companyLogo.png)")
         self.startButton = QPushButton(self.page_home)
         self.startButton.setObjectName(u"startButton")
-        self.startButton.setGeometry(QRect(580, 480, 91, 41))
+        self.startButton.setGeometry(QRect(580, 460, 91, 41))
         font9 = QFont()
         font9.setFamilies([u"\u5fae\u8f6f\u96c5\u9ed1"])
         font9.setPointSize(12)
@@ -1104,7 +1104,7 @@ class Ui_MainWindow(object):
 "padding-bottom:10px")
         self.pushButton_4 = QPushButton(self.page_home)
         self.pushButton_4.setObjectName(u"pushButton_4")
-        self.pushButton_4.setGeometry(QRect(710, 480, 91, 41))
+        self.pushButton_4.setGeometry(QRect(710, 460, 91, 41))
         self.pushButton_4.setFont(font9)
         self.pushButton_4.setStyleSheet(u"background-image:url(:/icons/images/icons/cil-media-stop.png);\n"
 "background-origin: content;\n"
@@ -1139,45 +1139,32 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.page_history)
         self.page_details = QWidget()
         self.page_details.setObjectName(u"page_details")
-        self.pushButton_5 = QPushButton(self.page_details)
-        self.pushButton_5.setObjectName(u"pushButton_5")
-        self.pushButton_5.setGeometry(QRect(60, 40, 101, 41))
-        self.pushButton_5.setFont(font8)
-        self.pushButton_5.setStyleSheet(u"background-image:url(:/icons/images/icons/cil-cursor-move.png);\n"
-"background-origin: content;\n"
-"background-position: left center;\n"
-"padding-top: 8px;\n"
-"padding-left:10px;\n"
-"background-repeat: no-repeat;\n"
-"background-color: #4169E1;\n"
-"text-align:bottom;\n"
-"padding-bottom:10px")
-        self.fileReportBtn = QPushButton(self.page_details)
-        self.fileReportBtn.setObjectName(u"fileReportBtn")
-        self.fileReportBtn.setGeometry(QRect(220, 40, 101, 41))
-        self.fileReportBtn.setFont(font8)
-        self.fileReportBtn.setStyleSheet(u"background-image:url(:/icons/images/icons/cil-save.png);\n"
-"background-origin: content;\n"
-"background-position: left center;\n"
-"padding-top: 8px;\n"
-"padding-left:10px;\n"
-"background-repeat: no-repeat;\n"
-"background-color: #4169E1;\n"
-"text-align:bottom;\n"
-"padding-bottom:10px")
-        self.pushButton_7 = QPushButton(self.page_details)
-        self.pushButton_7.setObjectName(u"pushButton_7")
-        self.pushButton_7.setGeometry(QRect(60, 110, 101, 41))
-        self.pushButton_7.setFont(font8)
-        self.pushButton_7.setStyleSheet(u"background-image:url(:/icons/images/icons/cil-cloud-upload.png);\n"
-"background-origin: content;\n"
-"background-position: left center;\n"
-"padding-top: 8px;\n"
-"padding-left:10px;\n"
-"background-repeat: no-repeat;\n"
-"background-color: #4169E1;\n"
-"text-align:bottom;\n"
-"padding-bottom:10px")
+        self.startDetectBtn = QPushButton(self.page_details)
+        self.startDetectBtn.setObjectName(u"startDetectBtn")
+        self.startDetectBtn.setGeometry(QRect(200, 60, 141, 41))
+        self.startDetectBtn.setFont(font8)
+        self.startDetectBtn.setStyleSheet(u"background-image:url(:/icons/images/icons/cil-media-play.png);\n"
+                                          "background-origin: content;\n"
+                                          "background-position: left center;\n"
+                                          "padding-top: 8px;\n"
+                                          "padding-left:10px;\n"
+                                          "background-repeat: no-repeat;\n"
+                                          "background-color: #4169E1;\n"
+                                          "text-align:bottom;\n"
+                                          "padding-bottom:10px")
+        self.setWorkSpaceBtn = QPushButton(self.page_details)
+        self.setWorkSpaceBtn.setObjectName(u"setWorkSpaceBtn")
+        self.setWorkSpaceBtn.setGeometry(QRect(20, 10, 131, 41))
+        self.setWorkSpaceBtn.setFont(font8)
+        self.setWorkSpaceBtn.setStyleSheet(u"background-image:url(:/icons/images/icons/cil-save.png);\n"
+                                           "background-origin: content;\n"
+                                           "background-position: left center;\n"
+                                           "padding-top: 8px;\n"
+                                           "padding-left:10px;\n"
+                                           "background-repeat: no-repeat;\n"
+                                           "background-color: #4169E1;\n"
+                                           "text-align:bottom;\n"
+                                           "padding-bottom:10px")
         self.logger02 = QTableWidget(self.page_details)
         if (self.logger02.columnCount() < 2):
             self.logger02.setColumnCount(2)
@@ -1197,7 +1184,7 @@ class Ui_MainWindow(object):
         __qtablewidgetitem4 = QTableWidgetItem()
         self.logger02.setItem(0, 1, __qtablewidgetitem4)
         self.logger02.setObjectName(u"logger02")
-        self.logger02.setGeometry(QRect(390, 20, 461, 601))
+        self.logger02.setGeometry(QRect(370, 20, 481, 601))
         sizePolicy3 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(0)
@@ -1252,7 +1239,7 @@ class Ui_MainWindow(object):
         self.logger02.setSortingEnabled(False)
         self.logger02.horizontalHeader().setVisible(False)
         self.logger02.horizontalHeader().setCascadingSectionResizes(False)
-        self.logger02.horizontalHeader().setDefaultSectionSize(150)
+        self.logger02.horizontalHeader().setDefaultSectionSize(99)
         self.logger02.horizontalHeader().setHighlightSections(True)
         self.logger02.horizontalHeader().setStretchLastSection(True)
         self.logger02.verticalHeader().setVisible(False)
@@ -1261,7 +1248,7 @@ class Ui_MainWindow(object):
         self.logger02.verticalHeader().setStretchLastSection(False)
         self.analyseBtn = QPushButton(self.page_details)
         self.analyseBtn.setObjectName(u"analyseBtn")
-        self.analyseBtn.setGeometry(QRect(220, 110, 101, 41))
+        self.analyseBtn.setGeometry(QRect(20, 60, 131, 41))
         self.analyseBtn.setFont(font8)
         self.analyseBtn.setStyleSheet(u"background-image:url(:/icons/images/icons/cil-align-center.png);\n"
 "background-origin: content;\n"
@@ -1297,7 +1284,7 @@ class Ui_MainWindow(object):
         __qtablewidgetitem13 = QTableWidgetItem()
         self.widthHeightTable02.setItem(0, 3, __qtablewidgetitem13)
         self.widthHeightTable02.setObjectName(u"widthHeightTable02")
-        self.widthHeightTable02.setGeometry(QRect(50, 220, 271, 391))
+        self.widthHeightTable02.setGeometry(QRect(20, 220, 301, 391))
         sizePolicy3.setHeightForWidth(self.widthHeightTable02.sizePolicy().hasHeightForWidth())
         self.widthHeightTable02.setSizePolicy(sizePolicy3)
         palette1 = QPalette()
@@ -1350,6 +1337,80 @@ class Ui_MainWindow(object):
         self.widthHeightTable02.verticalHeader().setCascadingSectionResizes(False)
         self.widthHeightTable02.verticalHeader().setHighlightSections(False)
         self.widthHeightTable02.verticalHeader().setStretchLastSection(False)
+        self.label = QLabel(self.page_details)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(0, 120, 81, 31))
+        self.label.setStyleSheet(u"background-repeat: no-repeat;\n"
+                                 "background-color: #4169E1;\n"
+                                 "text-align:center;\n"
+                                 "color:#ffffff\n"
+                                 "")
+        self.label_6 = QLabel(self.page_details)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setGeometry(QRect(0, 160, 81, 31))
+        self.label_6.setStyleSheet(u"background-repeat: no-repeat;\n"
+                                   "background-color: #4169E1;\n"
+                                   "text-align:center;\n"
+                                   "color:#ffffff\n"
+                                   "")
+        self.editWidthStd = QLineEdit(self.page_details)
+        self.editWidthStd.setObjectName(u"editWidthStd")
+        self.editWidthStd.setGeometry(QRect(100, 120, 61, 31))
+        self.editWidthStd.setStyleSheet(u"background-repeat: no-repeat;\n"
+                                        "background-color: #6495ED;\n"
+                                        "color:#ffffff\n"
+                                        "")
+        self.editHeightStd = QLineEdit(self.page_details)
+        self.editHeightStd.setObjectName(u"editHeightStd")
+        self.editHeightStd.setGeometry(QRect(100, 160, 61, 31))
+        self.editHeightStd.setStyleSheet(u"background-repeat: no-repeat;\n"
+                                         "background-color: #6495ED;\n"
+                                         "color:#ffffff\n"
+                                         "")
+        self.label_7 = QLabel(self.page_details)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setGeometry(QRect(180, 120, 81, 31))
+        self.label_7.setStyleSheet(u"background-repeat: no-repeat;\n"
+                                   "background-color: #4169E1;\n"
+                                   "text-align:center;\n"
+                                   "color:#ffffff\n"
+                                   "")
+        self.label_8 = QLabel(self.page_details)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setGeometry(QRect(180, 160, 81, 31))
+        self.label_8.setStyleSheet(u"background-repeat: no-repeat;\n"
+                                   "background-color: #4169E1;\n"
+                                   "text-align:center;\n"
+                                   "color:#ffffff\n"
+                                   "")
+        self.editWidthErr = QLineEdit(self.page_details)
+        self.editWidthErr.setObjectName(u"editWidthErr")
+        self.editWidthErr.setGeometry(QRect(280, 120, 61, 31))
+        self.editWidthErr.setStyleSheet(u"background-repeat: no-repeat;\n"
+                                        "background-color: #6495ED;\n"
+                                        "color:#ffffff\n"
+                                        "")
+        self.editHeightErr = QLineEdit(self.page_details)
+        self.editHeightErr.setObjectName(u"editHeightErr")
+        self.editHeightErr.setGeometry(QRect(280, 160, 61, 31))
+        self.editHeightErr.setStyleSheet(u"background-repeat: no-repeat;\n"
+                                         "background-color: #6495ED;\n"
+                                         "color:#ffffff\n"
+                                         "")
+        self.detectModeSelector = QComboBox(self.page_details)
+        self.detectModeSelector.addItem("")
+        self.detectModeSelector.addItem("")
+        self.detectModeSelector.setObjectName(u"detectModeSelector")
+        self.detectModeSelector.setEnabled(True)
+        self.detectModeSelector.setGeometry(QRect(200, 10, 141, 41))
+        sizePolicy4 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.detectModeSelector.sizePolicy().hasHeightForWidth())
+        self.detectModeSelector.setSizePolicy(sizePolicy4)
+        self.detectModeSelector.setFont(font1)
+        self.detectModeSelector.setStyleSheet(u"background-color: #4169E1;\n"
+                                              "color:#ffffff")
         self.stackedWidget.addWidget(self.page_details)
         self.widgets = QWidget()
         self.widgets.setObjectName(u"widgets")
@@ -1724,9 +1785,6 @@ class Ui_MainWindow(object):
         self.modeSelector.setObjectName(u"modeSelector")
         self.modeSelector.setEnabled(True)
         self.modeSelector.setGeometry(QRect(70, 20, 161, 61))
-        sizePolicy4 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(0)
         sizePolicy4.setHeightForWidth(self.modeSelector.sizePolicy().hasHeightForWidth())
         self.modeSelector.setSizePolicy(sizePolicy4)
         self.modeSelector.setFont(font1)
@@ -2061,6 +2119,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.stackedWidget.setCurrentIndex(2)
+        self.detectModeSelector.setCurrentIndex(-1)
         self.modeSelector.setCurrentIndex(-1)
 
 
@@ -2110,7 +2169,7 @@ class Ui_MainWindow(object):
         self.maximizeRestoreAppBtn.setText("")
 #if QT_CONFIG(tooltip)
         self.closeAppBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Close", None))
-#endif // QT_CONFIG(tooltip)
+        # endif // QT_CONFIG(tooltip)
         self.closeAppBtn.setText("")
         self.label_2.setText("")
         self.label_3.setText("")
@@ -2118,10 +2177,11 @@ class Ui_MainWindow(object):
         self.label_4.setText("")
         self.startButton.setText(QCoreApplication.translate("MainWindow", u"\u5f00\u59cb", None))
         self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"\u7ed3\u675f", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;color:white;\">\u6b63\u5728\u8fd0\u884c\u4e2d</span></p></body></html>", None))
-        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"\u6821\u51c6", None))
-        self.fileReportBtn.setText(QCoreApplication.translate("MainWindow", u"\u6587\u4ef6", None))
-        self.pushButton_7.setText(QCoreApplication.translate("MainWindow", u"\u4e0a\u4f20", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow",
+                                                        u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;color:white;\">\u6b63\u5728\u8fd0\u884c\u4e2d</span></p></body></html>",
+                                                        None))
+        self.startDetectBtn.setText(QCoreApplication.translate("MainWindow", u"\u5f00\u59cb\u68c0\u6d4b", None))
+        self.setWorkSpaceBtn.setText(QCoreApplication.translate("MainWindow", u"\u8def\u5f84\u8bbe\u7f6e", None))
         ___qtablewidgetitem = self.logger02.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"0", None));
         ___qtablewidgetitem1 = self.logger02.horizontalHeaderItem(1)
@@ -2137,7 +2197,7 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"\u65e5\u5fd7", None));
         self.logger02.setSortingEnabled(__sortingEnabled)
 
-        self.analyseBtn.setText(QCoreApplication.translate("MainWindow", u"\u5206\u6790", None))
+        self.analyseBtn.setText(QCoreApplication.translate("MainWindow", u"\u6570\u636e\u7edf\u8ba1", None))
         ___qtablewidgetitem5 = self.widthHeightTable02.horizontalHeaderItem(0)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"0", None));
         ___qtablewidgetitem6 = self.widthHeightTable02.horizontalHeaderItem(1)
@@ -2161,6 +2221,23 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"\u9762\u79ef", None));
         self.widthHeightTable02.setSortingEnabled(__sortingEnabled1)
 
+        self.label.setText(QCoreApplication.translate("MainWindow", u" \u6805\u7ebf\u5bbd\u6807\u51c6\u503c", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u" \u6805\u7ebf\u9ad8\u6807\u51c6\u503c", None))
+        self.editWidthStd.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u8f93\u5165", None))
+        self.editHeightStd.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u8f93\u5165", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u" \u7ebf\u5bbd\u8bef\u5dee\u9608\u503c", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u" \u7ebf\u9ad8\u8bef\u5dee\u9608\u503c", None))
+        self.editWidthErr.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u8f93\u5165", None))
+        self.editHeightErr.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u8f93\u5165", None))
+        self.detectModeSelector.setItemText(0, QCoreApplication.translate("MainWindow",
+                                                                          u"\u5feb\u901f\u5355\u70b9\u68c0\u6d4b",
+                                                                          None))
+        self.detectModeSelector.setItemText(1, QCoreApplication.translate("MainWindow",
+                                                                          u"\u53cc\u7ebf\u6807\u51c6\u68c0\u6d4b",
+                                                                          None))
+
+        self.detectModeSelector.setPlaceholderText(
+            QCoreApplication.translate("MainWindow", u"\u68c0\u6d4b\u6a21\u5f0f\u9009\u62e9", None))
         self.labelBoxBlenderInstalation.setText(QCoreApplication.translate("MainWindow", u"FILE BOX", None))
         self.lineEdit.setText("")
         self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Type here", None))
