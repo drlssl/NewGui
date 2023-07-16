@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainCzvXPH.ui'
+## Form generated from reading UI file 'mainQQBahb.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.0
 ##
@@ -1144,14 +1144,15 @@ class Ui_MainWindow(object):
         self.startDetectBtn.setGeometry(QRect(200, 60, 141, 41))
         self.startDetectBtn.setFont(font8)
         self.startDetectBtn.setStyleSheet(u"background-image:url(:/icons/images/icons/cil-media-play.png);\n"
-                                          "background-origin: content;\n"
-                                          "background-position: left center;\n"
-                                          "padding-top: 8px;\n"
-                                          "padding-left:10px;\n"
-                                          "background-repeat: no-repeat;\n"
-                                          "background-color: #4169E1;\n"
-                                          "text-align:bottom;\n"
-                                          "padding-bottom:10px")
+                                          "                               background-origin: content;\n"
+                                          "                               background-position: left center;\n"
+                                          "                               padding-top: 8px;\n"
+                                          "                               padding-left:10px;\n"
+                                          "                               background-repeat: no-repeat;\n"
+                                          "                               background-color: #4169E1;\n"
+                                          "                               text-align:bottom;\n"
+                                          "                               padding-bottom:10px\n"
+                                          "                           ")
         self.setWorkSpaceBtn = QPushButton(self.page_details)
         self.setWorkSpaceBtn.setObjectName(u"setWorkSpaceBtn")
         self.setWorkSpaceBtn.setGeometry(QRect(20, 10, 131, 41))
@@ -1184,7 +1185,7 @@ class Ui_MainWindow(object):
         __qtablewidgetitem4 = QTableWidgetItem()
         self.logger02.setItem(0, 1, __qtablewidgetitem4)
         self.logger02.setObjectName(u"logger02")
-        self.logger02.setGeometry(QRect(370, 20, 481, 601))
+        self.logger02.setGeometry(QRect(370, 190, 481, 431))
         sizePolicy3 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(0)
@@ -1284,7 +1285,7 @@ class Ui_MainWindow(object):
         __qtablewidgetitem13 = QTableWidgetItem()
         self.widthHeightTable02.setItem(0, 3, __qtablewidgetitem13)
         self.widthHeightTable02.setObjectName(u"widthHeightTable02")
-        self.widthHeightTable02.setGeometry(QRect(20, 220, 301, 391))
+        self.widthHeightTable02.setGeometry(QRect(20, 120, 301, 491))
         sizePolicy3.setHeightForWidth(self.widthHeightTable02.sizePolicy().hasHeightForWidth())
         self.widthHeightTable02.setSizePolicy(sizePolicy3)
         palette1 = QPalette()
@@ -1339,64 +1340,64 @@ class Ui_MainWindow(object):
         self.widthHeightTable02.verticalHeader().setStretchLastSection(False)
         self.label = QLabel(self.page_details)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(0, 120, 81, 31))
+        self.label.setGeometry(QRect(450, 0, 91, 31))
         self.label.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                 "background-color: #4169E1;\n"
-                                 "text-align:center;\n"
-                                 "color:#ffffff\n"
-                                 "")
+                                 "                                     background-color: #4169E1;\n"
+                                 "                                     text-align:center;\n"
+                                 "                                     color:#ffffff\n"
+                                 "                                 ")
         self.label_6 = QLabel(self.page_details)
         self.label_6.setObjectName(u"label_6")
-        self.label_6.setGeometry(QRect(0, 160, 81, 31))
+        self.label_6.setGeometry(QRect(450, 40, 91, 31))
         self.label_6.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                   "background-color: #4169E1;\n"
-                                   "text-align:center;\n"
-                                   "color:#ffffff\n"
-                                   "")
+                                   "                                     background-color: #4169E1;\n"
+                                   "                                     text-align:center;\n"
+                                   "                                     color:#ffffff\n"
+                                   "                                 ")
         self.editWidthStd = QLineEdit(self.page_details)
         self.editWidthStd.setObjectName(u"editWidthStd")
-        self.editWidthStd.setGeometry(QRect(100, 120, 61, 31))
+        self.editWidthStd.setGeometry(QRect(560, 0, 61, 31))
         self.editWidthStd.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                        "background-color: #6495ED;\n"
-                                        "color:#ffffff\n"
-                                        "")
+                                        "                                     background-color: #6495ED;\n"
+                                        "                                     color:#ffffff\n"
+                                        "                                 ")
         self.editHeightStd = QLineEdit(self.page_details)
         self.editHeightStd.setObjectName(u"editHeightStd")
-        self.editHeightStd.setGeometry(QRect(100, 160, 61, 31))
+        self.editHeightStd.setGeometry(QRect(560, 40, 61, 31))
         self.editHeightStd.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                         "background-color: #6495ED;\n"
-                                         "color:#ffffff\n"
-                                         "")
+                                         "                                     background-color: #6495ED;\n"
+                                         "                                     color:#ffffff\n"
+                                         "                                 ")
         self.label_7 = QLabel(self.page_details)
         self.label_7.setObjectName(u"label_7")
-        self.label_7.setGeometry(QRect(180, 120, 81, 31))
+        self.label_7.setGeometry(QRect(640, 0, 91, 31))
         self.label_7.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                   "background-color: #4169E1;\n"
-                                   "text-align:center;\n"
-                                   "color:#ffffff\n"
-                                   "")
+                                   "                                     background-color: #4169E1;\n"
+                                   "                                     text-align:center;\n"
+                                   "                                     color:#ffffff\n"
+                                   "                                 ")
         self.label_8 = QLabel(self.page_details)
         self.label_8.setObjectName(u"label_8")
-        self.label_8.setGeometry(QRect(180, 160, 81, 31))
+        self.label_8.setGeometry(QRect(640, 40, 91, 31))
         self.label_8.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                   "background-color: #4169E1;\n"
-                                   "text-align:center;\n"
-                                   "color:#ffffff\n"
-                                   "")
+                                   "                                     background-color: #4169E1;\n"
+                                   "                                     text-align:center;\n"
+                                   "                                     color:#ffffff\n"
+                                   "                                 ")
         self.editWidthErr = QLineEdit(self.page_details)
         self.editWidthErr.setObjectName(u"editWidthErr")
-        self.editWidthErr.setGeometry(QRect(280, 120, 61, 31))
+        self.editWidthErr.setGeometry(QRect(750, 0, 61, 31))
         self.editWidthErr.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                        "background-color: #6495ED;\n"
-                                        "color:#ffffff\n"
-                                        "")
+                                        "                                     background-color: #6495ED;\n"
+                                        "                                     color:#ffffff\n"
+                                        "                                 ")
         self.editHeightErr = QLineEdit(self.page_details)
         self.editHeightErr.setObjectName(u"editHeightErr")
-        self.editHeightErr.setGeometry(QRect(280, 160, 61, 31))
+        self.editHeightErr.setGeometry(QRect(750, 40, 61, 31))
         self.editHeightErr.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                         "background-color: #6495ED;\n"
-                                         "color:#ffffff\n"
-                                         "")
+                                         "                                     background-color: #6495ED;\n"
+                                         "                                     color:#ffffff\n"
+                                         "                                 ")
         self.detectModeSelector = QComboBox(self.page_details)
         self.detectModeSelector.addItem("")
         self.detectModeSelector.addItem("")
@@ -1410,7 +1411,67 @@ class Ui_MainWindow(object):
         self.detectModeSelector.setSizePolicy(sizePolicy4)
         self.detectModeSelector.setFont(font1)
         self.detectModeSelector.setStyleSheet(u"background-color: #4169E1;\n"
-                                              "color:#ffffff")
+                                              "                                     color:#ffffff\n"
+                                              "                                 ")
+        self.label_9 = QLabel(self.page_details)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setGeometry(QRect(450, 80, 91, 31))
+        self.label_9.setStyleSheet(u"background-repeat: no-repeat;\n"
+                                   "                                     background-color: #4169E1;\n"
+                                   "                                     text-align:center;\n"
+                                   "                                     color:#ffffff\n"
+                                   "                                 ")
+        self.label_10 = QLabel(self.page_details)
+        self.label_10.setObjectName(u"label_10")
+        self.label_10.setGeometry(QRect(640, 80, 91, 31))
+        self.label_10.setStyleSheet(u"background-repeat: no-repeat;\n"
+                                    "                                     background-color: #4169E1;\n"
+                                    "                                     text-align:center;\n"
+                                    "                                     color:#ffffff\n"
+                                    "                                 ")
+        self.label_11 = QLabel(self.page_details)
+        self.label_11.setObjectName(u"label_11")
+        self.label_11.setGeometry(QRect(450, 120, 91, 31))
+        self.label_11.setStyleSheet(u"background-repeat: no-repeat;\n"
+                                    "                                     background-color: #4169E1;\n"
+                                    "                                     text-align:center;\n"
+                                    "                                     color:#ffffff\n"
+                                    "                                 ")
+        self.editLineNum = QLineEdit(self.page_details)
+        self.editLineNum.setObjectName(u"editLineNum")
+        self.editLineNum.setGeometry(QRect(560, 80, 61, 31))
+        self.editLineNum.setStyleSheet(u"background-repeat: no-repeat;\n"
+                                       "                                     background-color: #6495ED;\n"
+                                       "                                     color:#ffffff\n"
+                                       "                                 ")
+        self.editCurveNum = QLineEdit(self.page_details)
+        self.editCurveNum.setObjectName(u"editCurveNum")
+        self.editCurveNum.setGeometry(QRect(560, 120, 61, 31))
+        self.editCurveNum.setStyleSheet(u"background-repeat: no-repeat;\n"
+                                        "                                     background-color: #6495ED;\n"
+                                        "                                     color:#ffffff\n"
+                                        "                                 ")
+        self.editPosNum = QLineEdit(self.page_details)
+        self.editPosNum.setObjectName(u"editPosNum")
+        self.editPosNum.setGeometry(QRect(750, 80, 61, 31))
+        self.editPosNum.setStyleSheet(u"background-repeat: no-repeat;\n"
+                                      "                                     background-color: #6495ED;\n"
+                                      "                                     color:#ffffff\n"
+                                      "                                 ")
+        self.confirmParamSettingBtn = QPushButton(self.page_details)
+        self.confirmParamSettingBtn.setObjectName(u"confirmParamSettingBtn")
+        self.confirmParamSettingBtn.setGeometry(QRect(650, 120, 141, 51))
+        self.confirmParamSettingBtn.setFont(font8)
+        self.confirmParamSettingBtn.setStyleSheet(u"background-image:url(:/icons/images/icons/cil-settings.png);\n"
+                                                  "                               background-origin: content;\n"
+                                                  "                               background-position: left center;\n"
+                                                  "                               \n"
+                                                  "                               padding-left:10px;\n"
+                                                  "                               background-repeat: no-repeat;\n"
+                                                  "                               background-color: #4169E1;\n"
+                                                  "                               text-align:center;\n"
+                                                  "                               \n"
+                                                  "                           ")
         self.stackedWidget.addWidget(self.page_details)
         self.widgets = QWidget()
         self.widgets.setObjectName(u"widgets")
@@ -1568,14 +1629,14 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 274, 218))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 218, 218))
         self.scrollAreaWidgetContents.setStyleSheet(u" QScrollBar:vertical {\n"
-"	border: none;\n"
-"    background: rgb(52, 59, 72);\n"
-"    width: 14px;\n"
-"    margin: 21px 0 21px 0;\n"
-"	border-radius: 0px;\n"
-" }")
+                                                    "	border: none;\n"
+                                                    "    background: rgb(52, 59, 72);\n"
+                                                    "    width: 14px;\n"
+                                                    "    margin: 21px 0 21px 0;\n"
+                                                    "	border-radius: 0px;\n"
+                                                    " }")
         self.horizontalLayout_11 = QHBoxLayout(self.scrollAreaWidgetContents)
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
         self.plainTextEdit = QPlainTextEdit(self.scrollAreaWidgetContents)
@@ -2221,12 +2282,12 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"\u9762\u79ef", None));
         self.widthHeightTable02.setSortingEnabled(__sortingEnabled1)
 
-        self.label.setText(QCoreApplication.translate("MainWindow", u" \u6805\u7ebf\u5bbd\u6807\u51c6\u503c", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u" \u6805\u7ebf\u9ad8\u6807\u51c6\u503c", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"  \u6805\u7ebf\u5bbd\u6807\u51c6\u503c", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"  \u6805\u7ebf\u9ad8\u6807\u51c6\u503c", None))
         self.editWidthStd.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u8f93\u5165", None))
         self.editHeightStd.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u8f93\u5165", None))
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u" \u7ebf\u5bbd\u8bef\u5dee\u9608\u503c", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u" \u7ebf\u9ad8\u8bef\u5dee\u9608\u503c", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"  \u7ebf\u5bbd\u8bef\u5dee\u9608\u503c", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"  \u7ebf\u9ad8\u8bef\u5dee\u9608\u503c", None))
         self.editWidthErr.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u8f93\u5165", None))
         self.editHeightErr.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u8f93\u5165", None))
         self.detectModeSelector.setItemText(0, QCoreApplication.translate("MainWindow",
@@ -2238,6 +2299,13 @@ class Ui_MainWindow(object):
 
         self.detectModeSelector.setPlaceholderText(
             QCoreApplication.translate("MainWindow", u"\u68c0\u6d4b\u6a21\u5f0f\u9009\u62e9", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"     \u6805\u7ebf\u6761\u6570", None))
+        self.label_10.setText(QCoreApplication.translate("MainWindow", u"  \u6805\u7ebf\u70b9\u4f4d\u4e2a\u6570", None))
+        self.label_11.setText(QCoreApplication.translate("MainWindow", u"  \u70b9\u4f4d\u66f2\u7ebf\u4e2a\u6570", None))
+        self.editLineNum.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u8f93\u5165", None))
+        self.editCurveNum.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u8f93\u5165", None))
+        self.editPosNum.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u8f93\u5165", None))
+        self.confirmParamSettingBtn.setText(QCoreApplication.translate("MainWindow", u"\u8bbe\u7f6e\u786e\u8ba4", None))
         self.labelBoxBlenderInstalation.setText(QCoreApplication.translate("MainWindow", u"FILE BOX", None))
         self.lineEdit.setText("")
         self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Type here", None))

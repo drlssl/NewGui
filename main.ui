@@ -1890,7 +1890,7 @@ padding-bottom:10px</string>
                        <property name="geometry">
                         <rect>
                          <x>580</x>
-                            <y>460</y>
+                         <y>460</y>
                          <width>91</width>
                          <height>41</height>
                         </rect>
@@ -1980,61 +1980,61 @@ padding-left:10px
                       <zorder>label_5</zorder>
                      </widget>
                      <widget class="QWidget" name="page_history"/>
-                     <widget class="QWidget" name="page_details">
-                         <widget class="QPushButton" name="startDetectBtn">
-                             <property name="geometry">
-                                 <rect>
-                                     <x>200</x>
-                                     <y>60</y>
-                                     <width>141</width>
-                                     <height>41</height>
-                                 </rect>
-                             </property>
-                             <property name="font">
-                                 <font>
-                         <family>微软雅黑</family>
-                         <pointsize>12</pointsize>
-                         <italic>false</italic>
-                         <bold>false</bold>
-                        </font>
-                       </property>
-                       <property name="styleSheet">
-                           <string notr="true">background-image:url(:/icons/images/icons/cil-media-play.png);
-                               background-origin: content;
-                               background-position: left center;
-                               padding-top: 8px;
-                               padding-left:10px;
-                               background-repeat: no-repeat;
-                               background-color: #4169E1;
-                               text-align:bottom;
-                               padding-bottom:10px
-                           </string>
-                       </property>
-                       <property name="text">
-                           <string>开始检测</string>
-                       </property>
-                      </widget>
-                         <widget class="QPushButton" name="setWorkSpaceBtn">
-                             <property name="geometry">
-                                 <rect>
-                                     <x>20</x>
-                                     <y>10</y>
-                                     <width>131</width>
-                                     <height>41</height>
-                                 </rect>
-                             </property>
-                             <property name="font">
-                                 <font>
-                         <family>微软雅黑</family>
-                         <pointsize>12</pointsize>
-                         <italic>false</italic>
-                         <bold>false</bold>
-                        </font>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-image:url(:/icons/images/icons/cil-save.png);
-background-origin: content;
-background-position: left center;
+                        <widget class="QWidget" name="page_details">
+                            <widget class="QPushButton" name="startDetectBtn">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>200</x>
+                                        <y>60</y>
+                                        <width>141</width>
+                                        <height>41</height>
+                                    </rect>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <family>微软雅黑</family>
+                                        <pointsize>12</pointsize>
+                                        <italic>false</italic>
+                                        <bold>false</bold>
+                                    </font>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-image:url(:/icons/images/icons/cil-media-play.png);
+                                        background-origin: content;
+                                        background-position: left center;
+                                        padding-top: 8px;
+                                        padding-left:10px;
+                                        background-repeat: no-repeat;
+                                        background-color: #4169E1;
+                                        text-align:bottom;
+                                        padding-bottom:10px
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>开始检测</string>
+                                </property>
+                            </widget>
+                            <widget class="QPushButton" name="setWorkSpaceBtn">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>20</x>
+                                        <y>10</y>
+                                        <width>131</width>
+                                        <height>41</height>
+                                    </rect>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <family>微软雅黑</family>
+                                        <pointsize>12</pointsize>
+                                        <italic>false</italic>
+                                        <bold>false</bold>
+                                    </font>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-image:url(:/icons/images/icons/cil-save.png);
+                                        background-origin: content;
+                                        background-position: left center;
 padding-top: 8px;
 padding-left:10px;
 background-repeat: no-repeat;
@@ -2048,12 +2048,12 @@ padding-bottom:10px</string>
                       </widget>
                       <widget class="QTableWidget" name="logger02">
                        <property name="geometry">
-                        <rect>
-                            <x>370</x>
-                         <y>20</y>
-                            <width>481</width>
-                         <height>601</height>
-                        </rect>
+                           <rect>
+                               <x>370</x>
+                               <y>190</y>
+                               <width>481</width>
+                               <height>431</height>
+                           </rect>
                        </property>
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -2355,14 +2355,14 @@ color:#ffffff</string>
                        </item>
                       </widget>
                       <widget class="QPushButton" name="analyseBtn">
-                       <property name="geometry">
-                           <rect>
-                               <x>20</x>
-                               <y>60</y>
-                               <width>131</width>
-                               <height>41</height>
-                           </rect>
-                       </property>
+                          <property name="geometry">
+                              <rect>
+                                  <x>20</x>
+                                  <y>60</y>
+                                  <width>131</width>
+                                  <height>41</height>
+                              </rect>
+                          </property>
                        <property name="font">
                         <font>
                          <family>微软雅黑</family>
@@ -2388,12 +2388,12 @@ padding-bottom:10px</string>
                       </widget>
                       <widget class="QTableWidget" name="widthHeightTable02">
                        <property name="geometry">
-                        <rect>
-                            <x>20</x>
-                         <y>220</y>
-                            <width>301</width>
-                         <height>391</height>
-                        </rect>
+                           <rect>
+                               <x>20</x>
+                               <y>120</y>
+                               <width>301</width>
+                               <height>491</height>
+                           </rect>
                        </property>
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -2693,16 +2693,16 @@ color:#ffffff</string>
                          <string>3</string>
                         </property>
                        </column>
-                       <item row="0" column="0">
-                        <property name="text">
-                         <string>位置</string>
-                        </property>
-                       </item>
-                       <item row="0" column="1">
-                        <property name="text">
-                         <string>宽度</string>
-                        </property>
-                       </item>
+                          <item row="0" column="0">
+                              <property name="text">
+                                  <string>位置</string>
+                              </property>
+                          </item>
+                          <item row="0" column="1">
+                              <property name="text">
+                                  <string>宽度</string>
+                              </property>
+                          </item>
                           <item row="0" column="2">
                               <property name="text">
                                   <string>高度</string>
@@ -2714,211 +2714,366 @@ color:#ffffff</string>
                               </property>
                           </item>
                       </widget>
-                         <widget class="QLabel" name="label">
-                             <property name="geometry">
-                                 <rect>
-                                     <x>0</x>
-                                     <y>120</y>
-                                     <width>81</width>
-                                     <height>31</height>
-                                 </rect>
-                             </property>
-                             <property name="styleSheet">
-                                 <string notr="true">background-repeat: no-repeat;
-                                     background-color: #4169E1;
-                                     text-align:center;
-                                     color:#ffffff
-                                 </string>
-                             </property>
-                             <property name="text">
-                                 <string>栅线宽标准值</string>
-                             </property>
-                         </widget>
-                         <widget class="QLabel" name="label_6">
-                             <property name="geometry">
-                                 <rect>
-                                     <x>0</x>
-                                     <y>160</y>
-                                     <width>81</width>
-                                     <height>31</height>
-                                 </rect>
-                             </property>
-                             <property name="styleSheet">
-                                 <string notr="true">background-repeat: no-repeat;
-                                     background-color: #4169E1;
-                                     text-align:center;
-                                     color:#ffffff
-                                 </string>
-                             </property>
-                             <property name="text">
-                                 <string>栅线高标准值</string>
-                             </property>
-                         </widget>
-                         <widget class="QLineEdit" name="editWidthStd">
-                             <property name="geometry">
-                                 <rect>
-                                     <x>100</x>
-                                     <y>120</y>
-                                     <width>61</width>
-                                     <height>31</height>
-                                 </rect>
-                             </property>
-                             <property name="styleSheet">
-                                 <string notr="true">background-repeat: no-repeat;
-                                     background-color: #6495ED;
-                                     color:#ffffff
-                                 </string>
-                             </property>
-                             <property name="text">
-                                 <string>请输入</string>
-                             </property>
-                         </widget>
-                         <widget class="QLineEdit" name="editHeightStd">
-                             <property name="geometry">
-                                 <rect>
-                                     <x>100</x>
-                                     <y>160</y>
-                                     <width>61</width>
-                                     <height>31</height>
-                                 </rect>
-                             </property>
-                             <property name="styleSheet">
-                                 <string notr="true">background-repeat: no-repeat;
-                                     background-color: #6495ED;
-                                     color:#ffffff
-                                 </string>
-                             </property>
-                             <property name="text">
-                                 <string>请输入</string>
-                             </property>
-                         </widget>
-                         <widget class="QLabel" name="label_7">
-                             <property name="geometry">
-                                 <rect>
-                                     <x>180</x>
-                                     <y>120</y>
-                                     <width>81</width>
-                                     <height>31</height>
-                                 </rect>
-                             </property>
-                             <property name="styleSheet">
-                                 <string notr="true">background-repeat: no-repeat;
-                                     background-color: #4169E1;
-                                     text-align:center;
-                                     color:#ffffff
-                                 </string>
-                             </property>
-                             <property name="text">
-                                 <string>线宽误差阈值</string>
-                             </property>
-                         </widget>
-                         <widget class="QLabel" name="label_8">
-                             <property name="geometry">
-                                 <rect>
-                                     <x>180</x>
-                                     <y>160</y>
-                                     <width>81</width>
-                                     <height>31</height>
-                                 </rect>
-                             </property>
-                             <property name="styleSheet">
-                                 <string notr="true">background-repeat: no-repeat;
-                                     background-color: #4169E1;
-                                     text-align:center;
-                                     color:#ffffff
-                                 </string>
-                             </property>
-                             <property name="text">
-                                 <string>线高误差阈值</string>
-                             </property>
-                         </widget>
-                         <widget class="QLineEdit" name="editWidthErr">
-                             <property name="geometry">
-                                 <rect>
-                                     <x>280</x>
-                                     <y>120</y>
-                                     <width>61</width>
-                                     <height>31</height>
-                                 </rect>
-                             </property>
-                             <property name="styleSheet">
-                                 <string notr="true">background-repeat: no-repeat;
-                                     background-color: #6495ED;
-                                     color:#ffffff
-                                 </string>
-                             </property>
-                             <property name="text">
-                                 <string>请输入</string>
-                             </property>
-                         </widget>
-                         <widget class="QLineEdit" name="editHeightErr">
-                             <property name="geometry">
-                                 <rect>
-                                     <x>280</x>
-                                     <y>160</y>
-                                     <width>61</width>
-                                     <height>31</height>
-                                 </rect>
-                             </property>
-                             <property name="styleSheet">
-                                 <string notr="true">background-repeat: no-repeat;
-                                     background-color: #6495ED;
-                                     color:#ffffff
-                                 </string>
-                             </property>
-                             <property name="text">
-                                 <string>请输入</string>
-                             </property>
-                         </widget>
-                         <widget class="QComboBox" name="detectModeSelector">
-                             <property name="enabled">
-                                 <bool>true</bool>
-                             </property>
-                             <property name="geometry">
-                                 <rect>
-                                     <x>200</x>
-                                     <y>10</y>
-                                     <width>141</width>
-                                     <height>41</height>
-                                 </rect>
-                             </property>
-                             <property name="sizePolicy">
-                                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                                     <horstretch>0</horstretch>
-                                     <verstretch>0</verstretch>
-                                 </sizepolicy>
-                             </property>
-                             <property name="font">
-                                 <font>
-                                     <family>Segoe UI</family>
-                                     <pointsize>12</pointsize>
-                                     <italic>false</italic>
-                                     <bold>false</bold>
-                                 </font>
-                             </property>
-                             <property name="styleSheet">
-                                 <string notr="true">background-color: #4169E1;
-                                     color:#ffffff
-                                 </string>
-                             </property>
-                             <property name="currentIndex">
-                                 <number>-1</number>
-                             </property>
-                             <property name="placeholderText">
-                                 <string>检测模式选择</string>
-                             </property>
-                             <item>
-                                 <property name="text">
-                                     <string>快速单点检测</string>
-                                 </property>
-                             </item>
-                             <item>
-                                 <property name="text">
-                                     <string>双线标准检测</string>
-                                 </property>
-                             </item>
-                         </widget>
-                     </widget>
+                            <widget class="QLabel" name="label">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>450</x>
+                                        <y>0</y>
+                                        <width>91</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-repeat: no-repeat;
+                                        background-color: #4169E1;
+                                        text-align:center;
+                                        color:#ffffff
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>栅线宽标准值</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" name="label_6">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>450</x>
+                                        <y>40</y>
+                                        <width>91</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-repeat: no-repeat;
+                                        background-color: #4169E1;
+                                        text-align:center;
+                                        color:#ffffff
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>栅线高标准值</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" name="editWidthStd">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>560</x>
+                                        <y>0</y>
+                                        <width>61</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-repeat: no-repeat;
+                                        background-color: #6495ED;
+                                        color:#ffffff
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>请输入</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" name="editHeightStd">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>560</x>
+                                        <y>40</y>
+                                        <width>61</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-repeat: no-repeat;
+                                        background-color: #6495ED;
+                                        color:#ffffff
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>请输入</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" name="label_7">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>640</x>
+                                        <y>0</y>
+                                        <width>91</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-repeat: no-repeat;
+                                        background-color: #4169E1;
+                                        text-align:center;
+                                        color:#ffffff
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>线宽误差阈值</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" name="label_8">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>640</x>
+                                        <y>40</y>
+                                        <width>91</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-repeat: no-repeat;
+                                        background-color: #4169E1;
+                                        text-align:center;
+                                        color:#ffffff
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>线高误差阈值</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" name="editWidthErr">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>750</x>
+                                        <y>0</y>
+                                        <width>61</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-repeat: no-repeat;
+                                        background-color: #6495ED;
+                                        color:#ffffff
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>请输入</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" name="editHeightErr">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>750</x>
+                                        <y>40</y>
+                                        <width>61</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-repeat: no-repeat;
+                                        background-color: #6495ED;
+                                        color:#ffffff
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>请输入</string>
+                                </property>
+                            </widget>
+                            <widget class="QComboBox" name="detectModeSelector">
+                                <property name="enabled">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>200</x>
+                                        <y>10</y>
+                                        <width>141</width>
+                                        <height>41</height>
+                                    </rect>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <family>Segoe UI</family>
+                                        <pointsize>12</pointsize>
+                                        <italic>false</italic>
+                                        <bold>false</bold>
+                                    </font>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-color: #4169E1;
+                                        color:#ffffff
+                                    </string>
+                                </property>
+                                <property name="currentIndex">
+                                    <number>-1</number>
+                                </property>
+                                <property name="placeholderText">
+                                    <string>检测模式选择</string>
+                                </property>
+                                <item>
+                                    <property name="text">
+                                        <string>快速单点检测</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>双线标准检测</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>自定义检测</string>
+                                    </property>
+                                </item>
+                            </widget>
+                            <widget class="QLabel" name="label_9">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>450</x>
+                                        <y>80</y>
+                                        <width>91</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-repeat: no-repeat;
+                                        background-color: #4169E1;
+                                        text-align:center;
+                                        color:#ffffff
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>栅线条数</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" name="label_10">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>640</x>
+                                        <y>80</y>
+                                        <width>91</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-repeat: no-repeat;
+                                        background-color: #4169E1;
+                                        text-align:center;
+                                        color:#ffffff
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>栅线点位个数</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" name="label_11">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>450</x>
+                                        <y>120</y>
+                                        <width>91</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-repeat: no-repeat;
+                                        background-color: #4169E1;
+                                        text-align:center;
+                                        color:#ffffff
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>点位曲线个数</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" name="editLineNum">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>560</x>
+                                        <y>80</y>
+                                        <width>61</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-repeat: no-repeat;
+                                        background-color: #6495ED;
+                                        color:#ffffff
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>请输入</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" name="editCurveNum">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>560</x>
+                                        <y>120</y>
+                                        <width>61</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-repeat: no-repeat;
+                                        background-color: #6495ED;
+                                        color:#ffffff
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>请输入</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" name="editPosNum">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>750</x>
+                                        <y>80</y>
+                                        <width>61</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-repeat: no-repeat;
+                                        background-color: #6495ED;
+                                        color:#ffffff
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>请输入</string>
+                                </property>
+                            </widget>
+                            <widget class="QPushButton" name="confirmParamSettingBtn">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>650</x>
+                                        <y>120</y>
+                                        <width>141</width>
+                                        <height>51</height>
+                                    </rect>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <family>微软雅黑</family>
+                                        <pointsize>12</pointsize>
+                                        <italic>false</italic>
+                                        <bold>false</bold>
+                                    </font>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-image:url(:/icons/images/icons/cil-settings.png);
+                                        background-origin: content;
+                                        background-position: left center;
+
+                                        padding-left:10px;
+                                        background-repeat: no-repeat;
+                                        background-color: #4169E1;
+                                        text-align:center;
+
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>设置确认</string>
+                                </property>
+                            </widget>
+                        </widget>
                      <widget class="QWidget" name="widgets">
                       <property name="styleSheet">
                        <string notr="true">b</string>
@@ -3246,7 +3401,7 @@ color:#ffffff</string>
                                 <rect>
                                  <x>0</x>
                                  <y>0</y>
-                                 <width>274</width>
+                                    <width>218</width>
                                  <height>218</height>
                                 </rect>
                                </property>

@@ -13,7 +13,9 @@ def empty(a):
     print(h_min, h_max, s_min, s_max, v_min, v_max)
     return h_min, h_max, s_min, s_max, v_min, v_max
 
-path=r'..\resources4test02\line\1.bmp'
+
+path = r'../resources4test02/1.jpg'
+# path=r'..\resources4test02\line\1.bmp'
 # path = 'I:\\microscope\\res01\\savedVideo\\pic\\1.png'
 # path='solar_panel05.png'
 # 创建一个窗口，放置6个滑动条

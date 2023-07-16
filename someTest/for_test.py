@@ -1,4 +1,4 @@
-i = 0
-while i < 10:
+for i in range(0):
     print(i)
-    i += 1
+
+print(1)

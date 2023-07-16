@@ -126,7 +126,9 @@ class MainWindow(QMainWindow):
         # /////////////////////////////
         # 这里是真实需要检测的部分
         self.AllDetectionMode = [
-
+            self.fastPointDetection,
+            self.doubleLineStdDetection,
+            self.customDetection
         ]
 
         # my operation list
@@ -161,6 +163,7 @@ class MainWindow(QMainWindow):
         self.widgets.setWorkSpaceBtn.clicked.connect(self.setWorkSpaceBtnClicked)
         self.widgets.analyseBtn.clicked.connect(self.analyseBtnClicked)
 
+        self.widgets.confirmParamSettingBtn.clicked.connect(self.confirmParamSetting)
         self.widgets.startDetectBtn.clicked.connect(self.startDetect)
         # ////////////////////////////////////////////////////////////////////
 
@@ -307,6 +310,9 @@ class MainWindow(QMainWindow):
         self.widgets.logger02.insertRow(rowPosition02)
         self.widgets.logger02.setItem(rowPosition02, 0, QTableWidgetItem(f"{getTime()}"))
         self.widgets.logger02.setItem(rowPosition02, 1, QTableWidgetItem(f"{msg}"))
+
+        with open('log.txt', 'a+') as f:
+            f.write(f"{getTime()}: {msg}\n")
 
     def add_widthHeight(self, width, height, area):
         rowPosition01 = self.widgets.widthHeightTable.rowCount()
@@ -494,11 +500,51 @@ class MainWindow(QMainWindow):
         self.add_log('开始标准双线检测')
         self.showMinimized()
         time.sleep(1)
-        self.Processor.fastPointDetection(
+        self.Processor.doubleLineStdDetection(
             getOut01=self.add_log,
             getOut02=self.add_widthHeight,
             draw=self.color_grid.set_cell_color)
         self.showNormal()
+
+    def customDetection(self):
+        self.add_log('开始自定义检测')
+        self.showMinimized()
+        time.sleep(1)
+        self.Processor.customDetection(
+            getOut01=self.add_log,
+            getOut02=self.add_widthHeight,
+            draw=self.color_grid.set_cell_color)
+        self.showNormal()
+
+    def confirmParamSetting(self):
+        self.add_log('正在设置参数')
+        std_width = self.widgets.editWidthStd.text()
+        err_width = self.widgets.editWidthErr.text()
+        std_height = self.widgets.editHeightStd.text()
+        err_height = self.widgets.editHeightErr.text()
+        line_num = self.widgets.editLineNum.text()
+        pos_num = self.widgets.editPosNum.text()
+        curve_num = self.widgets.editCurveNum.text()
+
+        if std_height == '请输入' or std_width == '请输入' or err_width == '请输入' or err_height == '请输入' or line_num == '请输入' or pos_num == '请输入' or curve_num == '请输入':
+            self.add_log(f'参数设置错误，请检查设置的参数是否正确')
+            raise Exception('参数设置错误，请检查设置的参数是否正确', )
+        else:
+            self.Processor.std_w = float(std_width)
+            self.Processor.std_h = float(std_height)
+            self.Processor.err_w = float(err_width)
+            self.Processor.err_h = float(err_height)
+            self.Processor.lineNum = int(line_num)
+            self.Processor.posNum = int(pos_num)
+            self.Processor.curveNum = int(curve_num)
+
+            self.add_log(f"设置宽度标准值为: {self.Processor.std_w}")
+            self.add_log(f"设置宽度误差阈值为: {self.Processor.err_w}")
+            self.add_log(f"设置高度标准值为: {self.Processor.std_h}")
+            self.add_log(f"设置高度误差阈值为: {self.Processor.err_h}")
+            self.add_log(f"设置栅线条数为: {self.Processor.lineNum}")
+            self.add_log(f"设置每条栅线检测点位为: {self.Processor.posNum}")
+            self.add_log(f"设置每个点位中的切片个数为: {self.Processor.curveNum}")
 
     def startDetect(self):
         self.add_log('开始检测')
@@ -506,24 +552,10 @@ class MainWindow(QMainWindow):
             self.add_log(f"未设置工作空间的路径，请点击路径设置按钮设置")
             return
 
-        std_width = self.widgets.editWidthStd.text()
-        err_width = self.widgets.editWidthErr.text()
-        std_height = self.widgets.editHeightStd.text()
-        err_height = self.widgets.editHeightErr.text()
-
-        if std_height == '请输入' or std_width == '请输入' or err_width == '请输入' or err_height == '请输入':
-            self.add_log(f"请检查标准高宽或误差阈值是否已设置")
-            return
-        else:
-            self.Processor.std_w = std_width
-            self.Processor.std_h = std_height
-            self.Processor.err_w = err_width
-            self.Processor.err_h = err_height
-
-            self.add_log(f"设置宽度标准值为: {self.Processor.std_w}")
-            self.add_log(f"设置宽度误差阈值为: {self.Processor.err_w}")
-            self.add_log(f"设置高度标准值为: {self.Processor.std_h}")
-            self.add_log(f"设置高度误差阈值为: {self.Processor.err_h}")
+        self.confirmParamSetting()
+        self.add_log(f"开始{self.widgets.detectModeSelector.currentText()}")
+        currentIndex = self.widgets.detectModeSelector.currentIndex()
+        self.AllDetectionMode[currentIndex]()
 
 
 if __name__ == "__main__":
