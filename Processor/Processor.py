@@ -34,6 +34,8 @@ class Processor:
         self.err_w = .0
         self.err_h = .0
 
+        self.surface_area_list = []
+
         self.lineNum = 0
         self.posNum = 0
         self.curveNum = 30
@@ -765,6 +767,11 @@ class Processor:
         getOut(f"A_MAX: {a_np.max()}")
         getOut(f"A_MIN: {a_np.min()}")
 
+        s_np = np.array(self.surface_area_list)
+        getOut(f"S_AVG: {s_np.mean():.2f}")
+        getOut(f"S_STD: {s_np.std():.2f}")
+        getOut(f"S_MAX: {s_np.max():.2f}")
+        getOut(f"S_MIN: {s_np.min():.2f}")
         # 1/s 的求和
         a_1 = 0
         for a in a_np:
@@ -795,13 +802,19 @@ class Processor:
             f.write(f"最大高度: {h_np.max()}\n")
             f.write(f"最小高度: {h_np.min()}\n")
 
-            f.write(f"==========  面积统计  ==================\n")
+            f.write(f"==========  横截面积统计  ================\n")
 
             f.write(f"横截面积平均值: {a_np.mean():.2f}\n")
             f.write(f"横截面积标准差: {a_np.std():.2f}\n")
             f.write(f"最大横截面积: {a_np.max()}\n")
             f.write(f"最小横截面积: {a_np.min()}\n")
             f.write(f"横截面积倒数之和: {a_1:.2f}\n")
+
+            f.write(f"===========  表面积统计  ================\n")
+            f.write(f"表面积平均值: {s_np.mean():.2f}\n")
+            f.write(f"表面积标准差: {s_np.std():.2f}\n")
+            f.write(f"最大表面积: {s_np.max()}\n")
+            f.write(f"最小表面积: {s_np.min()}\n")
 
     def verticalMoveTest(self, getOut=None):
         #   这里是向上移动的
@@ -896,6 +909,28 @@ class Processor:
         getOut(f"resultIndex is ：{self.resultIndex}")
         return res
 
+    def getSurfaceArea(self, img, getOut=None):
+        img_line = img[
+                   self.lineRegionTopLeft[1]: self.lineRegionBottomRight[1],
+                   self.lineRegionTopLeft[0]: self.lineRegionBottomRight[0]
+                   ]
+        img_gray = cv2.cvtColor(img_line, cv2.COLOR_BGR2GRAY)
+        # 以像素个数来代表面积，和实际面积差了一个 像素到坐标，坐标再到实际的一个变化
+        # 1440 pixels = 347.09 um
+        scale = 347.09 / 1440
+        surface_area_count = 0
+        height, width = img_gray.shape
+        # 遍历图像的每个像素
+        for y in range(height):
+            for x in range(width):
+                gray_value = img_gray[y, x]
+                if gray_value > 30:
+                    surface_area_count += 1
+        surface_area = surface_area_count * scale * scale
+        getOut(f"surface_area: {surface_area}")
+        self.surface_area_list.append(surface_area)
+        return surface_area
+
     def firstPageProcess(self, getOut=None):
         # 第一页应该是开始对焦的那个界面
         self.findLine(getOut=getOut)
@@ -952,7 +987,7 @@ class Processor:
     def fourthPageProgress(self, getOut=None):
         pic = cv2.cvtColor(np.array(pyautogui.screenshot()), cv2.COLOR_RGB2BGR)[:, :1440]
         cv2.imwrite(f"{self.workSpacePath}/img/{self.currentLineIndex}-{self.currentPosIndex}.png", pic)
-
+        self.getSurfaceArea(pic, getOut=getOut)
         self.click('back_first_page_region', 'back_first_page', getOut=getOut)
         time.sleep(2)
 

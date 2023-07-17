@@ -615,6 +615,7 @@ class MainWindow(QMainWindow):
             return
 
         # self.confirmParamSetting()
+        self.Processor.surface_area_list = []
         self.add_log(f"开始{self.widgets.detectModeSelector.currentText()}")
         currentIndex = self.widgets.detectModeSelector.currentIndex()
         self.AllDetectionMode[currentIndex]()
