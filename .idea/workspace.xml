@@ -7,8 +7,6 @@
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.ui" beforeDir="false" afterPath="$PROJECT_DIR$/main.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/ui_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/ui_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/someTest/for_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/someTest/for_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/someTest/hsvTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/someTest/hsvTest.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +46,7 @@
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/10603/Desktop/mircoscrope/newGui/resources4test02",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.tabs"
+    "settings.editor.selected.configurable": "PyScientificConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -64,7 +62,7 @@
       <recent name="C:\Users\10603\Desktop\mircoscrope\NewTestDemo\modules" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.getLineEdgeTest">
+  <component name="RunManager" selected="Python.main">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="Modern_GUI_PyDracula_PySide6_or_PyQt6" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -72,7 +70,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="D:\anaconda\envs\qt04\python.exe" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -80,7 +78,26 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="alignTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Modern_GUI_PyDracula_PySide6_or_PyQt6" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/someTest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/someTest/alignTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
@@ -91,6 +108,9 @@
       <module name="Modern_GUI_PyDracula_PySide6_or_PyQt6" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/someTest" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -110,6 +130,9 @@
       <module name="Modern_GUI_PyDracula_PySide6_or_PyQt6" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/someTest" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -147,29 +170,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="screenshotSaveTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Modern_GUI_PyDracula_PySide6_or_PyQt6" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/someTest" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/someTest/screenshotSaveTest.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="skimgTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Modern_GUI_PyDracula_PySide6_or_PyQt6" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/someTest" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -187,11 +194,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.alignTest" />
         <item itemvalue="Python.getLineEdgeTest" />
         <item itemvalue="Python.hsvTest" />
         <item itemvalue="Python.skimgTest" />
-        <item itemvalue="Python.screenshotSaveTest" />
-        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
@@ -226,7 +233,9 @@
       <workItem from="1689217487780" duration="22140000" />
       <workItem from="1689270413336" duration="163000" />
       <workItem from="1689294903816" duration="15586000" />
-      <workItem from="1689482478801" duration="15694000" />
+      <workItem from="1689482478801" duration="17424000" />
+      <workItem from="1689557176703" duration="4053000" />
+      <workItem from="1689584211781" duration="9186000" />
     </task>
     <task id="LOCAL-00001" summary="my demo gui">
       <created>1681277684146</created>
@@ -326,7 +335,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689270463680</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="1/s,param settings,pic save,area computation changed">
+      <created>1689525233496</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1689525233496</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -351,7 +367,8 @@
     <MESSAGE value="README.md删除" />
     <MESSAGE value="btn修改" />
     <MESSAGE value="界面的设置，中断的机制" />
-    <option name="LAST_COMMIT_MESSAGE" value="界面的设置，中断的机制" />
+    <MESSAGE value="1/s,param settings,pic save,area computation changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="1/s,param settings,pic save,area computation changed" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -376,15 +393,16 @@
     <SUITE FILE_PATH="coverage/NewTestDemo$Processor.coverage" NAME="Processor 覆盖结果" MODIFIED="1681265697185" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Processor" />
     <SUITE FILE_PATH="coverage/NewTestDemo$__init__.coverage" NAME="__init__ 覆盖结果" MODIFIED="1680933650824" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/widgets/custom_grips" />
     <SUITE FILE_PATH="coverage/NewTestDemo$matchTest.coverage" NAME="matchTest 覆盖结果" MODIFIED="1681276154192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
-    <SUITE FILE_PATH="coverage/newGui$getLineEdgeTest.coverage" NAME="getLineEdgeTest 覆盖结果" MODIFIED="1689524926123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
+    <SUITE FILE_PATH="coverage/newGui$getLineEdgeTest.coverage" NAME="getLineEdgeTest 覆盖结果" MODIFIED="1689556798169" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
     <SUITE FILE_PATH="coverage/NewTestDemo$NoneTest.coverage" NAME="NoneTest 覆盖结果" MODIFIED="1681110816549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
+    <SUITE FILE_PATH="coverage/newGui$alignTest.coverage" NAME="alignTest 覆盖结果" MODIFIED="1689584320720" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
     <SUITE FILE_PATH="coverage/newGui$checkClicked.coverage" NAME="checkClicked 覆盖结果" MODIFIED="1681359063714" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
     <SUITE FILE_PATH="coverage/NewTestDemo$ui_main.coverage" NAME="ui_main 覆盖结果" MODIFIED="1680950238022" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modules" />
     <SUITE FILE_PATH="coverage/NewTestDemo$hsvTest.coverage" NAME="hsvTest 覆盖结果" MODIFIED="1681050787915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
     <SUITE FILE_PATH="coverage/NewTestDemo$moveTest.coverage" NAME="moveTest 覆盖结果" MODIFIED="1681054436146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
     <SUITE FILE_PATH="coverage/newGui$getSharpnessTest.coverage" NAME="getSharpnessTest 覆盖结果" MODIFIED="1689251236705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
     <SUITE FILE_PATH="coverage/newGui$screenshotSaveTest.coverage" NAME="screenshotSaveTest 覆盖结果" MODIFIED="1689512884825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
-    <SUITE FILE_PATH="coverage/newGui$main.coverage" NAME="main 覆盖结果" MODIFIED="1689512249083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/newGui$main.coverage" NAME="main 覆盖结果" MODIFIED="1689602848690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/newGui$getLine.coverage" NAME="getLine 覆盖结果" MODIFIED="1682412361401" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/someTest" />
   </component>
 </project>

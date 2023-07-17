@@ -154,17 +154,19 @@ class MainWindow(QMainWindow):
         # BUTTONS CLICK
         # ///////////////////////////////////////////////////////////////
         # my own function connect to button
-
         self.widgets.startTestButton.clicked.connect(self.startTestButtonClicked)
         self.widgets.startButton.clicked.connect(self.startButtonClicked)
         self.widgets.recordButton.clicked.connect(self.recordButtonClicked)
         self.widgets.developerButton.clicked.connect(self.developerButtonClicked)
         self.widgets.progressColorButton.clicked.connect(self.progressColorButtonClicked)
         self.widgets.setWorkSpaceBtn.clicked.connect(self.setWorkSpaceBtnClicked)
-        self.widgets.analyseBtn.clicked.connect(self.analyseBtnClicked)
+        # self.widgets.analyseBtn.clicked.connect(self.analyseBtnClicked)
 
-        self.widgets.confirmParamSettingBtn.clicked.connect(self.confirmParamSetting)
+        # self.widgets.confirmParamSettingBtn.clicked.connect(self.confirmParamSetting)
         self.widgets.startDetectBtn.clicked.connect(self.startDetect)
+        # comboBox changed
+        self.widgets.detectModeSelector.currentIndexChanged.connect(self.onDetectModeChanged)
+
         # ////////////////////////////////////////////////////////////////////
 
         # LEFT MENUS
@@ -262,15 +264,49 @@ class MainWindow(QMainWindow):
 
     # MOUSE CLICK EVENTS
     # ///////////////////////////////////////////////////////////////
+    def onDetectModeChanged(self):
+        index = self.widgets.detectModeSelector.currentIndex()
+        if index == 2:
+            self.widgets.editLineNum.setEnabled(True)
+            self.widgets.editPosNum.setEnabled(True)
+            self.widgets.editCurveNum.setEnabled(True)
+            self.widgets.editLineNum.setStyleSheet('background-repeat:no-repeat;color:#000000')
+            self.widgets.editPosNum.setStyleSheet('background-repeat:no-repeat;color:#000000')
+            self.widgets.editCurveNum.setStyleSheet('background-repeat:no-repeat;color:#000000')
+            self.widgets.lineNumLabel.setStyleSheet(
+                'background-repeat: no-repeat;background-color: #4169E1;\text-align:center;color:#ffffff')
+            self.widgets.posNumLabel.setStyleSheet(
+                'background-repeat: no-repeat;background-color: #4169E1;\text-align:center;color:#ffffff')
+            self.widgets.curveNumLabel.setStyleSheet(
+                'background-repeat: no-repeat;background-color: #4169E1;\text-align:center;color:#ffffff')
+
+        else:
+            self.widgets.editLineNum.setEnabled(False)
+            self.widgets.editPosNum.setEnabled(False)
+            self.widgets.editCurveNum.setEnabled(False)
+            self.widgets.editLineNum.setStyleSheet(
+                'background-color:#708090;background-repeat:no-repeat;color:#000000')
+            self.widgets.editPosNum.setStyleSheet(
+                'background-color:#708090;background-repeat:no-repeat;color:#000000')
+            self.widgets.editCurveNum.setStyleSheet(
+                'background-color:#708090;background-repeat:no-repeat;color:#000000')
+            self.widgets.lineNumLabel.setStyleSheet(
+                'background-repeat:no-repeat;background-color:#708090;text-align:center;color:#ffffff')
+            self.widgets.posNumLabel.setStyleSheet(
+                'background-repeat:no-repeat;background-color:#708090;text-align:center;color:#ffffff')
+            self.widgets.curveNumLabel.setStyleSheet(
+                'background-repeat:no-repeat;background-color:#708090;text-align:center;color:#ffffff')
+
     def setWorkSpaceBtnClicked(self):
         dir = QFileDialog.getExistingDirectory(self, "选择文件夹", " ")
         if dir:
             self.Processor.workSpacePath = dir
             print(f"已设置工作空间的目录为：{dir}")
             self.add_log(f"已设置工作空间的目录为：{dir}")
-            mkdir(f"{dir}/断点记录")
+            mkdir(f"{dir}/broken_points")
             mkdir(f"{dir}/开发者记录")
             mkdir(f"{dir}/结果查看")
+            mkdir(f"{dir}/img")
 
     def analyseBtnClicked(self):
         file = QFileDialog.getOpenFileName(self, "选择文件")[0]
@@ -299,6 +335,11 @@ class MainWindow(QMainWindow):
         self.widgets.stackedWidget.setCurrentWidget(self.widgets.page_before)
         UIFunctions.resetStyle(self, 'btn_settings')
         self.widgets.btn_settings.setStyleSheet(UIFunctions.selectMenu(self.widgets.btn_settings.styleSheet()))
+
+    def startButtonClicked(self):
+        self.widgets.stackedWidget.setCurrentWidget(self.widgets.page_details)
+        UIFunctions.resetStyle(self, 'btn_details')
+        self.widgets.btn_details.setStyleSheet(UIFunctions.selectMenu(self.widgets.btn_details.styleSheet()))
 
     def add_log(self, msg):
         rowPosition01 = self.widgets.logger.rowCount()
@@ -351,18 +392,6 @@ class MainWindow(QMainWindow):
         self.add_log(f"开始{self.widgets.modeSelector.currentText()}")
         currentIndex = self.widgets.modeSelector.currentIndex()
         self.AllOperations[currentIndex]()
-
-    def startButtonClicked(self):
-        self.showMinimized()
-        time.sleep(1)
-        self.Processor.pipelineTest02(
-            getOut01=self.add_log,
-            getOut02=self.add_widthHeight,
-            draw=self.color_grid.set_cell_color,
-            # lineCounts=3,
-            # posCounts=3
-        )
-        self.showNormal()
 
     # /////////////////////////////////////////////////////////////////////
     def findLineTest(self):
@@ -488,6 +517,10 @@ class MainWindow(QMainWindow):
 
     def fastPointDetection(self):
         self.add_log('开始快速单点检测')
+        self.Processor.lineNum = 1
+        self.Processor.posNum = 1
+        self.Processor.curveNum = 30
+        self.confirmWidthHeightSetting()
         self.showMinimized()
         time.sleep(1)
         self.Processor.fastPointDetection(
@@ -498,6 +531,10 @@ class MainWindow(QMainWindow):
 
     def doubleLineStdDetection(self):
         self.add_log('开始标准双线检测')
+        self.Processor.lineNum = 2
+        self.Processor.posNum = 5
+        self.Processor.curveNum = 30
+        self.confirmWidthHeightSetting()
         self.showMinimized()
         time.sleep(1)
         self.Processor.doubleLineStdDetection(
@@ -508,6 +545,7 @@ class MainWindow(QMainWindow):
 
     def customDetection(self):
         self.add_log('开始自定义检测')
+        self.confirmParamSetting()
         self.showMinimized()
         time.sleep(1)
         self.Processor.customDetection(
@@ -515,6 +553,30 @@ class MainWindow(QMainWindow):
             getOut02=self.add_widthHeight,
             draw=self.color_grid.set_cell_color)
         self.showNormal()
+
+    def confirmWidthHeightSetting(self):
+        self.add_log('正在设置参数')
+        std_width = self.widgets.editWidthStd.text()
+        err_width = self.widgets.editWidthErr.text()
+        std_height = self.widgets.editHeightStd.text()
+        err_height = self.widgets.editHeightErr.text()
+        # line_num = self.widgets.editLineNum.text()
+        # pos_num = self.widgets.editPosNum.text()
+        # curve_num = self.widgets.editCurveNum.text()
+
+        if std_height == '' or std_width == '' or err_width == '' or err_height == '':
+            self.add_log(f'参数设置错误，请检查设置的参数是否正确')
+            raise Exception('参数设置错误，请检查设置的参数是否正确', )
+        else:
+            self.Processor.std_w = float(std_width)
+            self.Processor.std_h = float(std_height)
+            self.Processor.err_w = float(err_width)
+            self.Processor.err_h = float(err_height)
+
+            self.add_log(f"设置宽度标准值为: {self.Processor.std_w}")
+            self.add_log(f"设置宽度误差阈值为: {self.Processor.err_w}")
+            self.add_log(f"设置高度标准值为: {self.Processor.std_h}")
+            self.add_log(f"设置高度误差阈值为: {self.Processor.err_h}")
 
     def confirmParamSetting(self):
         self.add_log('正在设置参数')
@@ -526,7 +588,7 @@ class MainWindow(QMainWindow):
         pos_num = self.widgets.editPosNum.text()
         curve_num = self.widgets.editCurveNum.text()
 
-        if std_height == '请输入' or std_width == '请输入' or err_width == '请输入' or err_height == '请输入' or line_num == '请输入' or pos_num == '请输入' or curve_num == '请输入':
+        if std_height == '' or std_width == '' or err_width == '' or err_height == '' or line_num == '' or pos_num == '' or curve_num == '':
             self.add_log(f'参数设置错误，请检查设置的参数是否正确')
             raise Exception('参数设置错误，请检查设置的参数是否正确', )
         else:
@@ -552,7 +614,7 @@ class MainWindow(QMainWindow):
             self.add_log(f"未设置工作空间的路径，请点击路径设置按钮设置")
             return
 
-        self.confirmParamSetting()
+        # self.confirmParamSetting()
         self.add_log(f"开始{self.widgets.detectModeSelector.currentText()}")
         currentIndex = self.widgets.detectModeSelector.currentIndex()
         self.AllDetectionMode[currentIndex]()

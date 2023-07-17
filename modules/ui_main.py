@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainQQBahb.ui'
+## Form generated from reading UI file 'mainIvIVvA.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.0
 ##
@@ -319,26 +319,33 @@ class Ui_MainWindow(object):
 "	selection-color: rgb(255, 255, 255);\n"
 "	selection-background-color: rgb(255, 121, 198);\n"
 "    color: #f8f8f2;\n"
-"}\n"
-"QLineEdit:hover {\n"
-"	border: 2px solid rgb(64, 71, 88);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"	border: 2px solid #ff79c6;\n"
-"}\n"
-"\n"
-"/* //////////////////////////"
-                        "///////////////////////////////////////////////////////////////////////\n"
-"PlainTextEdit */\n"
-"QPlainTextEdit {\n"
-"	background-color: #4169E1;\n"
-"	border-radius: 5px;\n"
-"	padding: 10px;\n"
-"	selection-color: rgb(255, 255, 255);\n"
-"	selection-background-color: rgb(255, 121, 198);\n"
-"    color: #f8f8f2;\n"
-"}\n"
-"QPlainTextEdit  QScrollBar:vertical {\n"
+                                      "}\n"
+                                      "QLineEdit:hover {\n"
+                                      "	border: 2px solid rgb(64, 71, 88);\n"
+                                      "}\n"
+                                      "QLineEdit:focus {\n"
+                                      "	border: 2px solid #ff79c6;\n"
+                                      "}\n"
+                                      "\n"
+                                      "/* //////////////////////////"
+                                      "///////////////////////////////////////////////////////////////////////\n"
+                                      "Label */\n"
+                                      "QLabel {\n"
+                                      "	background-color: #4169E1;\n"
+                                      "	border-radius: 5px;\n"
+                                      "}\n"
+                                      "\n"
+                                      "/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
+                                      "PlainTextEdit */\n"
+                                      "QPlainTextEdit {\n"
+                                      "	background-color: #4169E1;\n"
+                                      "	border-radius: 5px;\n"
+                                      "	padding: 10px;\n"
+                                      "	selection-color: rgb(255, 255, 255);\n"
+                                      "	selection-background-color: rgb(255, 121, 198);\n"
+                                      "    color: #f8f8f2;\n"
+                                      "}\n"
+                                      "QPlainTextEdit  QScrollBar:vertical {\n"
 "    width: 8px;\n"
 " }\n"
 "QPlainTextEdit  QScrollBar:horizontal {\n"
@@ -347,28 +354,28 @@ class Ui_MainWindow(object):
 "QPlainTextEdit:hover {\n"
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
-"QPlainTextEdit:focus {\n"
-"	border: 2px solid #ff79c6;\n"
-"}\n"
-"\n"
-"/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
-"ScrollBars */\n"
-"QScrollBar:horizontal {\n"
-"    border: none;\n"
-"    background: #4169E1;\n"
-"    height: 8px;\n"
-"    margin: 0px 21px 0 21px;\n"
-"	border-radius: 0px;\n"
-"}\n"
-"QScrollBar::handle:horizontal {\n"
-"    background: #e75f2c;\n"
-"    min-width: 25px;\n"
-"	border-radius: 4px\n"
-"}\n"
-"QScrollBar::ad"
-                        "d-line:horizontal {\n"
-"    border: none;\n"
-"    background: none;\n"
+                                      "QPlainTextEdit:focus {\n"
+                                      "	border: 2px solid #ff79c6;\n"
+                                      "}\n"
+                                      "\n"
+                                      "/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
+                                      "ScrollBars */\n"
+                                      "QScrollBar:horizontal {\n"
+                                      "    border: none;\n"
+                                      "    background: #4169E1;\n"
+                                      "    height: 8px;\n"
+                                      ""
+                                      "    margin: 0px 21px 0 21px;\n"
+                                      "	border-radius: 0px;\n"
+                                      "}\n"
+                                      "QScrollBar::handle:horizontal {\n"
+                                      "    background: #e75f2c;\n"
+                                      "    min-width: 25px;\n"
+                                      "	border-radius: 4px\n"
+                                      "}\n"
+                                      "QScrollBar::add-line:horizontal {\n"
+                                      "    border: none;\n"
+                                      "    background: none;\n"
 "    width: 20px;\n"
 "	border-top-right-radius: 4px;\n"
 "    border-bottom-right-radius: 4px;\n"
@@ -386,28 +393,28 @@ class Ui_MainWindow(object):
 "}\n"
 "QScrollBar::up-arrow:horizontal, QScrollBar::down-arrow:horizontal\n"
 "{\n"
-"     background: none;\n"
-"}\n"
-"QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal\n"
-"{\n"
-"     background: #4169E1;\n"
-"}\n"
-" QScrollBar:vertical {\n"
-"	border: none;\n"
-"    background-color: #4169E1;\n"
-"    width: 8px;\n"
-"    margin: 21px 0 21px 0;\n"
-"	border-radius: 0px;\n"
-" }\n"
-" QScrollBar::handle:vertical {	\n"
-"	background: #e75f2c;\n"
-"    min-height: 25px;\n"
-"	border-radius: 4px\n"
-" }\n"
-" QScrollBar::add-l"
-                        "ine:vertical {\n"
-"     border: none;\n"
-"    background: none;\n"
+                                      "     background: none;\n"
+                                      "}\n"
+                                      "QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal\n"
+                                      "{\n"
+                                      "     background: #4169E1;\n"
+                                      "}\n"
+                                      " QScrollBar:vertical {\n"
+                                      "	border: none;\n"
+                                      "    background-color: #4169E1;\n"
+                                      "    width: 8px;\n"
+                                      "  "
+                                      "  margin: 21px 0 21px 0;\n"
+                                      "	border-radius: 0px;\n"
+                                      " }\n"
+                                      " QScrollBar::handle:vertical {	\n"
+                                      "	background: #e75f2c;\n"
+                                      "    min-height: 25px;\n"
+                                      "	border-radius: 4px\n"
+                                      " }\n"
+                                      " QScrollBar::add-line:vertical {\n"
+                                      "     border: none;\n"
+                                      "    background: none;\n"
 "     height: 20px;\n"
 "	border-bottom-left-radius: 4px;\n"
 "    border-bottom-right-radius: 4px;\n"
@@ -422,28 +429,28 @@ class Ui_MainWindow(object):
 "    border-top-right-radius: 4px;\n"
 "     subcontrol-position: top;\n"
 "     subcontrol-origin: margin;\n"
-" }\n"
-" QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {\n"
-"     background: none;\n"
-" }\n"
-"\n"
-" QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {\n"
-"     background: #4169E1;\n"
-" }\n"
-"\n"
-"/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
-"CheckBox */\n"
-"QCheckBox::indicator {\n"
-"    border: 3px solid #4169E1;\n"
-"	width: 15px;\n"
-"	height: 15px;\n"
-"	border-radius: 10px;\n"
-"    background: #4169E1;\n"
-"}\n"
-"QCheckBox::indicator"
-                        ":hover {\n"
-"    border: 3px solid #4169E1;\n"
-"}\n"
+                                      " }\n"
+                                      " QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {\n"
+                                      "     background: none;\n"
+                                      " }\n"
+                                      "\n"
+                                      " QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {\n"
+                                      "     background: #4169E1;\n"
+                                      " }\n"
+                                      "\n"
+                                      "/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
+                                      ""
+                                      "CheckBox */\n"
+                                      "QCheckBox::indicator {\n"
+                                      "    border: 3px solid #4169E1;\n"
+                                      "	width: 15px;\n"
+                                      "	height: 15px;\n"
+                                      "	border-radius: 10px;\n"
+                                      "    background: #4169E1;\n"
+                                      "}\n"
+                                      "QCheckBox::indicator:hover {\n"
+                                      "    border: 3px solid #4169E1;\n"
+                                      "}\n"
 "QCheckBox::indicator:checked {\n"
 "    background: 3px solid #bd93f9;\n"
 "	border: 3px solid #bd93f9;	\n"
@@ -458,28 +465,28 @@ class Ui_MainWindow(object):
 "	height: 15px;\n"
 "	border-radius: 10px;\n"
 "    background: #4169E1;\n"
-"}\n"
-"QRadioButton::indicator:hover {\n"
-"    border: 3px solid #4169E1;\n"
-"}\n"
-"QRadioButton::indicator:checked {\n"
-"    background: 3px solid #bd93f9;\n"
-"	border: 3px solid #bd93f9;	\n"
-"}\n"
-"\n"
-"/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
-"ComboBox */\n"
-"QComboBox{\n"
-"	background-color: #4169E1;\n"
-"	border-radius: 5px;\n"
-"	border: 2px solid #4169E1;\n"
-"	padding: 5px;\n"
-"	padding-left: 10px;\n"
-"    color: #f8f8f2;\n"
-"}\n"
-"Q"
-                        "ComboBox:hover{\n"
-"	border: 2px solid #4169E1;\n"
+                                      "}\n"
+                                      "QRadioButton::indicator:hover {\n"
+                                      "    border: 3px solid #4169E1;\n"
+                                      "}\n"
+                                      "QRadioButton::indicator:checked {\n"
+                                      "    background: 3px solid #bd93f9;\n"
+                                      "	border: 3px solid #bd93f9;	\n"
+                                      "}\n"
+                                      "\n"
+                                      "/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
+                                      ""
+                                      "ComboBox */\n"
+                                      "QComboBox{\n"
+                                      "	background-color: #4169E1;\n"
+                                      "	border-radius: 5px;\n"
+                                      "	border: 2px solid #4169E1;\n"
+                                      "	padding: 5px;\n"
+                                      "	padding-left: 10px;\n"
+                                      "    color: #f8f8f2;\n"
+                                      "}\n"
+                                      "QComboBox:hover{\n"
+                                      "	border: 2px solid #4169E1;\n"
 "}\n"
 "QComboBox::drop-down {\n"
 "	subcontrol-origin: padding;\n"
@@ -494,28 +501,28 @@ class Ui_MainWindow(object):
 "	background-position: center;\n"
 "	background-repeat: no-reperat;\n"
 " }\n"
-"QComboBox QAbstractItemView {\n"
-"	color: rgb(255, 121, 198);	\n"
-"	background-color: #4169E1;\n"
-"	padding: 10px;\n"
-"	selection-background-color: #4169E1;\n"
-"}\n"
-"\n"
-"/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
-"Sliders */\n"
-"QSlider::groove:horizontal {\n"
-"    border-radius: 5px;\n"
-"    height: 10px;\n"
-"	margin: 0px;\n"
-"	background-color: #4169E1;\n"
-"}\n"
-"QSlider::groove:horizontal:hover {\n"
-"	background-color: #4169E1;\n"
-"}\n"
-"QSlider::handle:horizontal {"
-                        "\n"
-"    background-color: #e75f2c;\n"
-"    border: none;\n"
+                                      "QComboBox QAbstractItemView {\n"
+                                      "	color: rgb(255, 121, 198);	\n"
+                                      "	background-color: #4169E1;\n"
+                                      "	padding: 10px;\n"
+                                      "	selection-background-color: #4169E1;\n"
+                                      "}\n"
+                                      "\n"
+                                      "/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
+                                      "Sliders */\n"
+                                      "QSlider::groove:horizontal {\n"
+                                      "    border-radiu"
+                                      "s: 5px;\n"
+                                      "    height: 10px;\n"
+                                      "	margin: 0px;\n"
+                                      "	background-color: #4169E1;\n"
+                                      "}\n"
+                                      "QSlider::groove:horizontal:hover {\n"
+                                      "	background-color: #4169E1;\n"
+                                      "}\n"
+                                      "QSlider::handle:horizontal {\n"
+                                      "    background-color: #e75f2c;\n"
+                                      "    border: none;\n"
 "    height: 10px;\n"
 "    width: 10px;\n"
 "    margin: 0px;\n"
@@ -538,28 +545,28 @@ class Ui_MainWindow(object):
 "	background-color: #4169E1;\n"
 "}\n"
 "QSlider::handle:vertical {\n"
-"    background-color: #e75f2c;\n"
-"	border: none;\n"
-"    height: 10px;\n"
-"    width: 10px;\n"
-"    margin: 0px;\n"
-"	border-radius: 5px;\n"
-"}\n"
-"QSlider::handle:vertical:hover {\n"
-"    background-color: rgb(195, 155, 255);\n"
-"}\n"
-"QSlider::handle:vertical:pressed {\n"
-"    background-color: rgb(255, 121, 198);\n"
-"}\n"
-"\n"
-"/* /////////////////////////////////////////////////////////////////////////////////////////////////"
-                        "\n"
-"CommandLinkButton */\n"
-"#pagesContainer QCommandLinkButton {	\n"
-"	color: rgb(255, 121, 198);\n"
-"	border-radius: 5px;\n"
-"	padding: 5px;\n"
-"    border: 2px solid #ff79c6;\n"
+                                      "    background-color: #e75f2c;\n"
+                                      "	border: none;\n"
+                                      "    height: 10px;\n"
+                                      "    width: 10px;\n"
+                                      "    margin: 0px;\n"
+                                      "	border-radius: 5px;\n"
+                                      "}\n"
+                                      "QSlider::handle:vertical:hover {\n"
+                                      "    background-color: rgb(195, 155, 255);\n"
+                                      "}\n"
+                                      "Q"
+                                      "Slider::handle:vertical:pressed {\n"
+                                      "    background-color: rgb(255, 121, 198);\n"
+                                      "}\n"
+                                      "\n"
+                                      "/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
+                                      "CommandLinkButton */\n"
+                                      "#pagesContainer QCommandLinkButton {	\n"
+                                      "	color: rgb(255, 121, 198);\n"
+                                      "	border-radius: 5px;\n"
+                                      "	padding: 5px;\n"
+                                      "    border: 2px solid #ff79c6;\n"
 "    color: #ff79c6;\n"
 "}\n"
 "#pagesContainer QCommandLinkButton:hover {	\n"
@@ -573,23 +580,24 @@ class Ui_MainWindow(object):
 "\n"
 "/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
 "Button */\n"
-"#pagesContainer QPushButton {\n"
-"	border: 2px solid #4169E1;\n"
-"	border-radius: 5px;	\n"
-"	background-color: #4169E1;\n"
-"    color: #f8f8f2;\n"
-"}\n"
-"#pagesContainer QPushButton:hover {\n"
-"	background-color: #4169E1;\n"
-"	border: 2px solid #4169E1;\n"
-"}\n"
-"#pagesContainer QPushButton:pressed {	\n"
-"	background-color: #e75f2c;\n"
-"	border: 2px solid #ff79c6;\n"
-"}\n"
-"\n"
-"\n"
-"")
+                                      "#pagesContainer QPushButton {\n"
+                                      "	border: 2px solid #4169E1;\n"
+                                      "	border-radius: 5px;	\n"
+                                      "	background-color: #4169E1;\n"
+                                      "    color: #f8f8f2;\n"
+                                      "}\n"
+                                      "#pagesContainer QPushButton:hover {\n"
+                                      "	background-color: #4169E1;\n"
+                                      "	border: 2px solid #4169E1;\n"
+                                      "}\n"
+                                      "#p"
+                                      "agesContainer QPushButton:pressed {	\n"
+                                      "	background-color: #e75f2c;\n"
+                                      "	border: 2px solid #ff79c6;\n"
+                                      "}\n"
+                                      "\n"
+                                      "\n"
+                                      "")
         self.verticalLayout_20 = QVBoxLayout(self.styleSheet)
         self.verticalLayout_20.setObjectName(u"verticalLayout_20")
         self.verticalLayout_20.setContentsMargins(10, 10, 10, 10)
@@ -1058,82 +1066,37 @@ class Ui_MainWindow(object):
         self.page_home.setStyleSheet(u"background-color:#FFFFFF")
         self.label_2 = QLabel(self.page_home)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(450, -10, 351, 491))
+        self.label_2.setGeometry(QRect(460, 0, 351, 491))
         self.label_2.setStyleSheet(u"image:url(:/images/images/images/solar_panel06.png)")
         self.label_3 = QLabel(self.page_home)
         self.label_3.setObjectName(u"label_3")
-        self.label_3.setGeometry(QRect(30, 260, 311, 371))
+        self.label_3.setGeometry(QRect(30, 240, 311, 371))
         self.label_3.setStyleSheet(u"image:url(:/images/images/images/vhx.png)")
-        self.pushButton_2 = QPushButton(self.page_home)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setGeometry(QRect(450, 460, 91, 41))
-        font8 = QFont()
-        font8.setFamilies([u"\u5fae\u8f6f\u96c5\u9ed1"])
-        font8.setPointSize(12)
-        font8.setBold(False)
-        font8.setItalic(False)
-        self.pushButton_2.setFont(font8)
-        self.pushButton_2.setStyleSheet(u"background-image:url(:/icons/images/icons/cil-cursor-move.png);\n"
-"background-origin: content;\n"
-"background-position: left center;\n"
-"padding-top: 8px;\n"
-"padding-left:10px;\n"
-"background-repeat: no-repeat;\n"
-"background-color: #4169E1;\n"
-"text-align:bottom;\n"
-"padding-bottom:10px")
         self.label_4 = QLabel(self.page_home)
         self.label_4.setObjectName(u"label_4")
         self.label_4.setGeometry(QRect(-20, 20, 461, 181))
         self.label_4.setStyleSheet(u"image:url(:/images/images/images/companyLogo.png)")
         self.startButton = QPushButton(self.page_home)
         self.startButton.setObjectName(u"startButton")
-        self.startButton.setGeometry(QRect(580, 460, 91, 41))
-        font9 = QFont()
-        font9.setFamilies([u"\u5fae\u8f6f\u96c5\u9ed1"])
-        font9.setPointSize(12)
-        self.startButton.setFont(font9)
+        self.startButton.setGeometry(QRect(570, 500, 121, 41))
+        font8 = QFont()
+        font8.setFamilies([u"\u5fae\u8f6f\u96c5\u9ed1"])
+        font8.setPointSize(12)
+        self.startButton.setFont(font8)
         self.startButton.setStyleSheet(u"background-image:url(:/icons/images/icons/cil-media-play.png);\n"
-"background-origin: content;\n"
-"background-position: left center;\n"
-"padding-top: 8px;\n"
-"padding-left:10px;\n"
-"background-repeat: no-repeat;\n"
-"background-color: #4169E1;\n"
-"text-align:bottom;\n"
-"padding-bottom:10px")
-        self.pushButton_4 = QPushButton(self.page_home)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-        self.pushButton_4.setGeometry(QRect(710, 460, 91, 41))
-        self.pushButton_4.setFont(font9)
-        self.pushButton_4.setStyleSheet(u"background-image:url(:/icons/images/icons/cil-media-stop.png);\n"
-"background-origin: content;\n"
-"background-position: left center;\n"
-"padding-top: 8px;\n"
-"padding-left:10px;\n"
-"background-repeat: no-repeat;\n"
-"background-color: #4169E1;\n"
-"text-align:bottom;\n"
-"padding-bottom:10px")
-        self.label_5 = QLabel(self.page_home)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setGeometry(QRect(450, 560, 351, 31))
-        font10 = QFont()
-        font10.setFamilies([u"\u5fae\u8f6f\u96c5\u9ed1"])
-        font10.setPointSize(11)
-        self.label_5.setFont(font10)
-        self.label_5.setStyleSheet(u"background-color: 		#1E90FF;\n"
-"text-align:center;\n"
-"padding-left:10px\n"
-"")
+                                       "background-origin: content;\n"
+                                       "background-position: left center;\n"
+                                       "padding-top: 8px;\n"
+                                       "padding-left:10px;\n"
+                                       "background-repeat: no-repeat;\n"
+                                       "background-color: #4169E1;\n"
+                                       "text-align:bottom;\n"
+                                       "padding-bottom:10px")
         self.stackedWidget.addWidget(self.page_home)
         self.label_2.raise_()
         self.label_4.raise_()
         self.label_3.raise_()
-        self.pushButton_2.raise_()
         self.startButton.raise_()
-        self.pushButton_4.raise_()
-        self.label_5.raise_()
         self.page_history = QWidget()
         self.page_history.setObjectName(u"page_history")
         self.stackedWidget.addWidget(self.page_history)
@@ -1141,29 +1104,34 @@ class Ui_MainWindow(object):
         self.page_details.setObjectName(u"page_details")
         self.startDetectBtn = QPushButton(self.page_details)
         self.startDetectBtn.setObjectName(u"startDetectBtn")
-        self.startDetectBtn.setGeometry(QRect(200, 60, 141, 41))
-        self.startDetectBtn.setFont(font8)
+        self.startDetectBtn.setGeometry(QRect(720, 200, 131, 41))
+        font9 = QFont()
+        font9.setFamilies([u"\u7b49\u7ebf"])
+        font9.setPointSize(13)
+        font9.setBold(False)
+        font9.setItalic(False)
+        self.startDetectBtn.setFont(font9)
         self.startDetectBtn.setStyleSheet(u"background-image:url(:/icons/images/icons/cil-media-play.png);\n"
-                                          "                               background-origin: content;\n"
-                                          "                               background-position: left center;\n"
-                                          "                               padding-top: 8px;\n"
-                                          "                               padding-left:10px;\n"
-                                          "                               background-repeat: no-repeat;\n"
-                                          "                               background-color: #4169E1;\n"
-                                          "                               text-align:bottom;\n"
-                                          "                               padding-bottom:10px\n"
-                                          "                           ")
+                                          "                                        background-origin: content;\n"
+                                          "                                        background-position: left center;\n"
+                                          "                                        padding-top: 8px;\n"
+                                          "                                        padding-left:10px;\n"
+                                          "                                        background-repeat: no-repeat;\n"
+                                          "                                        background-color: #008B8B;\n"
+                                          "                                        text-align:bottom;\n"
+                                          "                                        padding-bottom:10px\n"
+                                          "                                    ")
         self.setWorkSpaceBtn = QPushButton(self.page_details)
         self.setWorkSpaceBtn.setObjectName(u"setWorkSpaceBtn")
-        self.setWorkSpaceBtn.setGeometry(QRect(20, 10, 131, 41))
-        self.setWorkSpaceBtn.setFont(font8)
+        self.setWorkSpaceBtn.setGeometry(QRect(550, 200, 131, 41))
+        self.setWorkSpaceBtn.setFont(font9)
         self.setWorkSpaceBtn.setStyleSheet(u"background-image:url(:/icons/images/icons/cil-save.png);\n"
-                                           "background-origin: content;\n"
-                                           "background-position: left center;\n"
+                                           "                                        background-origin: content;\n"
+                                           "                                        background-position: left center;\n"
                                            "padding-top: 8px;\n"
                                            "padding-left:10px;\n"
                                            "background-repeat: no-repeat;\n"
-                                           "background-color: #4169E1;\n"
+                                           "background-color: 	#008B8B;\n"
                                            "text-align:bottom;\n"
                                            "padding-bottom:10px")
         self.logger02 = QTableWidget(self.page_details)
@@ -1175,17 +1143,17 @@ class Ui_MainWindow(object):
         self.logger02.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         if (self.logger02.rowCount() < 1):
             self.logger02.setRowCount(1)
-        font11 = QFont()
-        font11.setFamilies([u"Segoe UI"])
+        font10 = QFont()
+        font10.setFamilies([u"Segoe UI"])
         __qtablewidgetitem2 = QTableWidgetItem()
-        __qtablewidgetitem2.setFont(font11);
+        __qtablewidgetitem2.setFont(font10);
         self.logger02.setVerticalHeaderItem(0, __qtablewidgetitem2)
         __qtablewidgetitem3 = QTableWidgetItem()
         self.logger02.setItem(0, 0, __qtablewidgetitem3)
         __qtablewidgetitem4 = QTableWidgetItem()
         self.logger02.setItem(0, 1, __qtablewidgetitem4)
         self.logger02.setObjectName(u"logger02")
-        self.logger02.setGeometry(QRect(370, 190, 481, 431))
+        self.logger02.setGeometry(QRect(360, 270, 501, 351))
         sizePolicy3 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(0)
@@ -1247,19 +1215,6 @@ class Ui_MainWindow(object):
         self.logger02.verticalHeader().setCascadingSectionResizes(False)
         self.logger02.verticalHeader().setHighlightSections(False)
         self.logger02.verticalHeader().setStretchLastSection(False)
-        self.analyseBtn = QPushButton(self.page_details)
-        self.analyseBtn.setObjectName(u"analyseBtn")
-        self.analyseBtn.setGeometry(QRect(20, 60, 131, 41))
-        self.analyseBtn.setFont(font8)
-        self.analyseBtn.setStyleSheet(u"background-image:url(:/icons/images/icons/cil-align-center.png);\n"
-"background-origin: content;\n"
-"background-position: left center;\n"
-"padding-top: 8px;\n"
-"padding-left:10px;\n"
-"background-repeat: no-repeat;\n"
-"background-color: #4169E1;\n"
-"text-align:bottom;\n"
-"padding-bottom:10px")
         self.widthHeightTable02 = QTableWidget(self.page_details)
         if (self.widthHeightTable02.columnCount() < 4):
             self.widthHeightTable02.setColumnCount(4)
@@ -1274,7 +1229,7 @@ class Ui_MainWindow(object):
         if (self.widthHeightTable02.rowCount() < 1):
             self.widthHeightTable02.setRowCount(1)
         __qtablewidgetitem9 = QTableWidgetItem()
-        __qtablewidgetitem9.setFont(font11);
+        __qtablewidgetitem9.setFont(font10);
         self.widthHeightTable02.setVerticalHeaderItem(0, __qtablewidgetitem9)
         __qtablewidgetitem10 = QTableWidgetItem()
         self.widthHeightTable02.setItem(0, 0, __qtablewidgetitem10)
@@ -1285,7 +1240,7 @@ class Ui_MainWindow(object):
         __qtablewidgetitem13 = QTableWidgetItem()
         self.widthHeightTable02.setItem(0, 3, __qtablewidgetitem13)
         self.widthHeightTable02.setObjectName(u"widthHeightTable02")
-        self.widthHeightTable02.setGeometry(QRect(20, 120, 301, 491))
+        self.widthHeightTable02.setGeometry(QRect(10, 10, 321, 591))
         sizePolicy3.setHeightForWidth(self.widthHeightTable02.sizePolicy().hasHeightForWidth())
         self.widthHeightTable02.setSizePolicy(sizePolicy3)
         palette1 = QPalette()
@@ -1313,13 +1268,16 @@ class Ui_MainWindow(object):
         palette1.setBrush(QPalette.Disabled, QPalette.ButtonText, brush)
         palette1.setBrush(QPalette.Disabled, QPalette.Base, brush1)
         palette1.setBrush(QPalette.Disabled, QPalette.Window, brush1)
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        # if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette1.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush2)
-#endif
+        # endif
         self.widthHeightTable02.setPalette(palette1)
-        self.widthHeightTable02.setFont(font)
+        font11 = QFont()
+        font11.setFamilies([u"\u5fae\u8f6f\u96c5\u9ed1"])
+        font11.setPointSize(10)
+        self.widthHeightTable02.setFont(font11)
         self.widthHeightTable02.setStyleSheet(u"background-color: #6495ED;\n"
-"color:#ffffff")
+                                              "color:#ffffff")
         self.widthHeightTable02.setFrameShape(QFrame.NoFrame)
         self.widthHeightTable02.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.widthHeightTable02.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
@@ -1340,138 +1298,145 @@ class Ui_MainWindow(object):
         self.widthHeightTable02.verticalHeader().setStretchLastSection(False)
         self.label = QLabel(self.page_details)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(450, 0, 91, 31))
+        self.label.setGeometry(QRect(370, 20, 121, 31))
+        font12 = QFont()
+        font12.setFamilies([u"\u7b49\u7ebf"])
+        font12.setPointSize(13)
+        font12.setBold(False)
+        self.label.setFont(font12)
         self.label.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                 "                                     background-color: #4169E1;\n"
-                                 "                                     text-align:center;\n"
-                                 "                                     color:#ffffff\n"
-                                 "                                 ")
+                                 "                                        background-color: #4169E1;\n"
+                                 "                                        text-align:center;\n"
+                                 "                                        color:#ffffff\n"
+                                 "                                    ")
         self.label_6 = QLabel(self.page_details)
         self.label_6.setObjectName(u"label_6")
-        self.label_6.setGeometry(QRect(450, 40, 91, 31))
+        self.label_6.setGeometry(QRect(370, 60, 121, 31))
+        font13 = QFont()
+        font13.setFamilies([u"\u7b49\u7ebf"])
+        font13.setPointSize(13)
+        self.label_6.setFont(font13)
         self.label_6.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                   "                                     background-color: #4169E1;\n"
-                                   "                                     text-align:center;\n"
-                                   "                                     color:#ffffff\n"
-                                   "                                 ")
+                                   "                                        background-color: #4169E1;\n"
+                                   "                                        text-align:center;\n"
+                                   "                                        color:#ffffff\n"
+                                   "                                    ")
         self.editWidthStd = QLineEdit(self.page_details)
         self.editWidthStd.setObjectName(u"editWidthStd")
-        self.editWidthStd.setGeometry(QRect(560, 0, 61, 31))
+        self.editWidthStd.setGeometry(QRect(520, 20, 61, 31))
+        self.editWidthStd.setFont(font13)
         self.editWidthStd.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                        "                                     background-color: #6495ED;\n"
-                                        "                                     color:#ffffff\n"
-                                        "                                 ")
+                                        "color:#000000\n"
+                                        "                                    ")
         self.editHeightStd = QLineEdit(self.page_details)
         self.editHeightStd.setObjectName(u"editHeightStd")
-        self.editHeightStd.setGeometry(QRect(560, 40, 61, 31))
+        self.editHeightStd.setGeometry(QRect(520, 60, 61, 31))
+        self.editHeightStd.setFont(font13)
         self.editHeightStd.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                         "                                     background-color: #6495ED;\n"
-                                         "                                     color:#ffffff\n"
-                                         "                                 ")
-        self.label_7 = QLabel(self.page_details)
-        self.label_7.setObjectName(u"label_7")
-        self.label_7.setGeometry(QRect(640, 0, 91, 31))
-        self.label_7.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                   "                                     background-color: #4169E1;\n"
-                                   "                                     text-align:center;\n"
-                                   "                                     color:#ffffff\n"
-                                   "                                 ")
-        self.label_8 = QLabel(self.page_details)
-        self.label_8.setObjectName(u"label_8")
-        self.label_8.setGeometry(QRect(640, 40, 91, 31))
-        self.label_8.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                   "                                     background-color: #4169E1;\n"
-                                   "                                     text-align:center;\n"
-                                   "                                     color:#ffffff\n"
-                                   "                                 ")
+                                         "color:#000000\n"
+                                         "                                    ")
         self.editWidthErr = QLineEdit(self.page_details)
         self.editWidthErr.setObjectName(u"editWidthErr")
-        self.editWidthErr.setGeometry(QRect(750, 0, 61, 31))
+        self.editWidthErr.setGeometry(QRect(520, 100, 61, 31))
+        self.editWidthErr.setFont(font13)
         self.editWidthErr.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                        "                                     background-color: #6495ED;\n"
-                                        "                                     color:#ffffff\n"
-                                        "                                 ")
+                                        "color:#000000\n"
+                                        "                                    ")
         self.editHeightErr = QLineEdit(self.page_details)
         self.editHeightErr.setObjectName(u"editHeightErr")
-        self.editHeightErr.setGeometry(QRect(750, 40, 61, 31))
+        self.editHeightErr.setGeometry(QRect(520, 140, 61, 31))
+        self.editHeightErr.setFont(font13)
         self.editHeightErr.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                         "                                     background-color: #6495ED;\n"
-                                         "                                     color:#ffffff\n"
-                                         "                                 ")
+                                         "color:#000000\n"
+                                         "                                    ")
         self.detectModeSelector = QComboBox(self.page_details)
+        self.detectModeSelector.addItem("")
         self.detectModeSelector.addItem("")
         self.detectModeSelector.addItem("")
         self.detectModeSelector.setObjectName(u"detectModeSelector")
         self.detectModeSelector.setEnabled(True)
-        self.detectModeSelector.setGeometry(QRect(200, 10, 141, 41))
+        self.detectModeSelector.setGeometry(QRect(360, 200, 151, 41))
         sizePolicy4 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy4.setHorizontalStretch(0)
         sizePolicy4.setVerticalStretch(0)
         sizePolicy4.setHeightForWidth(self.detectModeSelector.sizePolicy().hasHeightForWidth())
         self.detectModeSelector.setSizePolicy(sizePolicy4)
-        self.detectModeSelector.setFont(font1)
-        self.detectModeSelector.setStyleSheet(u"background-color: #4169E1;\n"
-                                              "                                     color:#ffffff\n"
-                                              "                                 ")
-        self.label_9 = QLabel(self.page_details)
-        self.label_9.setObjectName(u"label_9")
-        self.label_9.setGeometry(QRect(450, 80, 91, 31))
-        self.label_9.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                   "                                     background-color: #4169E1;\n"
-                                   "                                     text-align:center;\n"
-                                   "                                     color:#ffffff\n"
-                                   "                                 ")
-        self.label_10 = QLabel(self.page_details)
-        self.label_10.setObjectName(u"label_10")
-        self.label_10.setGeometry(QRect(640, 80, 91, 31))
-        self.label_10.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                    "                                     background-color: #4169E1;\n"
-                                    "                                     text-align:center;\n"
-                                    "                                     color:#ffffff\n"
-                                    "                                 ")
-        self.label_11 = QLabel(self.page_details)
-        self.label_11.setObjectName(u"label_11")
-        self.label_11.setGeometry(QRect(450, 120, 91, 31))
-        self.label_11.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                    "                                     background-color: #4169E1;\n"
-                                    "                                     text-align:center;\n"
-                                    "                                     color:#ffffff\n"
-                                    "                                 ")
+        self.detectModeSelector.setFont(font9)
+        self.detectModeSelector.setStyleSheet(u"background-color: #008B8B;\n"
+                                              "color:#ffffff\n"
+                                              "                                    ")
+        self.lineNumLabel = QLabel(self.page_details)
+        self.lineNumLabel.setObjectName(u"lineNumLabel")
+        self.lineNumLabel.setGeometry(QRect(620, 30, 121, 31))
+        self.lineNumLabel.setFont(font13)
+        self.lineNumLabel.setStyleSheet(u"background-repeat: no-repeat;\n"
+                                        "background-color:	#708090;\n"
+                                        "text-align:center;\n"
+                                        "color:#ffffff\n"
+                                        "                                    ")
+        self.curveNumLabel = QLabel(self.page_details)
+        self.curveNumLabel.setObjectName(u"curveNumLabel")
+        self.curveNumLabel.setGeometry(QRect(620, 80, 121, 31))
+        self.curveNumLabel.setFont(font13)
+        self.curveNumLabel.setStyleSheet(u"background-repeat: no-repeat;\n"
+                                         "background-color:	#708090;\n"
+                                         "text-align:center;\n"
+                                         "color:#ffffff\n"
+                                         "                                    ")
         self.editLineNum = QLineEdit(self.page_details)
         self.editLineNum.setObjectName(u"editLineNum")
-        self.editLineNum.setGeometry(QRect(560, 80, 61, 31))
-        self.editLineNum.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                       "                                     background-color: #6495ED;\n"
-                                       "                                     color:#ffffff\n"
-                                       "                                 ")
+        self.editLineNum.setEnabled(False)
+        self.editLineNum.setGeometry(QRect(770, 30, 61, 31))
+        self.editLineNum.setFont(font13)
+        self.editLineNum.setStyleSheet(u"background-color:	#708090;\n"
+                                       "background-repeat: no-repeat;\n"
+                                       "color:#000000\n"
+                                       "                                    ")
         self.editCurveNum = QLineEdit(self.page_details)
         self.editCurveNum.setObjectName(u"editCurveNum")
-        self.editCurveNum.setGeometry(QRect(560, 120, 61, 31))
-        self.editCurveNum.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                        "                                     background-color: #6495ED;\n"
-                                        "                                     color:#ffffff\n"
-                                        "                                 ")
+        self.editCurveNum.setEnabled(False)
+        self.editCurveNum.setGeometry(QRect(770, 80, 61, 31))
+        self.editCurveNum.setFont(font13)
+        self.editCurveNum.setStyleSheet(u"background-color:	#708090;\n"
+                                        "background-repeat: no-repeat;\n"
+                                        "color:#000000\n"
+                                        "                                    ")
         self.editPosNum = QLineEdit(self.page_details)
         self.editPosNum.setObjectName(u"editPosNum")
-        self.editPosNum.setGeometry(QRect(750, 80, 61, 31))
-        self.editPosNum.setStyleSheet(u"background-repeat: no-repeat;\n"
-                                      "                                     background-color: #6495ED;\n"
-                                      "                                     color:#ffffff\n"
-                                      "                                 ")
-        self.confirmParamSettingBtn = QPushButton(self.page_details)
-        self.confirmParamSettingBtn.setObjectName(u"confirmParamSettingBtn")
-        self.confirmParamSettingBtn.setGeometry(QRect(650, 120, 141, 51))
-        self.confirmParamSettingBtn.setFont(font8)
-        self.confirmParamSettingBtn.setStyleSheet(u"background-image:url(:/icons/images/icons/cil-settings.png);\n"
-                                                  "                               background-origin: content;\n"
-                                                  "                               background-position: left center;\n"
-                                                  "                               \n"
-                                                  "                               padding-left:10px;\n"
-                                                  "                               background-repeat: no-repeat;\n"
-                                                  "                               background-color: #4169E1;\n"
-                                                  "                               text-align:center;\n"
-                                                  "                               \n"
-                                                  "                           ")
+        self.editPosNum.setEnabled(True)
+        self.editPosNum.setGeometry(QRect(770, 130, 61, 31))
+        self.editPosNum.setFont(font13)
+        self.editPosNum.setStyleSheet(u"background-color:	#708090;\n"
+                                      "background-repeat: no-repeat;\n"
+                                      "color:#000000\n"
+                                      "                                    ")
+        self.label_7 = QLabel(self.page_details)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setGeometry(QRect(370, 100, 121, 31))
+        self.label_7.setFont(font12)
+        self.label_7.setStyleSheet(u"background-repeat: no-repeat;\n"
+                                   "                                        background-color: #4169E1;\n"
+                                   "                                        text-align:center;\n"
+                                   "                                        color:#ffffff\n"
+                                   "                                    ")
+        self.label_8 = QLabel(self.page_details)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setGeometry(QRect(370, 140, 121, 31))
+        self.label_8.setFont(font12)
+        self.label_8.setStyleSheet(u"background-repeat: no-repeat;\n"
+                                   "                                        background-color: #4169E1;\n"
+                                   "                                        text-align:center;\n"
+                                   "                                        color:#ffffff\n"
+                                   "                                    ")
+        self.posNumLabel = QLabel(self.page_details)
+        self.posNumLabel.setObjectName(u"posNumLabel")
+        self.posNumLabel.setGeometry(QRect(620, 130, 121, 31))
+        self.posNumLabel.setFont(font12)
+        self.posNumLabel.setStyleSheet(u"background-repeat: no-repeat;\n"
+                                       "background-color:	#708090;\n"
+                                       "text-align:center;\n"
+                                       "color:#ffffff\n"
+                                       "                                    ")
         self.stackedWidget.addWidget(self.page_details)
         self.widgets = QWidget()
         self.widgets.setObjectName(u"widgets")
@@ -1629,7 +1594,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 218, 218))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 274, 218))
         self.scrollAreaWidgetContents.setStyleSheet(u" QScrollBar:vertical {\n"
                                                     "	border: none;\n"
                                                     "    background: rgb(52, 59, 72);\n"
@@ -1709,7 +1674,7 @@ class Ui_MainWindow(object):
         if (self.tableWidget.rowCount() < 16):
             self.tableWidget.setRowCount(16)
         __qtablewidgetitem18 = QTableWidgetItem()
-        __qtablewidgetitem18.setFont(font11);
+        __qtablewidgetitem18.setFont(font10);
         self.tableWidget.setVerticalHeaderItem(0, __qtablewidgetitem18)
         __qtablewidgetitem19 = QTableWidgetItem()
         self.tableWidget.setVerticalHeaderItem(1, __qtablewidgetitem19)
@@ -1850,17 +1815,17 @@ class Ui_MainWindow(object):
         self.modeSelector.setSizePolicy(sizePolicy4)
         self.modeSelector.setFont(font1)
         self.modeSelector.setStyleSheet(u"background-color: #4169E1;\n"
-"color:#ffffff")
+                                        "color:#ffffff")
         self.recordButton = QPushButton(self.page_before)
         self.recordButton.setObjectName(u"recordButton")
         self.recordButton.setGeometry(QRect(580, 20, 171, 61))
-        font12 = QFont()
-        font12.setFamilies([u"Segoe UI"])
-        font12.setPointSize(12)
-        font12.setBold(False)
-        font12.setItalic(False)
-        font12.setKerning(True)
-        self.recordButton.setFont(font12)
+        font14 = QFont()
+        font14.setFamilies([u"Segoe UI"])
+        font14.setPointSize(12)
+        font14.setBold(False)
+        font14.setItalic(False)
+        font14.setKerning(True)
+        self.recordButton.setFont(font14)
         self.recordButton.setStyleSheet(u"background-color: #4169E1;")
         self.startTestButton = QPushButton(self.page_before)
         self.startTestButton.setObjectName(u"startTestButton")
@@ -1883,7 +1848,7 @@ class Ui_MainWindow(object):
         if (self.logger.rowCount() < 1):
             self.logger.setRowCount(1)
         __qtablewidgetitem40 = QTableWidgetItem()
-        __qtablewidgetitem40.setFont(font11);
+        __qtablewidgetitem40.setFont(font10);
         self.logger.setVerticalHeaderItem(0, __qtablewidgetitem40)
         __qtablewidgetitem41 = QTableWidgetItem()
         self.logger.setItem(0, 0, __qtablewidgetitem41)
@@ -1962,7 +1927,7 @@ class Ui_MainWindow(object):
         if (self.widthHeightTable.rowCount() < 1):
             self.widthHeightTable.setRowCount(1)
         __qtablewidgetitem46 = QTableWidgetItem()
-        __qtablewidgetitem46.setFont(font11);
+        __qtablewidgetitem46.setFont(font10);
         self.widthHeightTable.setVerticalHeaderItem(0, __qtablewidgetitem46)
         __qtablewidgetitem47 = QTableWidgetItem()
         self.widthHeightTable.setItem(0, 0, __qtablewidgetitem47)
@@ -2139,18 +2104,18 @@ class Ui_MainWindow(object):
         self.creditsLabel = QLabel(self.bottomBar)
         self.creditsLabel.setObjectName(u"creditsLabel")
         self.creditsLabel.setMaximumSize(QSize(16777215, 16))
-        font13 = QFont()
-        font13.setFamilies([u"Segoe UI"])
-        font13.setBold(False)
-        font13.setItalic(False)
-        self.creditsLabel.setFont(font13)
-        self.creditsLabel.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        font15 = QFont()
+        font15.setFamilies([u"Segoe UI"])
+        font15.setBold(False)
+        font15.setItalic(False)
+        self.creditsLabel.setFont(font15)
+        self.creditsLabel.setAlignment(Qt.AlignLeading | Qt.AlignLeft | Qt.AlignVCenter)
 
         self.horizontalLayout_5.addWidget(self.creditsLabel)
 
         self.version = QLabel(self.bottomBar)
         self.version.setObjectName(u"version")
-        self.version.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.version.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
 
         self.horizontalLayout_5.addWidget(self.version)
 
@@ -2230,17 +2195,12 @@ class Ui_MainWindow(object):
         self.maximizeRestoreAppBtn.setText("")
 #if QT_CONFIG(tooltip)
         self.closeAppBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Close", None))
-        # endif // QT_CONFIG(tooltip)
+        #endif // QT_CONFIG(tooltip)
         self.closeAppBtn.setText("")
         self.label_2.setText("")
         self.label_3.setText("")
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"\u6821\u51c6", None))
         self.label_4.setText("")
         self.startButton.setText(QCoreApplication.translate("MainWindow", u"\u5f00\u59cb", None))
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"\u7ed3\u675f", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow",
-                                                        u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:700;color:white;\">\u6b63\u5728\u8fd0\u884c\u4e2d</span></p></body></html>",
-                                                        None))
         self.startDetectBtn.setText(QCoreApplication.translate("MainWindow", u"\u5f00\u59cb\u68c0\u6d4b", None))
         self.setWorkSpaceBtn.setText(QCoreApplication.translate("MainWindow", u"\u8def\u5f84\u8bbe\u7f6e", None))
         ___qtablewidgetitem = self.logger02.horizontalHeaderItem(0)
@@ -2258,7 +2218,6 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"\u65e5\u5fd7", None));
         self.logger02.setSortingEnabled(__sortingEnabled)
 
-        self.analyseBtn.setText(QCoreApplication.translate("MainWindow", u"\u6570\u636e\u7edf\u8ba1", None))
         ___qtablewidgetitem5 = self.widthHeightTable02.horizontalHeaderItem(0)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"0", None));
         ___qtablewidgetitem6 = self.widthHeightTable02.horizontalHeaderItem(1)
@@ -2282,30 +2241,46 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"\u9762\u79ef", None));
         self.widthHeightTable02.setSortingEnabled(__sortingEnabled1)
 
-        self.label.setText(QCoreApplication.translate("MainWindow", u"  \u6805\u7ebf\u5bbd\u6807\u51c6\u503c", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"  \u6805\u7ebf\u9ad8\u6807\u51c6\u503c", None))
-        self.editWidthStd.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u8f93\u5165", None))
-        self.editHeightStd.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u8f93\u5165", None))
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"  \u7ebf\u5bbd\u8bef\u5dee\u9608\u503c", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"  \u7ebf\u9ad8\u8bef\u5dee\u9608\u503c", None))
-        self.editWidthErr.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u8f93\u5165", None))
-        self.editHeightErr.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u8f93\u5165", None))
+        self.label.setText(QCoreApplication.translate("MainWindow",
+                                                      u"<html><head/><body><p align=\"center\">\u6805\u7ebf\u5bbd\u6807\u51c6\u503c</p></body></html>",
+                                                      None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow",
+                                                        u"<html><head/><body><p align=\"center\">\u6805\u7ebf\u9ad8\u6807\u51c6\u503c</p></body></html>",
+                                                        None))
+        self.editWidthStd.setText("")
+        self.editHeightStd.setText("")
+        self.editWidthErr.setText("")
+        self.editHeightErr.setText("")
         self.detectModeSelector.setItemText(0, QCoreApplication.translate("MainWindow",
                                                                           u"\u5feb\u901f\u5355\u70b9\u68c0\u6d4b",
                                                                           None))
         self.detectModeSelector.setItemText(1, QCoreApplication.translate("MainWindow",
                                                                           u"\u53cc\u7ebf\u6807\u51c6\u68c0\u6d4b",
                                                                           None))
+        self.detectModeSelector.setItemText(2,
+                                            QCoreApplication.translate("MainWindow", u"\u81ea\u5b9a\u4e49\u68c0\u6d4b",
+                                                                       None))
 
         self.detectModeSelector.setPlaceholderText(
             QCoreApplication.translate("MainWindow", u"\u68c0\u6d4b\u6a21\u5f0f\u9009\u62e9", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"     \u6805\u7ebf\u6761\u6570", None))
-        self.label_10.setText(QCoreApplication.translate("MainWindow", u"  \u6805\u7ebf\u70b9\u4f4d\u4e2a\u6570", None))
-        self.label_11.setText(QCoreApplication.translate("MainWindow", u"  \u70b9\u4f4d\u66f2\u7ebf\u4e2a\u6570", None))
-        self.editLineNum.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u8f93\u5165", None))
-        self.editCurveNum.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u8f93\u5165", None))
-        self.editPosNum.setText(QCoreApplication.translate("MainWindow", u"\u8bf7\u8f93\u5165", None))
-        self.confirmParamSettingBtn.setText(QCoreApplication.translate("MainWindow", u"\u8bbe\u7f6e\u786e\u8ba4", None))
+        self.lineNumLabel.setText(QCoreApplication.translate("MainWindow",
+                                                             u"<html><head/><body><p align=\"center\">\u6805\u7ebf\u6761\u6570</p></body></html>",
+                                                             None))
+        self.curveNumLabel.setText(QCoreApplication.translate("MainWindow",
+                                                              u"<html><head/><body><p align=\"center\">\u5207\u7247\u4e2a\u6570</p></body></html>",
+                                                              None))
+        self.editLineNum.setText("")
+        self.editCurveNum.setText("")
+        self.editPosNum.setText("")
+        self.label_7.setText(QCoreApplication.translate("MainWindow",
+                                                        u"<html><head/><body><p align=\"center\">\u7ebf\u5bbd\u8bef\u5dee\u9608\u503c</p></body></html>",
+                                                        None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow",
+                                                        u"<html><head/><body><p align=\"center\">\u7ebf\u9ad8\u8bef\u5dee\u9608\u503c</p></body></html>",
+                                                        None))
+        self.posNumLabel.setText(QCoreApplication.translate("MainWindow",
+                                                            u"<html><head/><body><p align=\"center\">\u70b9\u4f4d\u4e2a\u6570</p></body></html>",
+                                                            None))
         self.labelBoxBlenderInstalation.setText(QCoreApplication.translate("MainWindow", u"FILE BOX", None))
         self.lineEdit.setText("")
         self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Type here", None))

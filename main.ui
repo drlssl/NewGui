@@ -319,25 +319,32 @@ QLineEdit {
 	border: 2px solid #4169E1;
 	padding-left: 10px;
 	selection-color: rgb(255, 255, 255);
-	selection-background-color: rgb(255, 121, 198);
-    color: #f8f8f2;
-}
-QLineEdit:hover {
-	border: 2px solid rgb(64, 71, 88);
-}
-QLineEdit:focus {
-	border: 2px solid #ff79c6;
-}
+        selection-background-color: rgb(255, 121, 198);
+        color: #f8f8f2;
+        }
+        QLineEdit:hover {
+        border: 2px solid rgb(64, 71, 88);
+        }
+        QLineEdit:focus {
+        border: 2px solid #ff79c6;
+        }
 
-/* /////////////////////////////////////////////////////////////////////////////////////////////////
-PlainTextEdit */
-QPlainTextEdit {
-	background-color: #4169E1;
-	border-radius: 5px;
-	padding: 10px;
-	selection-color: rgb(255, 255, 255);
-	selection-background-color: rgb(255, 121, 198);
-    color: #f8f8f2;
+        /* /////////////////////////////////////////////////////////////////////////////////////////////////
+        Label */
+        QLabel {
+        background-color: #4169E1;
+        border-radius: 5px;
+        }
+
+        /* /////////////////////////////////////////////////////////////////////////////////////////////////
+        PlainTextEdit */
+        QPlainTextEdit {
+        background-color: #4169E1;
+        border-radius: 5px;
+        padding: 10px;
+        selection-color: rgb(255, 255, 255);
+        selection-background-color: rgb(255, 121, 198);
+        color: #f8f8f2;
 }
 QPlainTextEdit  QScrollBar:vertical {
     width: 8px;
@@ -1808,12 +1815,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
                       </property>
                       <widget class="QLabel" name="label_2">
                        <property name="geometry">
-                        <rect>
-                         <x>450</x>
-                         <y>-10</y>
-                         <width>351</width>
-                         <height>491</height>
-                        </rect>
+                           <rect>
+                               <x>460</x>
+                               <y>0</y>
+                               <width>351</width>
+                               <height>491</height>
+                           </rect>
                        </property>
                        <property name="styleSheet">
                         <string notr="true">image:url(:/images/images/images/solar_panel06.png)</string>
@@ -1826,7 +1833,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                        <property name="geometry">
                         <rect>
                          <x>30</x>
-                         <y>260</y>
+                            <y>240</y>
                          <width>311</width>
                          <height>371</height>
                         </rect>
@@ -1836,38 +1843,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
                        </property>
                        <property name="text">
                         <string/>
-                       </property>
-                      </widget>
-                      <widget class="QPushButton" name="pushButton_2">
-                       <property name="geometry">
-                        <rect>
-                         <x>450</x>
-                         <y>460</y>
-                         <width>91</width>
-                         <height>41</height>
-                        </rect>
-                       </property>
-                       <property name="font">
-                        <font>
-                         <family>微软雅黑</family>
-                         <pointsize>12</pointsize>
-                         <italic>false</italic>
-                         <bold>false</bold>
-                        </font>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-image:url(:/icons/images/icons/cil-cursor-move.png);
-background-origin: content;
-background-position: left center;
-padding-top: 8px;
-padding-left:10px;
-background-repeat: no-repeat;
-background-color: #4169E1;
-text-align:bottom;
-padding-bottom:10px</string>
-                       </property>
-                       <property name="text">
-                        <string>校准</string>
                        </property>
                       </widget>
                       <widget class="QLabel" name="label_4">
@@ -1888,12 +1863,12 @@ padding-bottom:10px</string>
                       </widget>
                       <widget class="QPushButton" name="startButton">
                        <property name="geometry">
-                        <rect>
-                         <x>580</x>
-                         <y>460</y>
-                         <width>91</width>
-                         <height>41</height>
-                        </rect>
+                           <rect>
+                               <x>570</x>
+                               <y>500</y>
+                               <width>121</width>
+                               <height>41</height>
+                           </rect>
                        </property>
                        <property name="font">
                         <font>
@@ -1912,88 +1887,30 @@ background-color: #4169E1;
 text-align:bottom;
 padding-bottom:10px</string>
                        </property>
-                       <property name="text">
-                        <string>开始</string>
-                       </property>
+                          <property name="text">
+                              <string>开始</string>
+                          </property>
                       </widget>
-                      <widget class="QPushButton" name="pushButton_4">
-                       <property name="geometry">
-                        <rect>
-                         <x>710</x>
-                            <y>460</y>
-                         <width>91</width>
-                         <height>41</height>
-                        </rect>
-                       </property>
-                       <property name="font">
-                        <font>
-                         <family>微软雅黑</family>
-                         <pointsize>12</pointsize>
-                        </font>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-image:url(:/icons/images/icons/cil-media-stop.png);
-background-origin: content;
-background-position: left center;
-padding-top: 8px;
-padding-left:10px;
-background-repeat: no-repeat;
-background-color: #4169E1;
-text-align:bottom;
-padding-bottom:10px</string>
-                       </property>
-                       <property name="text">
-                        <string>结束</string>
-                       </property>
-                      </widget>
-                      <widget class="QLabel" name="label_5">
-                       <property name="geometry">
-                        <rect>
-                         <x>450</x>
-                         <y>560</y>
-                         <width>351</width>
-                         <height>31</height>
-                        </rect>
-                       </property>
-                       <property name="font">
-                        <font>
-                         <family>微软雅黑</family>
-                         <pointsize>11</pointsize>
-                        </font>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: 		#1E90FF;
-text-align:center;
-padding-left:10px
-</string>
-                       </property>
-                       <property name="text">
-                        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;color:white;&quot;&gt;正在运行中&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                       </property>
-                      </widget>
-                      <zorder>label_2</zorder>
-                      <zorder>label_4</zorder>
-                      <zorder>label_3</zorder>
-                      <zorder>pushButton_2</zorder>
-                      <zorder>startButton</zorder>
-                      <zorder>pushButton_4</zorder>
-                      <zorder>label_5</zorder>
+                         <zorder>label_2</zorder>
+                         <zorder>label_4</zorder>
+                         <zorder>label_3</zorder>
+                         <zorder>startButton</zorder>
                      </widget>
-                     <widget class="QWidget" name="page_history"/>
+                        <widget class="QWidget" name="page_history"/>
                         <widget class="QWidget" name="page_details">
                             <widget class="QPushButton" name="startDetectBtn">
                                 <property name="geometry">
                                     <rect>
-                                        <x>200</x>
-                                        <y>60</y>
-                                        <width>141</width>
+                                        <x>720</x>
+                                        <y>200</y>
+                                        <width>131</width>
                                         <height>41</height>
                                     </rect>
                                 </property>
                                 <property name="font">
                                     <font>
-                                        <family>微软雅黑</family>
-                                        <pointsize>12</pointsize>
+                                        <family>等线</family>
+                                        <pointsize>13</pointsize>
                                         <italic>false</italic>
                                         <bold>false</bold>
                                     </font>
@@ -2005,7 +1922,7 @@ padding-left:10px
                                         padding-top: 8px;
                                         padding-left:10px;
                                         background-repeat: no-repeat;
-                                        background-color: #4169E1;
+                                        background-color: #008B8B;
                                         text-align:bottom;
                                         padding-bottom:10px
                                     </string>
@@ -2017,16 +1934,16 @@ padding-left:10px
                             <widget class="QPushButton" name="setWorkSpaceBtn">
                                 <property name="geometry">
                                     <rect>
-                                        <x>20</x>
-                                        <y>10</y>
+                                        <x>550</x>
+                                        <y>200</y>
                                         <width>131</width>
                                         <height>41</height>
                                     </rect>
                                 </property>
                                 <property name="font">
                                     <font>
-                                        <family>微软雅黑</family>
-                                        <pointsize>12</pointsize>
+                                        <family>等线</family>
+                                        <pointsize>13</pointsize>
                                         <italic>false</italic>
                                         <bold>false</bold>
                                     </font>
@@ -2035,26 +1952,27 @@ padding-left:10px
                                     <string notr="true">background-image:url(:/icons/images/icons/cil-save.png);
                                         background-origin: content;
                                         background-position: left center;
-padding-top: 8px;
-padding-left:10px;
-background-repeat: no-repeat;
-background-color: #4169E1;
-text-align:bottom;
-padding-bottom:10px</string>
-                       </property>
-                       <property name="text">
-                           <string>路径设置</string>
+                                        padding-top: 8px;
+                                        padding-left:10px;
+                                        background-repeat: no-repeat;
+                                        background-color: #008B8B;
+                                        text-align:bottom;
+                                        padding-bottom:10px
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>路径设置</string>
                        </property>
                       </widget>
                       <widget class="QTableWidget" name="logger02">
-                       <property name="geometry">
-                           <rect>
-                               <x>370</x>
-                               <y>190</y>
-                               <width>481</width>
-                               <height>431</height>
-                           </rect>
-                       </property>
+                          <property name="geometry">
+                              <rect>
+                                  <x>360</x>
+                                  <y>270</y>
+                                  <width>501</width>
+                                  <height>351</height>
+                              </rect>
+                          </property>
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                          <horstretch>0</horstretch>
@@ -2354,47 +2272,15 @@ color:#ffffff</string>
                         </property>
                        </item>
                       </widget>
-                      <widget class="QPushButton" name="analyseBtn">
+                      <widget class="QTableWidget" name="widthHeightTable02">
                           <property name="geometry">
                               <rect>
-                                  <x>20</x>
-                                  <y>60</y>
-                                  <width>131</width>
-                                  <height>41</height>
+                                  <x>10</x>
+                                  <y>10</y>
+                                  <width>321</width>
+                                  <height>591</height>
                               </rect>
                           </property>
-                       <property name="font">
-                        <font>
-                         <family>微软雅黑</family>
-                         <pointsize>12</pointsize>
-                         <italic>false</italic>
-                         <bold>false</bold>
-                        </font>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-image:url(:/icons/images/icons/cil-align-center.png);
-background-origin: content;
-background-position: left center;
-padding-top: 8px;
-padding-left:10px;
-background-repeat: no-repeat;
-background-color: #4169E1;
-text-align:bottom;
-padding-bottom:10px</string>
-                       </property>
-                       <property name="text">
-                           <string>数据统计</string>
-                       </property>
-                      </widget>
-                      <widget class="QTableWidget" name="widthHeightTable02">
-                       <property name="geometry">
-                           <rect>
-                               <x>20</x>
-                               <y>120</y>
-                               <width>301</width>
-                               <height>491</height>
-                           </rect>
-                       </property>
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                          <horstretch>0</horstretch>
@@ -2602,6 +2488,7 @@ padding-bottom:10px</string>
                        </property>
                        <property name="font">
                         <font>
+                            <family>微软雅黑</family>
                          <pointsize>10</pointsize>
                         </font>
                        </property>
@@ -2683,16 +2570,16 @@ color:#ffffff</string>
                          <string>1</string>
                         </property>
                        </column>
-                       <column>
-                        <property name="text">
-                         <string>2</string>
-                        </property>
-                       </column>
-                       <column>
-                        <property name="text">
-                         <string>3</string>
-                        </property>
-                       </column>
+                          <column>
+                              <property name="text">
+                                  <string>2</string>
+                              </property>
+                          </column>
+                          <column>
+                              <property name="text">
+                                  <string>3</string>
+                              </property>
+                          </column>
                           <item row="0" column="0">
                               <property name="text">
                                   <string>位置</string>
@@ -2717,11 +2604,18 @@ color:#ffffff</string>
                             <widget class="QLabel" name="label">
                                 <property name="geometry">
                                     <rect>
-                                        <x>450</x>
-                                        <y>0</y>
-                                        <width>91</width>
+                                        <x>370</x>
+                                        <y>20</y>
+                                        <width>121</width>
                                         <height>31</height>
                                     </rect>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <family>等线</family>
+                                        <pointsize>13</pointsize>
+                                        <bold>false</bold>
+                                    </font>
                                 </property>
                                 <property name="styleSheet">
                                     <string notr="true">background-repeat: no-repeat;
@@ -2731,17 +2625,23 @@ color:#ffffff</string>
                                     </string>
                                 </property>
                                 <property name="text">
-                                    <string>栅线宽标准值</string>
+                                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;栅线宽标准值&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                                 </property>
                             </widget>
                             <widget class="QLabel" name="label_6">
                                 <property name="geometry">
                                     <rect>
-                                        <x>450</x>
-                                        <y>40</y>
-                                        <width>91</width>
+                                        <x>370</x>
+                                        <y>60</y>
+                                        <width>121</width>
                                         <height>31</height>
                                     </rect>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <family>等线</family>
+                                        <pointsize>13</pointsize>
+                                    </font>
                                 </property>
                                 <property name="styleSheet">
                                     <string notr="true">background-repeat: no-repeat;
@@ -2751,123 +2651,103 @@ color:#ffffff</string>
                                     </string>
                                 </property>
                                 <property name="text">
-                                    <string>栅线高标准值</string>
+                                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;栅线高标准值&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                                 </property>
                             </widget>
                             <widget class="QLineEdit" name="editWidthStd">
                                 <property name="geometry">
                                     <rect>
-                                        <x>560</x>
-                                        <y>0</y>
+                                        <x>520</x>
+                                        <y>20</y>
                                         <width>61</width>
                                         <height>31</height>
                                     </rect>
                                 </property>
+                                <property name="font">
+                                    <font>
+                                        <family>等线</family>
+                                        <pointsize>13</pointsize>
+                                    </font>
+                                </property>
                                 <property name="styleSheet">
                                     <string notr="true">background-repeat: no-repeat;
-                                        background-color: #6495ED;
-                                        color:#ffffff
+                                        color:#000000
                                     </string>
                                 </property>
                                 <property name="text">
-                                    <string>请输入</string>
+                                    <string/>
                                 </property>
                             </widget>
                             <widget class="QLineEdit" name="editHeightStd">
                                 <property name="geometry">
                                     <rect>
-                                        <x>560</x>
-                                        <y>40</y>
+                                        <x>520</x>
+                                        <y>60</y>
                                         <width>61</width>
                                         <height>31</height>
                                     </rect>
                                 </property>
-                                <property name="styleSheet">
-                                    <string notr="true">background-repeat: no-repeat;
-                                        background-color: #6495ED;
-                                        color:#ffffff
-                                    </string>
-                                </property>
-                                <property name="text">
-                                    <string>请输入</string>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" name="label_7">
-                                <property name="geometry">
-                                    <rect>
-                                        <x>640</x>
-                                        <y>0</y>
-                                        <width>91</width>
-                                        <height>31</height>
-                                    </rect>
+                                <property name="font">
+                                    <font>
+                                        <family>等线</family>
+                                        <pointsize>13</pointsize>
+                                    </font>
                                 </property>
                                 <property name="styleSheet">
                                     <string notr="true">background-repeat: no-repeat;
-                                        background-color: #4169E1;
-                                        text-align:center;
-                                        color:#ffffff
+                                        color:#000000
                                     </string>
                                 </property>
                                 <property name="text">
-                                    <string>线宽误差阈值</string>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" name="label_8">
-                                <property name="geometry">
-                                    <rect>
-                                        <x>640</x>
-                                        <y>40</y>
-                                        <width>91</width>
-                                        <height>31</height>
-                                    </rect>
-                                </property>
-                                <property name="styleSheet">
-                                    <string notr="true">background-repeat: no-repeat;
-                                        background-color: #4169E1;
-                                        text-align:center;
-                                        color:#ffffff
-                                    </string>
-                                </property>
-                                <property name="text">
-                                    <string>线高误差阈值</string>
+                                    <string/>
                                 </property>
                             </widget>
                             <widget class="QLineEdit" name="editWidthErr">
                                 <property name="geometry">
                                     <rect>
-                                        <x>750</x>
-                                        <y>0</y>
+                                        <x>520</x>
+                                        <y>100</y>
                                         <width>61</width>
                                         <height>31</height>
                                     </rect>
                                 </property>
+                                <property name="font">
+                                    <font>
+                                        <family>等线</family>
+                                        <pointsize>13</pointsize>
+                                    </font>
+                                </property>
                                 <property name="styleSheet">
                                     <string notr="true">background-repeat: no-repeat;
-                                        background-color: #6495ED;
-                                        color:#ffffff
+                                        color:#000000
                                     </string>
                                 </property>
                                 <property name="text">
-                                    <string>请输入</string>
+                                    <string/>
                                 </property>
                             </widget>
                             <widget class="QLineEdit" name="editHeightErr">
                                 <property name="geometry">
                                     <rect>
-                                        <x>750</x>
-                                        <y>40</y>
+                                        <x>520</x>
+                                        <y>140</y>
                                         <width>61</width>
                                         <height>31</height>
                                     </rect>
                                 </property>
+                                <property name="font">
+                                    <font>
+                                        <family>等线</family>
+                                        <pointsize>13</pointsize>
+                                    </font>
+                                </property>
                                 <property name="styleSheet">
                                     <string notr="true">background-repeat: no-repeat;
-                                        background-color: #6495ED;
-                                        color:#ffffff
+                                        color:#000000
                                     </string>
                                 </property>
                                 <property name="text">
-                                    <string>请输入</string>
+                                    <string/>
                                 </property>
                             </widget>
                             <widget class="QComboBox" name="detectModeSelector">
@@ -2876,9 +2756,9 @@ color:#ffffff</string>
                                 </property>
                                 <property name="geometry">
                                     <rect>
-                                        <x>200</x>
-                                        <y>10</y>
-                                        <width>141</width>
+                                        <x>360</x>
+                                        <y>200</y>
+                                        <width>151</width>
                                         <height>41</height>
                                     </rect>
                                 </property>
@@ -2890,14 +2770,14 @@ color:#ffffff</string>
                                 </property>
                                 <property name="font">
                                     <font>
-                                        <family>Segoe UI</family>
-                                        <pointsize>12</pointsize>
+                                        <family>等线</family>
+                                        <pointsize>13</pointsize>
                                         <italic>false</italic>
                                         <bold>false</bold>
                                     </font>
                                 </property>
                                 <property name="styleSheet">
-                                    <string notr="true">background-color: #4169E1;
+                                    <string notr="true">background-color: #008B8B;
                                         color:#ffffff
                                     </string>
                                 </property>
@@ -2923,154 +2803,221 @@ color:#ffffff</string>
                                     </property>
                                 </item>
                             </widget>
-                            <widget class="QLabel" name="label_9">
+                            <widget class="QLabel" name="lineNumLabel">
                                 <property name="geometry">
                                     <rect>
-                                        <x>450</x>
-                                        <y>80</y>
-                                        <width>91</width>
+                                        <x>620</x>
+                                        <y>30</y>
+                                        <width>121</width>
                                         <height>31</height>
-                                    </rect>
-                                </property>
-                                <property name="styleSheet">
-                                    <string notr="true">background-repeat: no-repeat;
-                                        background-color: #4169E1;
-                                        text-align:center;
-                                        color:#ffffff
-                                    </string>
-                                </property>
-                                <property name="text">
-                                    <string>栅线条数</string>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" name="label_10">
-                                <property name="geometry">
-                                    <rect>
-                                        <x>640</x>
-                                        <y>80</y>
-                                        <width>91</width>
-                                        <height>31</height>
-                                    </rect>
-                                </property>
-                                <property name="styleSheet">
-                                    <string notr="true">background-repeat: no-repeat;
-                                        background-color: #4169E1;
-                                        text-align:center;
-                                        color:#ffffff
-                                    </string>
-                                </property>
-                                <property name="text">
-                                    <string>栅线点位个数</string>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" name="label_11">
-                                <property name="geometry">
-                                    <rect>
-                                        <x>450</x>
-                                        <y>120</y>
-                                        <width>91</width>
-                                        <height>31</height>
-                                    </rect>
-                                </property>
-                                <property name="styleSheet">
-                                    <string notr="true">background-repeat: no-repeat;
-                                        background-color: #4169E1;
-                                        text-align:center;
-                                        color:#ffffff
-                                    </string>
-                                </property>
-                                <property name="text">
-                                    <string>点位曲线个数</string>
-                                </property>
-                            </widget>
-                            <widget class="QLineEdit" name="editLineNum">
-                                <property name="geometry">
-                                    <rect>
-                                        <x>560</x>
-                                        <y>80</y>
-                                        <width>61</width>
-                                        <height>31</height>
-                                    </rect>
-                                </property>
-                                <property name="styleSheet">
-                                    <string notr="true">background-repeat: no-repeat;
-                                        background-color: #6495ED;
-                                        color:#ffffff
-                                    </string>
-                                </property>
-                                <property name="text">
-                                    <string>请输入</string>
-                                </property>
-                            </widget>
-                            <widget class="QLineEdit" name="editCurveNum">
-                                <property name="geometry">
-                                    <rect>
-                                        <x>560</x>
-                                        <y>120</y>
-                                        <width>61</width>
-                                        <height>31</height>
-                                    </rect>
-                                </property>
-                                <property name="styleSheet">
-                                    <string notr="true">background-repeat: no-repeat;
-                                        background-color: #6495ED;
-                                        color:#ffffff
-                                    </string>
-                                </property>
-                                <property name="text">
-                                    <string>请输入</string>
-                                </property>
-                            </widget>
-                            <widget class="QLineEdit" name="editPosNum">
-                                <property name="geometry">
-                                    <rect>
-                                        <x>750</x>
-                                        <y>80</y>
-                                        <width>61</width>
-                                        <height>31</height>
-                                    </rect>
-                                </property>
-                                <property name="styleSheet">
-                                    <string notr="true">background-repeat: no-repeat;
-                                        background-color: #6495ED;
-                                        color:#ffffff
-                                    </string>
-                                </property>
-                                <property name="text">
-                                    <string>请输入</string>
-                                </property>
-                            </widget>
-                            <widget class="QPushButton" name="confirmParamSettingBtn">
-                                <property name="geometry">
-                                    <rect>
-                                        <x>650</x>
-                                        <y>120</y>
-                                        <width>141</width>
-                                        <height>51</height>
                                     </rect>
                                 </property>
                                 <property name="font">
                                     <font>
-                                        <family>微软雅黑</family>
-                                        <pointsize>12</pointsize>
-                                        <italic>false</italic>
+                                        <family>等线</family>
+                                        <pointsize>13</pointsize>
+                                    </font>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-repeat: no-repeat;
+                                        background-color: #708090;
+                                        text-align:center;
+                                        color:#ffffff
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;栅线条数&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" name="curveNumLabel">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>620</x>
+                                        <y>80</y>
+                                        <width>121</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <family>等线</family>
+                                        <pointsize>13</pointsize>
+                                    </font>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-repeat: no-repeat;
+                                        background-color: #708090;
+                                        text-align:center;
+                                        color:#ffffff
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;切片个数&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" name="editLineNum">
+                                <property name="enabled">
+                                    <bool>false</bool>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>770</x>
+                                        <y>30</y>
+                                        <width>61</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <family>等线</family>
+                                        <pointsize>13</pointsize>
+                                    </font>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-color: #708090;
+                                        background-repeat: no-repeat;
+                                        color:#000000
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string/>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" name="editCurveNum">
+                                <property name="enabled">
+                                    <bool>false</bool>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>770</x>
+                                        <y>80</y>
+                                        <width>61</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <family>等线</family>
+                                        <pointsize>13</pointsize>
+                                    </font>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-color: #708090;
+                                        background-repeat: no-repeat;
+                                        color:#000000
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string/>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" name="editPosNum">
+                                <property name="enabled">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="geometry">
+                                    <rect>
+                                        <x>770</x>
+                                        <y>130</y>
+                                        <width>61</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <family>等线</family>
+                                        <pointsize>13</pointsize>
+                                    </font>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-color: #708090;
+                                        background-repeat: no-repeat;
+                                        color:#000000
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string/>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" name="label_7">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>370</x>
+                                        <y>100</y>
+                                        <width>121</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <family>等线</family>
+                                        <pointsize>13</pointsize>
                                         <bold>false</bold>
                                     </font>
                                 </property>
                                 <property name="styleSheet">
-                                    <string notr="true">background-image:url(:/icons/images/icons/cil-settings.png);
-                                        background-origin: content;
-                                        background-position: left center;
-
-                                        padding-left:10px;
-                                        background-repeat: no-repeat;
+                                    <string notr="true">background-repeat: no-repeat;
                                         background-color: #4169E1;
                                         text-align:center;
-
+                                        color:#ffffff
                                     </string>
                                 </property>
                                 <property name="text">
-                                    <string>设置确认</string>
+                                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;线宽误差阈值&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" name="label_8">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>370</x>
+                                        <y>140</y>
+                                        <width>121</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <family>等线</family>
+                                        <pointsize>13</pointsize>
+                                        <bold>false</bold>
+                                    </font>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-repeat: no-repeat;
+                                        background-color: #4169E1;
+                                        text-align:center;
+                                        color:#ffffff
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;线高误差阈值&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" name="posNumLabel">
+                                <property name="geometry">
+                                    <rect>
+                                        <x>620</x>
+                                        <y>130</y>
+                                        <width>121</width>
+                                        <height>31</height>
+                                    </rect>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <family>等线</family>
+                                        <pointsize>13</pointsize>
+                                        <bold>false</bold>
+                                    </font>
+                                </property>
+                                <property name="styleSheet">
+                                    <string notr="true">background-repeat: no-repeat;
+                                        background-color: #708090;
+                                        text-align:center;
+                                        color:#ffffff
+                                    </string>
+                                </property>
+                                <property name="text">
+                                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;点位个数&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                                 </property>
                             </widget>
                         </widget>
@@ -3401,7 +3348,7 @@ color:#ffffff</string>
                                 <rect>
                                  <x>0</x>
                                  <y>0</y>
-                                    <width>218</width>
+                                    <width>274</width>
                                  <height>218</height>
                                 </rect>
                                </property>

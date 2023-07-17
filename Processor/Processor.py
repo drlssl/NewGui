@@ -36,7 +36,7 @@ class Processor:
 
         self.lineNum = 0
         self.posNum = 0
-        self.curveNum = 0
+        self.curveNum = 30
 
         self.workSpacePath = ''
         self.resultIndex = 0  # 水平移动换了线后，这个index 就 +1
@@ -528,7 +528,7 @@ class Processor:
         pixelHeight = 992 - 595
         heightScale = pixelHeight / coordHeight
 
-        coordWidth = 312.38  # 347.09
+        coordWidth = 347.09
         pixelWidth = 1411 - 54
         widthScale = pixelWidth / coordWidth
 
@@ -654,6 +654,7 @@ class Processor:
         right_width_index = height_index + min_res02_right_index + 9
         getOut(f"right_width_index is :{right_width_index}")
 
+        print(nonrepeat_x_list)
         # 计算高宽
         width = (nonrepeat_x_list[right_width_index] - nonrepeat_x_list[left_width_index]) / widthScale
         width = round(width, 3)
@@ -678,10 +679,12 @@ class Processor:
 
         # 计算面积
         area = 0
-        height_offset = (nonrepeat_y_list[right_index] - nonrepeat_y_list[left_index]) / (right_index - left_index)
+        height_offset = (nonrepeat_y_list[right_width_index] - nonrepeat_y_list[left_width_index]) / (
+                right_width_index - left_width_index)
+        getOut(f"height_offset is :{height_offset}")
         for i in range(left_width_index, right_width_index):
-            cubeHeight = (nonrepeat_y_list[i] - height_offset * i - nonrepeat_y_list[left_index]) / heightScale
-            cubeWidth = 1 / heightScale
+            cubeHeight = (height_offset * i + nonrepeat_y_list[left_width_index] - nonrepeat_y_list[i]) / heightScale
+            cubeWidth = 1 / widthScale
             area += cubeWidth * cubeHeight
         area = round(area, 3)
 
@@ -705,7 +708,7 @@ class Processor:
             return width, height
 
         elif width < std_width - err_w and height < std_height - err_h:
-            with open(f"{self.workSpacePath}/断点记录/断点数据.txt", 'a+') as f:
+            with open(f"{self.workSpacePath}/broken_points/broken_points_data.txt", 'a+') as f:
                 f.write(
                     f"{self.currentLineIndex}-{self.currentPosIndex}-{self.currentCurveIndex}"
                     f": W:{width:.2f}, H:{height:.2f}, A:{area:.2f}\n")
@@ -714,7 +717,7 @@ class Processor:
 
             pic = cv2.cvtColor(np.array(pyautogui.screenshot()), cv2.COLOR_RGB2BGR)
             cv2.imwrite(
-                f"{self.workSpacePath}/断点记录/{self.currentLineIndex}-{self.currentLineIndex}-{self.currentCurveIndex}.png",
+                f"{self.workSpacePath}/broken_points/{self.currentLineIndex}-{self.currentLineIndex}-{self.currentCurveIndex}.png",
                 pic)
             getOut(f"height is :{height:.2f} μm")
             getOut(f"width is: {width:.2f} μm")
@@ -748,6 +751,7 @@ class Processor:
         getOut(f"W_STD: {w_np.std():.2f}")
         getOut(f"W_MAX: {w_np.max()}")
         getOut(f"W_MIN: {w_np.min()}")
+        getOut(f"W_SUM: {w_np.sum()}")
 
         h_np = np.array(h_list)
         getOut(f"H_AVG: {h_np.mean():.2f}")
@@ -767,28 +771,37 @@ class Processor:
             a_1 += 1 / a
         getOut(f"A_INV_SUM: {a_1:.2f}")
         with open(f"{self.workSpacePath}/结果查看/统计结果.txt", 'w+') as f:
+            f.write(f"==========  参数设置  ==================\n")
+            f.write(f"设置宽度标准值: {self.Processor.std_w}\n")
+            f.write(f"设置宽度误差阈值: {self.Processor.err_w}\n")
+            f.write(f"设置高度标准值: {self.Processor.std_h}\n")
+            f.write(f"设置高度误差阈值: {self.Processor.err_h}\n")
+            f.write(f"设置栅线条数为: {self.Processor.lineNum}\n")
+            f.write(f"设置每条栅线检测点位为: {self.Processor.posNum}\n")
+            f.write(f"设置每个点位中的切片个数为: {self.Processor.curveNum}\n")
 
             f.write(f"==========  宽度统计  ==================\n")
 
-            f.write(f"W_AVG: {w_np.mean():.2f}\n")
-            f.write(f"W_STD: {w_np.std():.2f}\n")
-            f.write(f"W_MAX: {w_np.max()}\n")
-            f.write(f"W_MIN: {w_np.min()}\n")
+            f.write(f"平均宽度: {w_np.mean():.2f}\n")
+            f.write(f"宽度标准差: {w_np.std():.2f}\n")
+            f.write(f"最大宽度: {w_np.max()}\n")
+            f.write(f"最小宽度: {w_np.min()}\n")
+            f.write(f"宽度之和: {w_np.sum()}\n")
 
             f.write(f"==========  高度统计  ==================\n")
 
-            f.write(f"H_AVG: {h_np.mean():.2f}\n")
-            f.write(f"H_STD: {h_np.std():.2f}\n")
-            f.write(f"H_MAX: {h_np.max()}\n")
-            f.write(f"H_MIN: {h_np.min()}\n")
+            f.write(f"高度平均值: {h_np.mean():.2f}\n")
+            f.write(f"高度标准差: {h_np.std():.2f}\n")
+            f.write(f"最大高度: {h_np.max()}\n")
+            f.write(f"最小高度: {h_np.min()}\n")
 
             f.write(f"==========  面积统计  ==================\n")
 
-            f.write(f"A_AVG: {a_np.mean():.2f}\n")
-            f.write(f"A_STD: {a_np.std():.2f}\n")
-            f.write(f"A_MAX: {a_np.max()}\n")
-            f.write(f"A_MIN: {a_np.min()}\n")
-            f.write(f"A_INV_SUM: {a_1:.2f}\n")
+            f.write(f"横截面积平均值: {a_np.mean():.2f}\n")
+            f.write(f"横截面积标准差: {a_np.std():.2f}\n")
+            f.write(f"最大横截面积: {a_np.max()}\n")
+            f.write(f"最小横截面积: {a_np.min()}\n")
+            f.write(f"横截面积倒数之和: {a_1:.2f}\n")
 
     def verticalMoveTest(self, getOut=None):
         #   这里是向上移动的
@@ -908,12 +921,13 @@ class Processor:
         self.click('contour_menu', 'contour_parallel_line', getOut=getOut01)
         pyautogui.moveTo(1000, 40)
         self.currentCurveIndex = 1
-        while self.currentCurveIndex <= 60:
+        move_offset = 480 // self.curveNum
+        while self.currentCurveIndex <= self.curveNum:
             # 注意这里移动的像素乘上 i的最大值等于480
             if not self.runningFlag:
                 raise Exception("中途停止", )
             try:
-                pyautogui.moveRel(0, 8)
+                pyautogui.moveRel(0, move_offset)
                 time.sleep(0.5)
                 self.getWidthHeightTest(getOut=getOut01, getOut02=getOut02)
                 self.currentCurveIndex += 1
@@ -937,7 +951,7 @@ class Processor:
 
     def fourthPageProgress(self, getOut=None):
         pic = cv2.cvtColor(np.array(pyautogui.screenshot()), cv2.COLOR_RGB2BGR)[:, :1440]
-        cv2.imwrite(f"{self.workSpacePath}/结果查看/{self.currentLineIndex}-{self.currentPosIndex}.png", pic)
+        cv2.imwrite(f"{self.workSpacePath}/img/{self.currentLineIndex}-{self.currentPosIndex}.png", pic)
 
         self.click('back_first_page_region', 'back_first_page', getOut=getOut)
         time.sleep(2)
@@ -1024,17 +1038,17 @@ class Processor:
     def doubleLineStdDetection(self, getOut01, getOut02, draw=None):
         self.runningFlag = True
         try:
-            for i in range(4):
-                self.pipeline(getOut01=getOut01, getOut02=getOut02, draw=draw)
-                self.verticalMoveTest(getOut=getOut01)
             self.pipeline(getOut01=getOut01, getOut02=getOut02, draw=draw)
+            for i in range(4):
+                self.verticalMoveTest(getOut=getOut01)
+                self.pipeline(getOut01=getOut01, getOut02=getOut02, draw=draw)
 
             self.horizontalMoveTest(getOut01)
 
-            for j in range(4):
-                self.pipeline(getOut01=getOut01, getOut02=getOut02, draw=draw)
-                self.verticalMoveTest(getOut=getOut01)
             self.pipeline(getOut01=getOut01, getOut02=getOut02, draw=draw)
+            for j in range(4):
+                self.verticalMoveTest(getOut=getOut01)
+                self.pipeline(getOut01=getOut01, getOut02=getOut02, draw=draw)
 
             self.analyseResult(f"{self.workSpacePath}/结果查看/原始数据.txt", getOut=getOut01)
         except Exception as e:
@@ -1044,13 +1058,12 @@ class Processor:
         self.runningFlag = True
         try:
             # 开始检测
-            for i in range(self.lineNum - 1):
-                for j in range(self.posNum - 1):
-                    self.pipeline(getOut01=getOut01, getOut02=getOut02, draw=draw)
-                    self.verticalMoveTest(getOut=getOut01)
+            for i in range(self.lineNum):
                 self.pipeline(getOut01=getOut01, getOut02=getOut02, draw=draw)
+                for j in range(self.posNum - 1):
+                    self.verticalMoveTest(getOut=getOut01)
+                    self.pipeline(getOut01=getOut01, getOut02=getOut02, draw=draw)
                 self.horizontalMoveTest(getOut01)
-            self.pipeline(getOut01=getOut01, getOut02=getOut02, draw=draw)
             # 分析数据
             self.analyseResult(f"{self.workSpacePath}/结果查看/原始数据.txt", getOut=getOut01)
         except Exception as e:
